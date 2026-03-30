@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Terms &amp; Conditions — GrowthPilot</title>
+<meta name="description" content="GrowthPilot Terms &amp; Conditions — the rules and guidelines governing use of our services and website."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:#F7F6FF;color:#0C0A1E;font-family:'Inter',sans-serif;font-weight:400;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+:root{
+  --primary:#4F1D96;--primary-hover:#3D1578;--primary-light:#7C3AED;
+  --accent:#F59E0B;--bg:#F7F6FF;--bg-alt:#EEEAF8;
+  --text:#0C0A1E;--text-mid:#2E2755;--text-muted:#6E6A9F;
+  --border:#D8D3EE;--radius:12px;
+  --shadow-md:0 6px 20px rgba(79,29,150,.10),0 2px 8px rgba(79,29,150,.06);
+  --ease:cubic-bezier(0.16,1,0.3,1);
+}
+.container{max-width:860px;margin:0 auto;padding:0 2rem}
+#nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:1.1rem 0;background:rgba(247,246,255,.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--border)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:2rem}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;color:var(--primary);display:flex;align-items:center;gap:.5rem}
+.nav-logo span{color:var(--accent)}
+.nav-logo-mark{width:30px;height:30px;border-radius:7px;background:var(--primary);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.btn-nav-back{font-family:'Space Grotesk',sans-serif;font-size:.8rem;font-weight:500;color:var(--primary);border:1.5px solid var(--primary);padding:.5rem 1.1rem;border-radius:6px;background:transparent;display:inline-flex;align-items:center;gap:.4rem;transition:background .2s,color .2s}
+.btn-nav-back:hover{background:var(--primary);color:#fff}
+.btn-nav-back svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+.policy-hero{padding:8rem 0 3.5rem;border-bottom:1px solid var(--border)}
+.policy-badge{display:inline-flex;align-items:center;gap:.6rem;background:#fff;border:1.5px solid var(--border);border-radius:100px;padding:.35rem .9rem .35rem .5rem;margin-bottom:1.2rem;box-shadow:0 1px 4px rgba(79,29,150,.06)}
+.policy-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0}
+.policy-badge span{font-family:'Space Grotesk',sans-serif;font-size:.7rem;font-weight:500;color:var(--text-mid)}
+.policy-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.5rem);font-weight:700;line-height:1.1;letter-spacing:-.02em;color:var(--text);margin-bottom:.9rem}
+.policy-hero h1 em{font-style:italic;color:var(--primary)}
+.policy-meta{font-size:.85rem;color:var(--text-muted)}
+.policy-body{padding:3.5rem 0 6rem}
+.policy-section{margin-bottom:3rem}
+.policy-section h2{font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:700;color:var(--text);margin-bottom:.85rem;padding-bottom:.6rem;border-bottom:2px solid var(--bg-alt)}
+.policy-section h3{font-family:'Space Grotesk',sans-serif;font-size:.95rem;font-weight:600;color:var(--text-mid);margin:1.25rem 0 .5rem}
+.policy-section p{font-size:.925rem;color:var(--text-muted);line-height:1.85;margin-bottom:.85rem}
+.policy-section p:last-child{margin-bottom:0}
+.policy-section ul{list-style:none;display:flex;flex-direction:column;gap:.5rem;margin-bottom:.85rem}
+.policy-section ul li{font-size:.925rem;color:var(--text-muted);line-height:1.75;padding-left:1.25rem;position:relative}
+.policy-section ul li::before{content:'';position:absolute;left:0;top:.65em;width:5px;height:5px;border-radius:50%;background:var(--accent)}
+.policy-section a{color:var(--primary);text-decoration:underline;text-underline-offset:3px}
+.policy-section a:hover{color:var(--primary-hover)}
+.policy-highlight{background:var(--bg-alt);border-left:3px solid var(--primary);border-radius:0 8px 8px 0;padding:1rem 1.25rem;margin-bottom:1rem}
+.policy-highlight p{font-size:.875rem;color:var(--text-mid);margin:0}
+.toc{background:#fff;border:1.5px solid var(--border);border-radius:var(--radius);padding:1.5rem 1.75rem;margin-bottom:2.5rem}
+.toc-title{font-family:'Space Grotesk',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
+.toc-list{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+.toc-list li{padding-left:0}
+.toc-list li::before{display:none}
+.toc-list a{font-size:.875rem;color:var(--primary);text-decoration:none;display:flex;align-items:center;gap:.4rem;transition:color .2s}
+.toc-list a:hover{color:var(--primary-hover)}
+.toc-list a::before{content:attr(data-num);font-family:'Space Grotesk',sans-serif;font-size:.65rem;font-weight:600;color:var(--text-muted);width:1.4rem;flex-shrink:0}
+footer{background:linear-gradient(160deg,#120A2E 0%,#1C0E45 55%,#0C0A1E 100%);padding:3rem 0 2rem}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.footer-copy{font-size:.75rem;color:rgba(255,255,255,.35)}
+.footer-legal-links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.footer-legal-links a{font-size:.75rem;color:rgba(255,255,255,.4);transition:color .2s}
+.footer-legal-links a:hover{color:#fff}
+@media(max-width:640px){
+  .container{padding:0 1.25rem}
+  .policy-hero{padding:6.5rem 0 2.5rem}
+  .footer-bottom{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="container" style="max-width:1180px">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="GrowthPilot Home">
+        <div class="nav-logo-mark">🚀</div>
+        Growth<span>Pilot</span>
+      </a>
+      <a href="index.html" class="btn-nav-back">
+        <svg viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Back to Home
+      </a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="policy-hero">
+    <div class="container">
+      <div class="policy-badge"><span class="policy-badge-dot"></span><span>Legal</span></div>
+      <h1>Terms &amp; <em>Conditions</em></h1>
+      <p class="policy-meta">Last updated: March 2026 &nbsp;·&nbsp; Effective date: March 1, 2026</p>
+    </div>
+  </div>
+
+  <div class="policy-body">
+    <div class="container">
+
+      <div class="policy-highlight">
+        <p>Please read these Terms &amp; Conditions carefully before using GrowthPilot's website or engaging our services. By accessing our website or entering into a service agreement with us, you agree to be bound by these terms.</p>
+      </div>
+
+      <nav class="toc" aria-label="Table of contents">
+        <div class="toc-title">Contents</div>
+        <ul class="toc-list">
+          <li><a href="#s1" data-num="01">Definitions</a></li>
+          <li><a href="#s2" data-num="02">Use of Our Website</a></li>
+          <li><a href="#s3" data-num="03">Our Services</a></li>
+          <li><a href="#s4" data-num="04">Engagement &amp; Onboarding</a></li>
+          <li><a href="#s5" data-num="05">Fees &amp; Payment</a></li>
+          <li><a href="#s6" data-num="06">Cancellation &amp; Refunds</a></li>
+          <li><a href="#s7" data-num="07">Client Responsibilities</a></li>
+          <li><a href="#s8" data-num="08">Intellectual Property</a></li>
+          <li><a href="#s9" data-num="09">Confidentiality</a></li>
+          <li><a href="#s10" data-num="10">Results &amp; Disclaimers</a></li>
+          <li><a href="#s11" data-num="11">Limitation of Liability</a></li>
+          <li><a href="#s12" data-num="12">Third-Party Services</a></li>
+          <li><a href="#s13" data-num="13">Governing Law</a></li>
+          <li><a href="#s14" data-num="14">Changes to These Terms</a></li>
+          <li><a href="#s15" data-num="15">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="policy-section" id="s1">
+        <h2>1. Definitions</h2>
+        <p>In these Terms &amp; Conditions:</p>
+        <ul>
+          <li><strong>"GrowthPilot", "we", "us", "our"</strong> refers to GrowthPilot, a social media marketing agency.</li>
+          <li><strong>"Client", "you", "your"</strong> refers to any individual or business that engages our services or visits our website.</li>
+          <li><strong>"Services"</strong> refers to social media marketing, content creation, personal brand strategy, lead generation, paid advertising, and related services provided by GrowthPilot.</li>
+          <li><strong>"Agreement"</strong> refers to the service agreement or proposal accepted by the Client.</li>
+          <li><strong>"Website"</strong> refers to growthpilot.com and all associated pages.</li>
+        </ul>
+      </div>
+
+      <div class="policy-section" id="s2">
+        <h2>2. Use of Our Website</h2>
+        <p>By accessing our website, you agree to use it only for lawful purposes and in a manner that does not infringe the rights of others. You must not:</p>
+        <ul>
+          <li>Use the website in any way that breaches applicable local, national, or international law or regulation</li>
+          <li>Transmit any unsolicited or unauthorised advertising or promotional material</li>
+          <li>Attempt to gain unauthorised access to any part of our website or its related systems</li>
+          <li>Use automated tools to scrape, extract, or copy content from our website without permission</li>
+          <li>Introduce viruses, trojans, worms, or other harmful material to our website</li>
+        </ul>
+        <p>We reserve the right to suspend or terminate access to the website for users who breach these terms.</p>
+      </div>
+
+      <div class="policy-section" id="s3">
+        <h2>3. Our Services</h2>
+        <p>GrowthPilot provides social media marketing services to professionals including, but not limited to, real estate agents, lawyers, healthcare professionals, financial advisers, coaches, and local business owners. Our services include:</p>
+        <ul>
+          <li>Personal brand strategy and consulting</li>
+          <li>Social media content creation and management</li>
+          <li>Lead generation and conversion funnel setup</li>
+          <li>Paid social advertising (Meta, LinkedIn, TikTok, Google)</li>
+          <li>Authority building and audience development</li>
+          <li>Monthly performance reporting and strategy reviews</li>
+        </ul>
+        <p>The specific scope of services for each client is defined in the individual service agreement or proposal.</p>
+      </div>
+
+      <div class="policy-section" id="s4">
+        <h2>4. Engagement &amp; Onboarding</h2>
+        <p>Services commence upon receipt of a signed agreement and initial payment. The onboarding process typically includes a strategy session, brand audit, account access setup, and content approval workflow. All services are subject to the terms of the applicable service agreement.</p>
+        <p>We reserve the right to decline any engagement at our discretion without obligation to provide a reason.</p>
+      </div>
+
+      <div class="policy-section" id="s5">
+        <h2>5. Fees &amp; Payment</h2>
+        <p>All fees are set out in your service agreement or proposal. Unless stated otherwise:</p>
+        <ul>
+          <li>Services are billed monthly in advance</li>
+          <li>Payment is due within 7 days of invoice date</li>
+          <li>All prices are in USD and exclusive of applicable taxes unless stated</li>
+          <li>Late payments may incur a 1.5% monthly interest charge on outstanding balances</li>
+          <li>We reserve the right to pause services where invoices remain unpaid beyond 14 days</li>
+        </ul>
+        <p>Paid advertising budgets are separate from our service fees and are billed directly through the relevant advertising platforms. We do not take a commission on ad spend unless explicitly agreed.</p>
+      </div>
+
+      <div class="policy-section" id="s6">
+        <h2>6. Cancellation &amp; Refunds</h2>
+        <p>Our services operate on a rolling month-to-month basis unless a fixed-term agreement has been signed. You may cancel at any time with 30 days written notice sent to <a href="mailto:hello@growthpilot.com">hello@growthpilot.com</a>.</p>
+        <ul>
+          <li>Services already delivered in a billing period are non-refundable</li>
+          <li>Where work has commenced in a month and you cancel mid-cycle, no refund is issued for that month</li>
+          <li>Strategy call sessions that have taken place are non-refundable</li>
+          <li>In the event of a proven service failure on our part, refunds or credits will be assessed on a case-by-case basis</li>
+        </ul>
+        <p>For fixed-term engagements, early termination fees may apply as outlined in your service agreement.</p>
+      </div>
+
+      <div class="policy-section" id="s7">
+        <h2>7. Client Responsibilities</h2>
+        <p>To allow us to deliver services effectively, you agree to:</p>
+        <ul>
+          <li>Provide timely access to required social media accounts, brand assets, and business information</li>
+          <li>Attend scheduled strategy and review calls (typically monthly)</li>
+          <li>Review and approve content within agreed timelines (typically 48 hours)</li>
+          <li>Ensure all information provided to us is accurate and lawful</li>
+          <li>Notify us promptly of any changes to your business, branding, or legal requirements</li>
+          <li>Comply with the terms of service of all social media platforms on which we operate on your behalf</li>
+        </ul>
+        <p>GrowthPilot shall not be liable for delays or underperformance resulting from a client's failure to fulfil these responsibilities.</p>
+      </div>
+
+      <div class="policy-section" id="s8">
+        <h2>8. Intellectual Property</h2>
+        <h3>Our intellectual property</h3>
+        <p>All content on our website — including text, graphics, logos, images, and software — is owned by GrowthPilot or our licensors and is protected by applicable intellectual property laws. You may not reproduce, distribute, or use any of our content without prior written permission.</p>
+        <h3>Content created for clients</h3>
+        <p>Upon receipt of full payment for a given period, ownership of original content created specifically for your brand (posts, graphics, copy) transfers to you. We retain the right to use anonymised or aggregated examples of our work in our portfolio and marketing materials unless you request otherwise in writing.</p>
+        <h3>Client-provided materials</h3>
+        <p>You grant GrowthPilot a non-exclusive licence to use any brand assets, images, logos, or content you provide to us solely for the purpose of delivering the agreed services.</p>
+      </div>
+
+      <div class="policy-section" id="s9">
+        <h2>9. Confidentiality</h2>
+        <p>Both parties agree to keep confidential any proprietary business information, strategies, or data shared during the engagement. This obligation survives the termination of the service agreement for a period of 2 years.</p>
+        <p>Confidentiality does not apply to information that is publicly available, independently developed, or required to be disclosed by law.</p>
+      </div>
+
+      <div class="policy-section" id="s10">
+        <h2>10. Results &amp; Disclaimers</h2>
+        <p>Social media marketing results depend on many factors including your industry, market conditions, content quality, and audience behaviour. While we work diligently to achieve the best outcomes for your business, GrowthPilot does not guarantee specific results including follower counts, engagement rates, leads generated, or revenue.</p>
+        <p>Past results achieved for other clients are presented as illustrations and are not guarantees of future performance. Any projections or estimates we provide are our professional opinion and should not be treated as promises.</p>
+        <p>Our website and services are provided "as is" without warranties of any kind, express or implied, to the fullest extent permitted by law.</p>
+      </div>
+
+      <div class="policy-section" id="s11">
+        <h2>11. Limitation of Liability</h2>
+        <p>To the maximum extent permitted by applicable law, GrowthPilot's total liability to you for any claim arising from or relating to these terms or our services shall not exceed the total fees paid by you to us in the 3 months immediately preceding the claim.</p>
+        <p>We shall not be liable for any indirect, consequential, incidental, special, or punitive damages, or for loss of profits, revenue, goodwill, or data, even if we have been advised of the possibility of such damages.</p>
+        <p>Nothing in these terms excludes liability for death or personal injury caused by negligence, fraud, or any other liability that cannot be excluded by law.</p>
+      </div>
+
+      <div class="policy-section" id="s12">
+        <h2>12. Third-Party Services</h2>
+        <p>Our services may involve the use of third-party platforms (e.g. Meta, LinkedIn, TikTok, Calendly, Google). We are not responsible for the availability, terms, or content of these platforms. Your use of third-party services is governed by their respective terms and privacy policies.</p>
+        <p>Our website may contain links to external websites. We do not control and are not responsible for the content of those sites.</p>
+      </div>
+
+      <div class="policy-section" id="s13">
+        <h2>13. Governing Law</h2>
+        <p>These Terms &amp; Conditions shall be governed by and construed in accordance with the laws of the jurisdiction in which GrowthPilot is registered. Any disputes shall be subject to the exclusive jurisdiction of the courts in that jurisdiction, unless otherwise agreed in writing.</p>
+        <p>If any provision of these terms is found to be unenforceable, the remaining provisions will continue in full force and effect.</p>
+      </div>
+
+      <div class="policy-section" id="s14">
+        <h2>14. Changes to These Terms</h2>
+        <p>We reserve the right to update these Terms &amp; Conditions at any time. Material changes will be communicated to active clients by email and will take effect 14 days after notification. Continued use of our services after that period constitutes acceptance of the updated terms.</p>
+        <p>The "Last updated" date at the top of this page reflects the most recent version.</p>
+      </div>
+
+      <div class="policy-section" id="s15">
+        <h2>15. Contact</h2>
+        <p>For any questions about these Terms &amp; Conditions or our services, please contact us:</p>
+        <ul>
+          <li><strong>Email:</strong> <a href="mailto:hello@growthpilot.com">hello@growthpilot.com</a></li>
+          <li><strong>Website:</strong> <a href="index.html">growthpilot.com</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container" style="max-width:1180px">
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 GrowthPilot. All rights reserved.</p>
+      <div class="footer-legal-links">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-and-conditions.html">Terms &amp; Conditions</a>
+        <a href="cookies-policy.html">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

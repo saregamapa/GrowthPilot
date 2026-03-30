@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Cookie Policy — GrowthPilot</title>
+<meta name="description" content="GrowthPilot Cookie Policy — how we use cookies and similar technologies on our website."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:#F7F6FF;color:#0C0A1E;font-family:'Inter',sans-serif;font-weight:400;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+:root{
+  --primary:#4F1D96;--primary-hover:#3D1578;--primary-light:#7C3AED;
+  --accent:#F59E0B;--bg:#F7F6FF;--bg-alt:#EEEAF8;
+  --text:#0C0A1E;--text-mid:#2E2755;--text-muted:#6E6A9F;
+  --border:#D8D3EE;--radius:12px;
+  --shadow-md:0 6px 20px rgba(79,29,150,.10),0 2px 8px rgba(79,29,150,.06);
+  --ease:cubic-bezier(0.16,1,0.3,1);
+}
+.container{max-width:860px;margin:0 auto;padding:0 2rem}
+#nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:1.1rem 0;background:rgba(247,246,255,.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--border)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:2rem}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;color:var(--primary);display:flex;align-items:center;gap:.5rem}
+.nav-logo span{color:var(--accent)}
+.nav-logo-mark{width:30px;height:30px;border-radius:7px;background:var(--primary);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.btn-nav-back{font-family:'Space Grotesk',sans-serif;font-size:.8rem;font-weight:500;color:var(--primary);border:1.5px solid var(--primary);padding:.5rem 1.1rem;border-radius:6px;background:transparent;display:inline-flex;align-items:center;gap:.4rem;transition:background .2s,color .2s}
+.btn-nav-back:hover{background:var(--primary);color:#fff}
+.btn-nav-back svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+.policy-hero{padding:8rem 0 3.5rem;border-bottom:1px solid var(--border)}
+.policy-badge{display:inline-flex;align-items:center;gap:.6rem;background:#fff;border:1.5px solid var(--border);border-radius:100px;padding:.35rem .9rem .35rem .5rem;margin-bottom:1.2rem;box-shadow:0 1px 4px rgba(79,29,150,.06)}
+.policy-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0}
+.policy-badge span{font-family:'Space Grotesk',sans-serif;font-size:.7rem;font-weight:500;color:var(--text-mid)}
+.policy-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.5rem);font-weight:700;line-height:1.1;letter-spacing:-.02em;color:var(--text);margin-bottom:.9rem}
+.policy-hero h1 em{font-style:italic;color:var(--primary)}
+.policy-meta{font-size:.85rem;color:var(--text-muted)}
+.policy-body{padding:3.5rem 0 6rem}
+.policy-section{margin-bottom:3rem}
+.policy-section h2{font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:700;color:var(--text);margin-bottom:.85rem;padding-bottom:.6rem;border-bottom:2px solid var(--bg-alt)}
+.policy-section h3{font-family:'Space Grotesk',sans-serif;font-size:.95rem;font-weight:600;color:var(--text-mid);margin:1.25rem 0 .5rem}
+.policy-section p{font-size:.925rem;color:var(--text-muted);line-height:1.85;margin-bottom:.85rem}
+.policy-section p:last-child{margin-bottom:0}
+.policy-section ul{list-style:none;display:flex;flex-direction:column;gap:.5rem;margin-bottom:.85rem}
+.policy-section ul li{font-size:.925rem;color:var(--text-muted);line-height:1.75;padding-left:1.25rem;position:relative}
+.policy-section ul li::before{content:'';position:absolute;left:0;top:.65em;width:5px;height:5px;border-radius:50%;background:var(--accent)}
+.policy-section a{color:var(--primary);text-decoration:underline;text-underline-offset:3px}
+.policy-section a:hover{color:var(--primary-hover)}
+.policy-highlight{background:var(--bg-alt);border-left:3px solid var(--primary);border-radius:0 8px 8px 0;padding:1rem 1.25rem;margin-bottom:1rem}
+.policy-highlight p{font-size:.875rem;color:var(--text-mid);margin:0}
+
+/* Cookie category table */
+.cookie-table{width:100%;border-collapse:collapse;margin-bottom:1rem;font-size:.875rem}
+.cookie-table th{font-family:'Space Grotesk',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-mid);background:var(--bg-alt);padding:.75rem 1rem;text-align:left;border-bottom:2px solid var(--border)}
+.cookie-table td{padding:.75rem 1rem;border-bottom:1px solid var(--border);color:var(--text-muted);line-height:1.6;vertical-align:top}
+.cookie-table tr:last-child td{border-bottom:none}
+.cookie-table td:first-child{font-family:'Space Grotesk',sans-serif;font-weight:600;color:var(--text-mid);white-space:nowrap}
+.cookie-type-badge{display:inline-block;font-family:'Space Grotesk',sans-serif;font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;padding:.2rem .55rem;border-radius:100px}
+.badge-essential{background:rgba(79,29,150,.1);color:var(--primary)}
+.badge-analytics{background:rgba(245,158,11,.12);color:#92400E}
+.badge-marketing{background:rgba(124,58,237,.1);color:var(--primary-light)}
+.badge-functional{background:rgba(16,185,129,.1);color:#065F46}
+
+footer{background:linear-gradient(160deg,#120A2E 0%,#1C0E45 55%,#0C0A1E 100%);padding:3rem 0 2rem}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.footer-copy{font-size:.75rem;color:rgba(255,255,255,.35)}
+.footer-legal-links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.footer-legal-links a{font-size:.75rem;color:rgba(255,255,255,.4);transition:color .2s}
+.footer-legal-links a:hover{color:#fff}
+@media(max-width:640px){
+  .container{padding:0 1.25rem}
+  .policy-hero{padding:6.5rem 0 2.5rem}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .cookie-table{display:block;overflow-x:auto}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="container" style="max-width:1180px">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="GrowthPilot Home">
+        <div class="nav-logo-mark">🚀</div>
+        Growth<span>Pilot</span>
+      </a>
+      <a href="index.html" class="btn-nav-back">
+        <svg viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Back to Home
+      </a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="policy-hero">
+    <div class="container">
+      <div class="policy-badge"><span class="policy-badge-dot"></span><span>Legal</span></div>
+      <h1>Cookie <em>Policy</em></h1>
+      <p class="policy-meta">Last updated: March 2026 &nbsp;·&nbsp; Effective date: March 1, 2026</p>
+    </div>
+  </div>
+
+  <div class="policy-body">
+    <div class="container">
+
+      <div class="policy-highlight">
+        <p>This Cookie Policy explains how GrowthPilot uses cookies and similar tracking technologies when you visit our website. It is designed to help you understand what cookies are, why we use them, and how you can control them.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>1. What Are Cookies?</h2>
+        <p>Cookies are small text files that are placed on your device (computer, tablet, or mobile phone) when you visit a website. They are widely used to make websites work more efficiently, provide a better browsing experience, and give website owners useful information about how their site is being used.</p>
+        <p>Cookies can be "session cookies" (which expire when you close your browser) or "persistent cookies" (which remain on your device for a set period or until you delete them). They can also be "first-party" (set by us) or "third-party" (set by external services we use).</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>2. How We Use Cookies</h2>
+        <p>We use cookies to:</p>
+        <ul>
+          <li>Ensure the website functions correctly and securely</li>
+          <li>Remember your preferences and settings</li>
+          <li>Analyse how visitors use our website to improve performance</li>
+          <li>Measure the effectiveness of our marketing campaigns</li>
+          <li>Deliver relevant content and advertisements</li>
+        </ul>
+      </div>
+
+      <div class="policy-section">
+        <h2>3. Types of Cookies We Use</h2>
+        <table class="cookie-table">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Type</th>
+              <th>Purpose</th>
+              <th>Examples</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Strictly Necessary</td>
+              <td><span class="cookie-type-badge badge-essential">Essential</span></td>
+              <td>Required for the website to function. These cannot be disabled.</td>
+              <td>Session management, security tokens, load balancing</td>
+            </tr>
+            <tr>
+              <td>Performance &amp; Analytics</td>
+              <td><span class="cookie-type-badge badge-analytics">Analytics</span></td>
+              <td>Help us understand how visitors interact with our website by collecting anonymous information.</td>
+              <td>Google Analytics (_ga, _gid), page view tracking</td>
+            </tr>
+            <tr>
+              <td>Functional</td>
+              <td><span class="cookie-type-badge badge-functional">Functional</span></td>
+              <td>Enable enhanced features and personalisation, such as remembering your preferences.</td>
+              <td>Language preferences, form auto-fill, Calendly embed state</td>
+            </tr>
+            <tr>
+              <td>Marketing &amp; Targeting</td>
+              <td><span class="cookie-type-badge badge-marketing">Marketing</span></td>
+              <td>Used to deliver relevant ads and track the effectiveness of campaigns across platforms.</td>
+              <td>Meta Pixel, LinkedIn Insight Tag, Google Ads conversion tracking</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="policy-section">
+        <h2>4. Third-Party Cookies</h2>
+        <p>Some cookies on our website are set by third-party services that appear on our pages. We do not control these cookies, and they are governed by the privacy policies of the respective third parties. These include:</p>
+        <ul>
+          <li><strong>Google Analytics</strong> — for website traffic and behaviour analysis. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>.</li>
+          <li><strong>Meta (Facebook) Pixel</strong> — for tracking conversions and audience retargeting. See <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">Meta's Privacy Policy</a>.</li>
+          <li><strong>LinkedIn Insight Tag</strong> — for professional audience analytics and retargeting. See <a href="https://www.linkedin.com/legal/privacy-policy" target="_blank" rel="noopener">LinkedIn's Privacy Policy</a>.</li>
+          <li><strong>Calendly</strong> — for scheduling embedded booking functionality. See <a href="https://calendly.com/privacy" target="_blank" rel="noopener">Calendly's Privacy Policy</a>.</li>
+          <li><strong>Google Fonts</strong> — for loading web fonts. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>.</li>
+        </ul>
+      </div>
+
+      <div class="policy-section">
+        <h2>5. Cookie Duration</h2>
+        <p>Cookies we use have the following retention periods:</p>
+        <ul>
+          <li><strong>Session cookies</strong> — deleted automatically when you close your browser</li>
+          <li><strong>Short-term persistent cookies</strong> — retained for up to 30 days</li>
+          <li><strong>Long-term persistent cookies</strong> — retained for up to 2 years (e.g. Google Analytics)</li>
+        </ul>
+      </div>
+
+      <div class="policy-section">
+        <h2>6. Managing Your Cookie Preferences</h2>
+        <h3>Browser settings</h3>
+        <p>Most web browsers allow you to control cookies through their settings. You can set your browser to refuse all cookies, to alert you when a cookie is being set, or to delete cookies that have already been set. Please note that disabling certain cookies may affect the functionality of our website.</p>
+        <p>For guidance on managing cookies in your specific browser, visit:</p>
+        <ul>
+          <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Google Chrome</a></li>
+          <li><a href="https://support.mozilla.org/en-US/kb/cookies-information-websites-store-on-your-computer" target="_blank" rel="noopener">Mozilla Firefox</a></li>
+          <li><a href="https://support.apple.com/en-gb/guide/safari/sfri11471/mac" target="_blank" rel="noopener">Apple Safari</a></li>
+          <li><a href="https://support.microsoft.com/en-us/windows/microsoft-edge-browsing-data-and-privacy" target="_blank" rel="noopener">Microsoft Edge</a></li>
+        </ul>
+        <h3>Opt-out tools</h3>
+        <ul>
+          <li><strong>Google Analytics:</strong> Install the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics Opt-out Browser Add-on</a></li>
+          <li><strong>Interest-based advertising:</strong> Visit <a href="https://optout.aboutads.info" target="_blank" rel="noopener">aboutads.info</a> or <a href="https://www.youronlinechoices.eu" target="_blank" rel="noopener">youronlinechoices.eu</a></li>
+        </ul>
+      </div>
+
+      <div class="policy-section">
+        <h2>7. Consent</h2>
+        <p>When you first visit our website, we will ask for your consent to use non-essential cookies via our cookie consent banner. You can choose to accept all cookies, reject non-essential cookies, or customise your preferences. You can change your preferences at any time by clearing your browser cookies and revisiting our site.</p>
+        <p>Strictly necessary cookies do not require your consent as they are essential for the website to function.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>8. Changes to This Policy</h2>
+        <p>We may update this Cookie Policy from time to time to reflect changes in technology, legislation, or our cookie practices. We will update the "Last updated" date when we do so. We encourage you to check this page periodically.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>9. Contact Us</h2>
+        <p>If you have questions about our use of cookies, please contact us:</p>
+        <ul>
+          <li><strong>Email:</strong> <a href="mailto:hello@growthpilot.com">hello@growthpilot.com</a></li>
+          <li><strong>Privacy Policy:</strong> <a href="privacy-policy.html">Read our full Privacy Policy</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container" style="max-width:1180px">
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 GrowthPilot. All rights reserved.</p>
+      <div class="footer-legal-links">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-and-conditions.html">Terms &amp; Conditions</a>
+        <a href="cookies-policy.html">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

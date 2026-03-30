@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Privacy Policy — GrowthPilot</title>
+<meta name="description" content="GrowthPilot Privacy Policy — how we collect, use, and protect your personal information."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:#F7F6FF;color:#0C0A1E;font-family:'Inter',sans-serif;font-weight:400;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+:root{
+  --primary:#4F1D96;--primary-hover:#3D1578;--primary-light:#7C3AED;
+  --accent:#F59E0B;--bg:#F7F6FF;--bg-alt:#EEEAF8;
+  --text:#0C0A1E;--text-mid:#2E2755;--text-muted:#6E6A9F;
+  --border:#D8D3EE;--radius:12px;
+  --shadow-md:0 6px 20px rgba(79,29,150,.10),0 2px 8px rgba(79,29,150,.06);
+  --ease:cubic-bezier(0.16,1,0.3,1);
+}
+.container{max-width:860px;margin:0 auto;padding:0 2rem}
+
+/* NAV */
+#nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:1.1rem 0;background:rgba(247,246,255,.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--border)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:2rem}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;color:var(--primary);display:flex;align-items:center;gap:.5rem}
+.nav-logo span{color:var(--accent)}
+.nav-logo-mark{width:30px;height:30px;border-radius:7px;background:var(--primary);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.btn-nav-back{font-family:'Space Grotesk',sans-serif;font-size:.8rem;font-weight:500;color:var(--primary);border:1.5px solid var(--primary);padding:.5rem 1.1rem;border-radius:6px;background:transparent;display:inline-flex;align-items:center;gap:.4rem;transition:background .2s,color .2s}
+.btn-nav-back:hover{background:var(--primary);color:#fff}
+.btn-nav-back svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+
+/* HERO */
+.policy-hero{padding:8rem 0 3.5rem;border-bottom:1px solid var(--border)}
+.policy-badge{display:inline-flex;align-items:center;gap:.6rem;background:#fff;border:1.5px solid var(--border);border-radius:100px;padding:.35rem .9rem .35rem .5rem;margin-bottom:1.2rem;box-shadow:0 1px 4px rgba(79,29,150,.06)}
+.policy-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0}
+.policy-badge span{font-family:'Space Grotesk',sans-serif;font-size:.7rem;font-weight:500;color:var(--text-mid)}
+.policy-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.5rem);font-weight:700;line-height:1.1;letter-spacing:-.02em;color:var(--text);margin-bottom:.9rem}
+.policy-hero h1 em{font-style:italic;color:var(--primary)}
+.policy-meta{font-size:.85rem;color:var(--text-muted)}
+
+/* CONTENT */
+.policy-body{padding:3.5rem 0 6rem}
+.policy-section{margin-bottom:3rem}
+.policy-section h2{font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:700;color:var(--text);margin-bottom:.85rem;padding-bottom:.6rem;border-bottom:2px solid var(--bg-alt)}
+.policy-section h3{font-family:'Space Grotesk',sans-serif;font-size:.95rem;font-weight:600;color:var(--text-mid);margin:1.25rem 0 .5rem}
+.policy-section p{font-size:.925rem;color:var(--text-muted);line-height:1.85;margin-bottom:.85rem}
+.policy-section p:last-child{margin-bottom:0}
+.policy-section ul{list-style:none;display:flex;flex-direction:column;gap:.5rem;margin-bottom:.85rem}
+.policy-section ul li{font-size:.925rem;color:var(--text-muted);line-height:1.75;padding-left:1.25rem;position:relative}
+.policy-section ul li::before{content:'';position:absolute;left:0;top:.65em;width:5px;height:5px;border-radius:50%;background:var(--accent)}
+.policy-section a{color:var(--primary);text-decoration:underline;text-underline-offset:3px}
+.policy-section a:hover{color:var(--primary-hover)}
+.policy-highlight{background:var(--bg-alt);border-left:3px solid var(--primary);border-radius:0 8px 8px 0;padding:1rem 1.25rem;margin-bottom:1rem}
+.policy-highlight p{font-size:.875rem;color:var(--text-mid);margin:0}
+
+/* FOOTER */
+footer{background:linear-gradient(160deg,#120A2E 0%,#1C0E45 55%,#0C0A1E 100%);padding:3rem 0 2rem}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.footer-copy{font-size:.75rem;color:rgba(255,255,255,.35)}
+.footer-legal-links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.footer-legal-links a{font-size:.75rem;color:rgba(255,255,255,.4);transition:color .2s}
+.footer-legal-links a:hover{color:#fff}
+
+@media(max-width:640px){
+  .container{padding:0 1.25rem}
+  .policy-hero{padding:6.5rem 0 2.5rem}
+  .footer-bottom{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="container" style="max-width:1180px">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="GrowthPilot Home">
+        <div class="nav-logo-mark">🚀</div>
+        Growth<span>Pilot</span>
+      </a>
+      <a href="index.html" class="btn-nav-back">
+        <svg viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Back to Home
+      </a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="policy-hero">
+    <div class="container">
+      <div class="policy-badge"><span class="policy-badge-dot"></span><span>Legal</span></div>
+      <h1>Privacy <em>Policy</em></h1>
+      <p class="policy-meta">Last updated: March 2026 &nbsp;·&nbsp; Effective date: March 1, 2026</p>
+    </div>
+  </div>
+
+  <div class="policy-body">
+    <div class="container">
+
+      <div class="policy-highlight">
+        <p>This Privacy Policy explains how GrowthPilot ("we", "us", or "our") collects, uses, and protects your personal information when you visit our website or use our services. We are committed to protecting your privacy and handling your data transparently.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>1. Who We Are</h2>
+        <p>GrowthPilot is a social media marketing agency that helps professionals build personal brands and attract high-value clients. Our registered business address is available upon request by emailing <a href="mailto:hello@growthpilot.com">hello@growthpilot.com</a>.</p>
+        <p>If you have questions about this policy or your personal data, please contact our privacy team at <a href="mailto:hello@growthpilot.com">hello@growthpilot.com</a>.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>2. Information We Collect</h2>
+        <h3>Information you provide directly</h3>
+        <ul>
+          <li>Name, email address, phone number, and industry when you complete our contact or strategy call form</li>
+          <li>Business goals and social media details you share during onboarding or consultation calls</li>
+          <li>Payment and billing information processed securely through our third-party payment provider</li>
+          <li>Communications and correspondence you send to us via email or our website</li>
+        </ul>
+        <h3>Information collected automatically</h3>
+        <ul>
+          <li>IP address, browser type, operating system, and device information</li>
+          <li>Pages visited, time spent on pages, and links clicked (via analytics tools)</li>
+          <li>Referral source — how you found our website</li>
+          <li>Cookie identifiers and similar tracking technologies (see our <a href="cookies-policy.html">Cookie Policy</a>)</li>
+        </ul>
+        <h3>Information from third parties</h3>
+        <ul>
+          <li>Social media profile data when you connect your accounts as part of our service delivery</li>
+          <li>Analytics data from platforms such as Google Analytics and Meta Business Suite</li>
+        </ul>
+      </div>
+
+      <div class="policy-section">
+        <h2>3. How We Use Your Information</h2>
+        <p>We use your personal information for the following purposes:</p>
+        <ul>
+          <li>To provide, manage, and improve our social media marketing services</li>
+          <li>To respond to enquiries and book strategy calls</li>
+          <li>To send you service-related updates, reports, and communications</li>
+          <li>To send marketing emails, newsletters, or promotional content where you have given consent</li>
+          <li>To process payments and manage billing</li>
+          <li>To comply with legal obligations and resolve disputes</li>
+          <li>To analyse website performance and improve user experience</li>
+        </ul>
+        <p>We will not sell, rent, or trade your personal information to third parties for their own marketing purposes.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>4. Legal Basis for Processing</h2>
+        <p>Where applicable (e.g. for users in the European Economic Area or UK), we process your data on the following legal bases:</p>
+        <ul>
+          <li><strong>Contract performance</strong> — when processing is necessary to deliver services you have engaged us for</li>
+          <li><strong>Legitimate interests</strong> — for analytics, fraud prevention, and improving our services</li>
+          <li><strong>Consent</strong> — for marketing communications and non-essential cookies</li>
+          <li><strong>Legal obligation</strong> — where required by applicable law</li>
+        </ul>
+      </div>
+
+      <div class="policy-section">
+        <h2>5. Sharing Your Information</h2>
+        <p>We may share your information with the following categories of third parties:</p>
+        <ul>
+          <li><strong>Service providers</strong> — including email platforms, CRM systems, analytics tools, and payment processors who process data on our behalf under strict data processing agreements</li>
+          <li><strong>Social media platforms</strong> — such as Instagram, LinkedIn, Facebook, TikTok, and YouTube as part of delivering your contracted services</li>
+          <li><strong>Calendly</strong> — for scheduling strategy calls; subject to Calendly's own privacy policy</li>
+          <li><strong>Legal authorities</strong> — where required by law, regulation, or court order</li>
+        </ul>
+        <p>All third-party service providers are required to maintain appropriate security measures and may only use your data as instructed by us.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>6. Data Retention</h2>
+        <p>We retain your personal information for as long as necessary to deliver our services and comply with our legal obligations. Specifically:</p>
+        <ul>
+          <li>Active client data is retained for the duration of the service agreement plus 7 years</li>
+          <li>Enquiry and lead data is retained for up to 2 years if no service agreement is entered</li>
+          <li>Marketing consent records are retained for 3 years from the last interaction</li>
+          <li>Website analytics data is retained as per the default retention settings of our analytics providers (typically 26 months)</li>
+        </ul>
+        <p>When data is no longer required, it is securely deleted or anonymised.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>7. Your Rights</h2>
+        <p>Depending on your location, you may have the following rights regarding your personal data:</p>
+        <ul>
+          <li><strong>Access</strong> — request a copy of the personal data we hold about you</li>
+          <li><strong>Rectification</strong> — ask us to correct inaccurate or incomplete data</li>
+          <li><strong>Erasure</strong> — request deletion of your personal data ("right to be forgotten")</li>
+          <li><strong>Restriction</strong> — ask us to limit how we use your data</li>
+          <li><strong>Portability</strong> — receive your data in a structured, machine-readable format</li>
+          <li><strong>Objection</strong> — object to processing based on legitimate interests or for direct marketing</li>
+          <li><strong>Withdraw consent</strong> — where processing is based on consent, withdraw it at any time</li>
+        </ul>
+        <p>To exercise any of these rights, contact us at <a href="mailto:hello@growthpilot.com">hello@growthpilot.com</a>. We will respond within 30 days.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>8. Data Security</h2>
+        <p>We implement appropriate technical and organisational measures to protect your personal information against unauthorised access, alteration, disclosure, or destruction. These include SSL/TLS encryption, access controls, and regular security reviews.</p>
+        <p>However, no method of transmission over the internet is 100% secure. While we strive to use commercially acceptable means to protect your data, we cannot guarantee absolute security.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>9. International Data Transfers</h2>
+        <p>Your information may be processed in countries outside your own, including the United States, where some of our third-party service providers are based. Where data is transferred outside the EEA or UK, we ensure appropriate safeguards are in place (such as Standard Contractual Clauses) to protect your data in accordance with applicable law.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>10. Cookies</h2>
+        <p>We use cookies and similar technologies to improve your experience on our website. For full details on the types of cookies we use and how to manage them, please see our <a href="cookies-policy.html">Cookie Policy</a>.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>11. Children's Privacy</h2>
+        <p>Our services are not directed at children under 16 years of age. We do not knowingly collect personal information from children. If you believe a child has provided us with personal information, please contact us immediately at <a href="mailto:hello@growthpilot.com">hello@growthpilot.com</a>.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>12. Changes to This Policy</h2>
+        <p>We may update this Privacy Policy from time to time. When we make material changes, we will update the "Last updated" date at the top of this page and, where appropriate, notify you by email. We encourage you to review this policy periodically.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>13. Contact Us</h2>
+        <p>If you have any questions, concerns, or requests regarding this Privacy Policy or your personal data, please contact us:</p>
+        <ul>
+          <li><strong>Email:</strong> <a href="mailto:hello@growthpilot.com">hello@growthpilot.com</a></li>
+          <li><strong>Website:</strong> <a href="index.html">growthpilot.com</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container" style="max-width:1180px">
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 GrowthPilot. All rights reserved.</p>
+      <div class="footer-legal-links">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-and-conditions.html">Terms &amp; Conditions</a>
+        <a href="cookies-policy.html">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
