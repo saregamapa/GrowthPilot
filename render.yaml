@@ -1,0 +1,11 @@
+# Render Static Site — https://render.com/docs/static-sites
+# Publish path is repo root (index.html lives here). Do not put "true" in publish directory.
+services:
+  - type: web
+    name: growthpilot
+    runtime: static
+    plan: free
+    branch: main
+    autoDeploy: true
+    buildCommand: "true"
+    staticPublishPath: .
