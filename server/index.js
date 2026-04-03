@@ -3,10 +3,20 @@ import cors from 'cors';
 
 const PORT = Number(process.env.PORT) || 3000;
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-const ALLOWED = (process.env.ALLOWED_ORIGINS || '')
-  .split(',')
-  .map((s) => s.trim())
-  .filter(Boolean);
+// Default origins so the service works on Render before ALLOWED_ORIGINS is configured.
+// Add more via the ALLOWED_ORIGINS env var (comma-separated exact origins).
+const DEFAULT_ORIGINS = [
+  'https://brokerboost.ai',
+  'https://www.brokerboost.ai',
+  'https://growthpilot-ekqk.onrender.com',
+];
+const ALLOWED = [
+  ...DEFAULT_ORIGINS,
+  ...(process.env.ALLOWED_ORIGINS || '')
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean),
+];
 
 const RATE_WINDOW_MS = 60_000;
 const RATE_MAX = 30;
@@ -39,15 +49,12 @@ function rateLimit(req, res, next) {
 function dynamicCors() {
   return cors({
     origin(origin, cb) {
-      if (!origin) return cb(null, true);
-      if (ALLOWED.length === 0) {
-        console.warn('ALLOWED_ORIGINS empty — refusing CORS for browser clients');
-        return cb(new Error('CORS not configured'));
-      }
+      if (!origin) return cb(null, true); // curl / server-to-server — always allow
       if (ALLOWED.includes(origin)) return cb(null, true);
+      console.warn(`[CORS] Blocked origin: "${origin}". Add it to ALLOWED_ORIGINS on Render. Current list: ${ALLOWED.join(' | ')}`);
       return cb(new Error('Not allowed by CORS'));
     },
-    methods: ['POST', 'OPTIONS'],
+    methods: ['GET', 'POST', 'OPTIONS'],
     allowedHeaders: ['Content-Type'],
   });
 }
