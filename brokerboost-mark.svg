@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-hidden="true">
+  <title>BrokerBoost</title>
+  <defs>
+    <linearGradient id="bbg" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1B4332"/>
+      <stop offset="55%" stop-color="#2D6A4F"/>
+      <stop offset="100%" stop-color="#40916C"/>
+    </linearGradient>
+  </defs>
+  <rect width="32" height="32" rx="8" fill="url(#bbg)"/>
+  <rect x="6" y="19" width="5" height="7" rx="1.25" fill="#CBE8D8" opacity=".92"/>
+  <rect x="13.5" y="14" width="5" height="12" rx="1.25" fill="#FAF7F2" opacity=".98"/>
+  <rect x="21" y="8" width="5" height="18" rx="1.25" fill="#C4956A"/>
+  <circle cx="23.5" cy="6.5" r="1.75" fill="#E8D4BC"/>
+</svg>
