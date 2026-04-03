@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>BrokerBoost — Social Media Marketing for Professionals</title>
 <meta name="description" content="BrokerBoost helps professionals dominate social media, build authority, and attract high-value clients through expert marketing systems built for results."/>
+<script>
+window.BROKERBOOST_REALTIME_API = 'https://growthpilotrealtimeapi.onrender.com';
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;0,700;0,800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet"/>
@@ -2248,10 +2251,6 @@ closeCheckout = function() {
 
   apply(document.querySelector('.pricing-billing-tab[aria-selected="true"]')?.dataset.billing || 'monthly');
 })();
-</script>
-<script>
-/* Set to your Render Node service URL (growthpilot-realtime-api), e.g. https://growthpilot-realtime-api.onrender.com — required on production static deploys. */
-window.BROKERBOOST_REALTIME_API = '';
 </script>
 <script src="voice-agent.js" defer></script>
 </body>

@@ -284,7 +284,7 @@
       if (host && host !== 'localhost' && host !== '127.0.0.1') {
         setState(
           'error',
-          'Voice needs BROKERBOOST_REALTIME_API set to your token server URL.'
+          'Voice token URL is missing. Set window.BROKERBOOST_REALTIME_API in index.html, redeploy the static site, then hard-refresh (clear cache).'
         );
         return;
       }
