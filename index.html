@@ -579,6 +579,20 @@ select.co-input{cursor:pointer}
 .co-summary-key{color:var(--text-muted)}
 .co-summary-val{font-weight:600;color:var(--text)}
 .co-summary-total{font-size:1rem;font-weight:700;color:var(--primary)}
+.co-summary-muted{font-weight:500;font-size:.78rem;color:var(--text-muted);line-height:1.35}
+.co-summary-detail{margin-top:-.35rem;margin-bottom:.35rem}
+.co-summary-detail .co-summary-val{text-align:right}
+.co-recurring-box{
+  margin-top:.25rem;padding:1rem 1.1rem;
+  border:1.5px solid var(--border-light);border-radius:12px;background:#fff;
+}
+.co-recurring-label{display:flex;align-items:flex-start;gap:.75rem;cursor:pointer;margin:0}
+.co-recurring-label input[type=checkbox]{
+  width:18px;height:18px;margin-top:.2rem;flex-shrink:0;accent-color:var(--primary);cursor:pointer
+}
+.co-recurring-text{display:flex;flex-direction:column;gap:.2rem}
+.co-recurring-text strong{font-family:'Space Grotesk',sans-serif;font-size:.82rem;font-weight:700;color:var(--text)}
+.co-recurring-text span{font-size:.76rem;color:var(--text-muted);line-height:1.45}
 .co-summary-features{margin-top:.85rem;display:flex;flex-direction:column;gap:.5rem}
 .co-summary-feature{display:flex;align-items:center;gap:.55rem;font-size:.8rem;color:var(--text-mid)}
 .co-summary-feature::before{content:'✓';width:16px;height:16px;border-radius:50%;background:rgba(45,106,79,.12);color:var(--primary);font-size:.65rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
@@ -1240,7 +1254,7 @@ footer{background:linear-gradient(160deg,#1C1208 0%,#2E1B0E 40%,#3D2A1A 70%,#1C1
         <div class="pc-badge-slot" aria-hidden="true"></div>
         <div class="pricing-card-content">
           <div class="pc-name">Starter</div>
-          <div class="pc-price" data-monthly="299" data-yearly="254"><sup>$</sup><span class="pc-price-amt">299</span></div>
+          <div class="pc-price"><sup>$</sup><span class="pc-price-amt">299</span></div>
           <div class="pc-period"><span class="pc-period-line">per month</span></div>
           <div class="pc-divider"></div>
           <ul class="pc-features">
@@ -1261,7 +1275,7 @@ footer{background:linear-gradient(160deg,#1C1208 0%,#2E1B0E 40%,#3D2A1A 70%,#1C1
         </div>
         <div class="pricing-card-content">
           <div class="pc-name">Growth</div>
-          <div class="pc-price" data-monthly="349" data-yearly="297"><sup>$</sup><span class="pc-price-amt">349</span></div>
+          <div class="pc-price"><sup>$</sup><span class="pc-price-amt">349</span></div>
           <div class="pc-period"><span class="pc-period-line">per month</span></div>
           <div class="pc-divider"></div>
           <ul class="pc-features">
@@ -1282,7 +1296,7 @@ footer{background:linear-gradient(160deg,#1C1208 0%,#2E1B0E 40%,#3D2A1A 70%,#1C1
         <div class="pc-badge-slot" aria-hidden="true"></div>
         <div class="pricing-card-content">
           <div class="pc-name">Pro</div>
-          <div class="pc-price" data-monthly="599" data-yearly="509"><sup>$</sup><span class="pc-price-amt">599</span></div>
+          <div class="pc-price"><sup>$</sup><span class="pc-price-amt">599</span></div>
           <div class="pc-period"><span class="pc-period-line">per month</span></div>
           <div class="pc-divider"></div>
           <ul class="pc-features">
@@ -1643,9 +1657,23 @@ footer{background:linear-gradient(160deg,#1C1208 0%,#2E1B0E 40%,#3D2A1A 70%,#1C1
             <span class="co-summary-key">Plan price</span>
             <span class="co-summary-val" id="sum-price">$299/mo</span>
           </div>
+          <div class="co-summary-line co-summary-detail" id="sum-price-detail-row">
+            <span class="co-summary-key"></span>
+            <span class="co-summary-val co-summary-muted" id="sum-price-sub"></span>
+          </div>
           <div class="co-summary-line">
             <span class="co-summary-key">Billing cycle</span>
             <span class="co-summary-val" id="sum-cycle">Monthly</span>
+          </div>
+          <div class="co-summary-divider"></div>
+          <div class="co-recurring-box">
+            <label class="co-recurring-label" for="co-recurring">
+              <input type="checkbox" id="co-recurring" checked/>
+              <span class="co-recurring-text">
+                <strong>Automatic recurring billing</strong>
+                <span id="co-recurring-desc">When enabled, your plan renews automatically each billing period (monthly or yearly, matching your selection) until you cancel.</span>
+              </span>
+            </label>
           </div>
           <div class="co-summary-divider"></div>
           <div class="co-summary-line">
@@ -1782,12 +1810,16 @@ function toggleFaq(item) {
    CHECKOUT MODAL — JS
 ══════════════════════════════════════════════════════ */
 
-// ── Plan data ─────────────────────────────────────────────────────
+// ── Plan data: pricing cards always show monthly rate; checkout uses monthly vs discounted yearly total ──
+function formatUsd(n) {
+  return '$' + Number(n).toLocaleString('en-US');
+}
+
 const CO_PLANS = {
   starter: {
     name: 'Starter Plan',
-    monthly: { price: 299, period: '/mo', label: 'Monthly', due: '$299' },
-    yearly:  { price: 254, period: '/mo', label: 'Yearly (15% off)', due: '$3,048/yr' },
+    monthlyRate: 299,
+    annualPrepayDiscount: 3050,
     features: [
       '3 platforms — Facebook, Instagram, Twitter',
       '2 posts per week',
@@ -1795,7 +1827,6 @@ const CO_PLANS = {
       'Social media strategy',
       'Email support'
     ],
-    // 👉 Replace with your real Stripe payment links
     payLink: {
       monthly: 'https://buy.stripe.com/starter-monthly',
       yearly:  'https://buy.stripe.com/starter-yearly'
@@ -1803,8 +1834,8 @@ const CO_PLANS = {
   },
   growth: {
     name: 'Growth Plan',
-    monthly: { price: 349, period: '/mo', label: 'Monthly', due: '$349' },
-    yearly:  { price: 297, period: '/mo', label: 'Yearly (15% off)', due: '$3,564/yr' },
+    monthlyRate: 349,
+    annualPrepayDiscount: 3560,
     features: [
       '3 platforms — Facebook, Instagram, Twitter',
       '3 posts per week + 1 video / month',
@@ -1819,8 +1850,8 @@ const CO_PLANS = {
   },
   pro: {
     name: 'Pro Plan',
-    monthly: { price: 599, period: '/mo', label: 'Monthly', due: '$599' },
-    yearly:  { price: 509, period: '/mo', label: 'Yearly (15% off)', due: '$6,108/yr' },
+    monthlyRate: 599,
+    annualPrepayDiscount: 6110,
     features: [
       '3 platforms — Facebook, Instagram, Twitter',
       '5 posts per week + 2 videos / month',
@@ -1835,6 +1866,32 @@ const CO_PLANS = {
   }
 };
 
+function coBillingSnapshot() {
+  const p = CO_PLANS[coCurrentPlan];
+  if (coBillingPeriod === 'yearly') {
+    return {
+      chip: 'Yearly',
+      headerPrice: formatUsd(p.annualPrepayDiscount).replace('$', ''),
+      headerPeriod: '/yr',
+      badgeBilling: 'Yearly subscription · 15% off annual total',
+      sumPrice: formatUsd(p.annualPrepayDiscount) + '/yr',
+      sumSub: 'Annual total with 15% discount (vs 12 months at the list monthly rate).',
+      sumCycle: 'Yearly',
+      due: formatUsd(p.annualPrepayDiscount)
+    };
+  }
+  return {
+    chip: 'Monthly',
+    headerPrice: String(p.monthlyRate),
+    headerPeriod: '/mo',
+    badgeBilling: 'Monthly subscription',
+    sumPrice: '$' + p.monthlyRate + '/mo',
+    sumSub: 'Recurring at the per-month rate shown on the pricing cards.',
+    sumCycle: 'Monthly',
+    due: formatUsd(p.monthlyRate)
+  };
+}
+
 // ── State ─────────────────────────────────────────────────────────
 let coCurrentPlan   = 'starter';
 let coCurrentStep   = 1;
@@ -1847,6 +1904,9 @@ function openCheckout(planKey) {
   // Detect current billing period from main pricing toggle
   const activeTab = document.querySelector('.pricing-billing-tab[aria-selected="true"]');
   coBillingPeriod = activeTab ? (activeTab.dataset.billing || 'monthly') : 'monthly';
+
+  const recur = document.getElementById('co-recurring');
+  if (recur) recur.checked = true;
 
   coCurrentStep = 1;
   coRenderBadge();
@@ -1887,29 +1947,39 @@ document.addEventListener('keydown', function(e) {
 
 // ── Render helpers ────────────────────────────────────────────────
 function coRenderBadge() {
-  const plan    = CO_PLANS[coCurrentPlan];
-  const billing = plan[coBillingPeriod];
-  const badge   = document.getElementById('co-plan-badge');
+  const plan = CO_PLANS[coCurrentPlan];
+  const snap = coBillingSnapshot();
+  const badge = document.getElementById('co-plan-badge');
 
   document.getElementById('co-badge-plan-name').textContent = plan.name;
-  document.getElementById('co-badge-price').textContent     = billing.price;
-  document.getElementById('co-badge-period').textContent    = billing.period;
-  document.getElementById('co-badge-billing').textContent   = billing.label + ' billing';
+  document.getElementById('co-badge-price').textContent     = snap.headerPrice;
+  document.getElementById('co-badge-period').textContent    = snap.headerPeriod;
+  document.getElementById('co-badge-billing').textContent   = snap.badgeBilling;
 
   badge.classList.toggle('featured-badge', coCurrentPlan === 'growth');
 }
 
 function coRenderSummary() {
-  const plan    = CO_PLANS[coCurrentPlan];
-  const billing = plan[coBillingPeriod];
+  const plan = CO_PLANS[coCurrentPlan];
+  const snap = coBillingSnapshot();
 
-  document.getElementById('sum-plan-name').textContent    = plan.name;
-  document.getElementById('sum-billing-chip').textContent = coBillingPeriod === 'yearly' ? 'Yearly' : 'Monthly';
-  document.getElementById('sum-price').textContent        = '$' + billing.price + billing.period;
-  document.getElementById('sum-cycle').textContent        = billing.label;
-  document.getElementById('sum-due').textContent          = billing.due;
+  document.getElementById('sum-plan-name').textContent     = plan.name;
+  document.getElementById('sum-billing-chip').textContent    = snap.chip;
+  document.getElementById('sum-price').textContent         = snap.sumPrice;
+  document.getElementById('sum-price-sub').textContent     = snap.sumSub;
+  document.getElementById('sum-cycle').textContent         = snap.sumCycle;
+  document.getElementById('sum-due').textContent           = snap.due;
 
-  // Feature list
+  const detailRow = document.getElementById('sum-price-detail-row');
+  if (detailRow) detailRow.style.display = snap.sumSub ? '' : 'none';
+
+  const recurDesc = document.getElementById('co-recurring-desc');
+  if (recurDesc) {
+    recurDesc.textContent = coBillingPeriod === 'yearly'
+      ? 'When enabled, your plan renews automatically each year at the discounted yearly subscription price until you cancel.'
+      : 'When enabled, your plan renews automatically each month at the monthly subscription price until you cancel.';
+  }
+
   const feat = document.getElementById('sum-features');
   feat.innerHTML = '';
   plan.features.forEach(f => {
@@ -1953,6 +2023,7 @@ function coShowStep(n) {
   } else {
     next.style.display = 'none';
     pay.style.display  = '';
+    coRenderSummary();
   }
 
   // Header sub-text
@@ -2014,20 +2085,23 @@ function coValidateStep(step) {
 
 // ── Payment redirect ───────────────────────────────────────────────
 function coPay() {
-  const plan     = CO_PLANS[coCurrentPlan];
-  const payUrl   = plan.payLink[coBillingPeriod];
+  const plan   = CO_PLANS[coCurrentPlan];
+  const payUrl = plan.payLink[coBillingPeriod];
 
-  // Build query params to pre-fill Stripe checkout (optional)
   const fname   = encodeURIComponent(document.getElementById('co-fname').value.trim());
   const lname   = encodeURIComponent(document.getElementById('co-lname').value.trim());
   const email   = encodeURIComponent(document.getElementById('co-email').value.trim());
   const company = encodeURIComponent(document.getElementById('co-company').value.trim());
+  const recurring = document.getElementById('co-recurring') && document.getElementById('co-recurring').checked;
 
-  // Append prefill params if your payment link supports them
-  const fullUrl = payUrl
-    + '?prefilled_email=' + email
-    + '&client_reference_id=' + fname + '_' + lname
-    + '&metadata[company]=' + company;
+  const refId = encodeURIComponent(
+    [coCurrentPlan, coBillingPeriod, recurring ? 'recurY' : 'recurN'].join('-')
+  );
+
+  let fullUrl = payUrl + '?prefilled_email=' + email + '&client_reference_id=' + refId;
+  fullUrl += '&metadata[company]=' + company;
+  fullUrl += '&metadata[auto_renew]=' + encodeURIComponent(recurring ? 'true' : 'false');
+  fullUrl += '&metadata[billing_interval]=' + encodeURIComponent(coBillingPeriod === 'yearly' ? 'yearly' : 'monthly');
 
   window.open(fullUrl, '_blank', 'noopener,noreferrer');
 }
@@ -2040,30 +2114,32 @@ function coPay() {
   if (!tabs.length || !panel) return;
 
   function apply(billing) {
-    const yearly = billing === 'yearly';
-    panel.querySelectorAll('.pc-price[data-monthly]').forEach((pc) => {
-      const amt = pc.querySelector('.pc-price-amt');
-      if (!amt) return;
-      amt.textContent = yearly ? pc.dataset.yearly : pc.dataset.monthly;
-    });
-    panel.querySelectorAll('.pc-period-line').forEach((line) => {
-      line.textContent = yearly ? 'per month, billed annually' : 'per month';
-    });
     tabs.forEach((t) => {
       const on = t.dataset.billing === billing;
       t.setAttribute('aria-selected', on);
       if (on) panel.setAttribute('aria-labelledby', t.id);
     });
     if (note) {
-      note.innerHTML = yearly
-        ? 'Yearly plans include <strong>15% off</strong> versus paying month-to-month.'
-        : 'Prices shown are per month.';
+      note.innerHTML = billing === 'yearly'
+        ? 'Prices on the cards are <strong>per month</strong>. The <strong>yearly discounted total</strong> is calculated in checkout when you choose Yearly.'
+        : 'Prices shown are <strong>per month</strong>.';
+    }
+
+    const overlay = document.getElementById('co-overlay');
+    if (overlay && overlay.classList.contains('open')) {
+      coBillingPeriod = billing;
+      if (typeof coRenderBadge === 'function') {
+        coRenderBadge();
+        coRenderSummary();
+      }
     }
   }
 
   tabs.forEach((t) => {
     t.addEventListener('click', () => apply(t.dataset.billing));
   });
+
+  apply(document.querySelector('.pricing-billing-tab[aria-selected="true"]')?.dataset.billing || 'monthly');
 })();
 </script>
 </body>
