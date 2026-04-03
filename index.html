@@ -1292,7 +1292,7 @@ footer{background:linear-gradient(160deg,#1C1208 0%,#2E1B0E 40%,#3D2A1A 70%,#1C1
         <div class="pc-badge-slot" aria-hidden="true"></div>
         <div class="pricing-card-content">
           <div class="pc-name">Starter</div>
-          <div class="pc-price"><sup>$</sup><span class="pc-price-amt">299</span></div>
+          <div class="pc-price" data-monthly="299"><sup>$</sup><span class="pc-price-amt">299</span></div>
           <div class="pc-period"><span class="pc-period-line">per month</span></div>
           <div class="pc-divider"></div>
           <ul class="pc-features">
@@ -1313,7 +1313,7 @@ footer{background:linear-gradient(160deg,#1C1208 0%,#2E1B0E 40%,#3D2A1A 70%,#1C1
         </div>
         <div class="pricing-card-content">
           <div class="pc-name">Growth</div>
-          <div class="pc-price"><sup>$</sup><span class="pc-price-amt">349</span></div>
+          <div class="pc-price" data-monthly="349"><sup>$</sup><span class="pc-price-amt">349</span></div>
           <div class="pc-period"><span class="pc-period-line">per month</span></div>
           <div class="pc-divider"></div>
           <ul class="pc-features">
@@ -1334,7 +1334,7 @@ footer{background:linear-gradient(160deg,#1C1208 0%,#2E1B0E 40%,#3D2A1A 70%,#1C1
         <div class="pc-badge-slot" aria-hidden="true"></div>
         <div class="pricing-card-content">
           <div class="pc-name">Pro</div>
-          <div class="pc-price"><sup>$</sup><span class="pc-price-amt">599</span></div>
+          <div class="pc-price" data-monthly="599"><sup>$</sup><span class="pc-price-amt">599</span></div>
           <div class="pc-period"><span class="pc-period-line">per month</span></div>
           <div class="pc-divider"></div>
           <ul class="pc-features">
@@ -2204,6 +2204,14 @@ closeCheckout = function() {
   if (!tabs.length || !panel) return;
 
   function apply(billing) {
+    const yearly = billing === 'yearly';
+    panel.querySelectorAll('.pc-price[data-monthly]').forEach((pc) => {
+      const amt = pc.querySelector('.pc-price-amt');
+      const m = Number(pc.dataset.monthly);
+      if (!amt || Number.isNaN(m)) return;
+      const n = yearly ? Math.round(m * 0.85) : m;
+      amt.textContent = n.toLocaleString('en-US');
+    });
     tabs.forEach((t) => {
       const on = t.dataset.billing === billing;
       t.setAttribute('aria-selected', on);
