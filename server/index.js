@@ -157,6 +157,19 @@ const TOOLS = [
 
 const app = express();
 app.use(express.json({ limit: '4kb' }));
+app.use((req, res, next) => {
+  const o = req.headers.origin;
+  if (o) {
+    if (ALLOWED.length === 0) {
+      console.warn('[CORS] Request has Origin but ALLOWED_ORIGINS is empty — set it on Render.');
+    } else if (!ALLOWED.includes(o)) {
+      console.warn(
+        `[CORS] Origin "${o}" not in ALLOWED_ORIGINS. Add this exact string in Render env. Allowed: ${ALLOWED.join(' | ')}`
+      );
+    }
+  }
+  next();
+});
 app.use(rateLimit);
 app.use(dynamicCors());
 

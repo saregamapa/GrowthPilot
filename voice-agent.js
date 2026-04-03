@@ -292,20 +292,31 @@
 
     setState('connecting');
 
+    const tokenEndpoint = sessionUrl();
     let tokenRes;
     try {
-      tokenRes = await fetch(sessionUrl(), {
+      tokenRes = await fetch(tokenEndpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: '{}',
+        mode: 'cors',
+        cache: 'no-store',
       });
     } catch (err) {
-      setState('error', 'Could not reach the voice token server.');
+      console.error('Voice token fetch failed:', tokenEndpoint, err);
+      setState(
+        'error',
+        'Cannot reach the voice API (network, wrong URL, or CORS). Confirm BROKERBOOST_REALTIME_API matches your Render Node service URL. On Render, set ALLOWED_ORIGINS to this page’s exact origin (e.g. https://yoursite.onrender.com). Open the API /health URL in a new tab to verify the service is up.'
+      );
       return;
     }
 
     if (!tokenRes.ok) {
-      setState('error', 'Voice session could not be started.');
+      const hint =
+        tokenRes.status === 502 || tokenRes.status === 503
+          ? ' (check OPENAI_API_KEY on the token server)'
+          : '';
+      setState('error', `Voice session failed (${tokenRes.status})${hint}.`);
       return;
     }
 
