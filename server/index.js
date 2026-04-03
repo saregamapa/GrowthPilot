@@ -183,27 +183,20 @@ app.post('/api/realtime/session', async (req, res) => {
     return;
   }
 
+  // Flat session config — the body IS the session object (no wrapping).
+  // model: must be a real Realtime model slug, not 'gpt-realtime'.
+  // voice: must be one of alloy|ash|ballad|coral|echo|sage|shimmer|verse.
   const body = {
-    expires_after: {
-      anchor: 'created_at',
-      seconds: 600,
-    },
-    session: {
-      type: 'realtime',
-      model: 'gpt-realtime',
-      instructions: SYSTEM_INSTRUCTIONS,
-      tools: TOOLS,
-      tool_choice: 'auto',
-      audio: {
-        output: {
-          voice: 'marin',
-        },
-      },
-    },
+    model: 'gpt-4o-realtime-preview-2024-12-17',
+    modalities: ['audio', 'text'],
+    instructions: SYSTEM_INSTRUCTIONS,
+    voice: 'verse',
+    tools: TOOLS,
+    tool_choice: 'auto',
   };
 
   try {
-    const r = await fetch('https://api.openai.com/v1/realtime/client_secrets', {
+    const r = await fetch('https://api.openai.com/v1/realtime/sessions', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${OPENAI_API_KEY}`,
@@ -214,7 +207,7 @@ app.post('/api/realtime/session', async (req, res) => {
 
     const text = await r.text();
     if (!r.ok) {
-      console.error('OpenAI client_secrets error', r.status, text.slice(0, 500));
+      console.error('OpenAI realtime/sessions error', r.status, text.slice(0, 500));
       res.status(502).json({ error: 'Failed to create realtime session' });
       return;
     }
@@ -227,14 +220,17 @@ app.post('/api/realtime/session', async (req, res) => {
       return;
     }
 
-    if (!data.value) {
+    // /v1/realtime/sessions returns { client_secret: { value, expires_at }, ... }
+    const ephemeralKey = data?.client_secret?.value;
+    if (!ephemeralKey) {
+      console.error('Unexpected OpenAI response shape:', JSON.stringify(data).slice(0, 300));
       res.status(502).json({ error: 'No ephemeral credential in response' });
       return;
     }
 
     res.json({
-      value: data.value,
-      expires_at: data.expires_at,
+      value: ephemeralKey,
+      expires_at: data?.client_secret?.expires_at,
     });
   } catch (err) {
     console.error(err);
