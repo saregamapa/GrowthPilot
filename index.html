@@ -391,27 +391,47 @@ button{cursor:pointer;border:none;outline:none;font-family:inherit}
 /* ══════════════════════════════
    PRICING
 ══════════════════════════════ */
-.pricing-section{background:linear-gradient(180deg,#FDFAF6 0%,#FFFFFF 100%);padding:5rem 0}
-.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;align-items:stretch}
-.pricing-card{border:1.5px solid var(--border-light);border-radius:var(--radius-lg);padding:1.75rem 1.5rem;display:flex;flex-direction:column;transition:box-shadow .3s,transform .3s;background:#fff}
+.pricing-section{background:linear-gradient(180deg,#FDFAF6 0%,#FFFFFF 100%);padding:clamp(3.75rem,8vw,5.75rem) 0}
+.pricing-section .container{display:flex;flex-direction:column;align-items:center}
+.pricing-section-head{text-align:center;max-width:38rem;margin:0 auto 2.75rem;padding:0 1rem;width:100%}
+.pricing-section-head.section-heading{margin-bottom:0}
+.pricing-section-head .label{margin-bottom:.55rem}
+.pricing-section-head h2{margin-top:.35rem}
+.pricing-section-head p{margin:1.1rem auto 0;max-width:34rem;line-height:1.75}
+.pricing-billing-wrap{display:flex;flex-direction:column;align-items:center;gap:.85rem;margin:.65rem auto 2.5rem;text-align:center;width:100%;max-width:36rem;padding:0 1rem}
+.pricing-billing-tabs{display:inline-flex;align-items:center;gap:.2rem;padding:.4rem .45rem;background:var(--bg-alt);border-radius:100px;border:1.5px solid var(--border-light);box-shadow:var(--shadow-sm)}
+.pricing-billing-tab{font-family:'Space Grotesk',sans-serif;font-size:.8rem;font-weight:600;padding:.55rem 1.25rem;border-radius:100px;border:none;background:transparent;color:var(--text-mid);cursor:pointer;transition:background .2s,color .2s,box-shadow .2s}
+.pricing-billing-tab:hover{color:var(--primary)}
+.pricing-billing-tab[aria-selected="true"]{background:#fff;color:var(--primary);box-shadow:0 2px 8px rgba(45,106,79,.12)}
+.pricing-billing-pill{display:inline-block;margin-left:.35rem;font-size:.65rem;font-weight:700;letter-spacing:.04em;padding:.15rem .45rem;border-radius:100px;background:rgba(160,103,44,.15);color:var(--accent-dark)}
+.pricing-billing-tab[aria-selected="true"] .pricing-billing-pill{background:rgba(45,106,79,.12);color:var(--primary)}
+.pricing-billing-note{font-family:'Space Grotesk',sans-serif;font-size:.72rem;color:var(--text-muted);max-width:26rem;line-height:1.5;margin:0;padding:0 .25rem}
+.pricing-billing-note strong{color:var(--accent-dark);font-weight:600}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:minmax(0,1fr);gap:1.35rem;align-items:stretch;width:100%;max-width:1100px;margin:0 auto;justify-content:center}
+.pricing-card{border:1.5px solid var(--border-light);border-radius:var(--radius-lg);padding:0;display:flex;flex-direction:column;height:100%;min-height:100%;transition:box-shadow .3s,transform .3s;background:#fff;overflow:hidden}
 .pricing-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-4px)}
 .pricing-card.featured{background:linear-gradient(160deg,#2E1B0E 0%,#2D6A4F 60%,#1B4332 100%);border-color:transparent;box-shadow:0 12px 48px rgba(45,106,79,.45),0 4px 16px rgba(45,106,79,.25)}
-.pc-badge{display:inline-block;font-family:'Space Grotesk',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;background:var(--accent);color:#fff;padding:.25rem .75rem;border-radius:100px;margin-bottom:1.25rem}
-.pc-name{font-family:'Space Grotesk',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
+.pricing-card-content{padding:2.1rem 1.85rem 2.15rem;display:flex;flex-direction:column;flex:1;min-height:0}
+.pricing-card.featured .pricing-card-content{padding:1.65rem 1.95rem 2.25rem}
+.pc-badge-slot{flex-shrink:0}
+.pricing-card:not(.featured) .pc-badge-slot:empty{min-height:3.05rem}
+.pricing-card.featured .pc-badge-slot{display:flex;flex-direction:column;min-height:0}
+.pc-badge{display:flex;align-items:center;justify-content:center;width:100%;box-sizing:border-box;font-family:'Space Grotesk',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;background:linear-gradient(135deg,#8B5A24 0%,#A0672C 45%,#B07B3E 100%);color:#fff;padding:.7rem 1rem;margin:0;border-radius:calc(var(--radius-lg) - 1px) calc(var(--radius-lg) - 1px) 0 0;min-height:3.05rem;border-bottom:1px solid rgba(255,255,255,.12)}
+.pc-name{font-family:'Space Grotesk',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.75rem}
 .pricing-card.featured .pc-name{color:rgba(255,255,255,.6)}
-.pc-price{font-family:'Playfair Display',serif;font-size:3rem;font-weight:700;line-height:1;color:var(--text);margin-bottom:.3rem}
+.pc-price{font-family:'Playfair Display',serif;font-size:3rem;font-weight:700;line-height:1.02;color:var(--text);margin-bottom:.6rem}
 .pricing-card.featured .pc-price{color:#fff}
 .pc-price sup{font-size:1.2rem;vertical-align:super;font-family:'Space Grotesk',sans-serif;font-weight:600}
-.pc-period{font-size:.8rem;color:var(--text-muted);margin-bottom:1.75rem}
+.pc-period{font-size:.8rem;color:var(--text-muted);margin-bottom:1.5rem;line-height:1.4}
 .pricing-card.featured .pc-period{color:rgba(255,255,255,.5)}
-.pc-divider{height:1px;background:var(--border-light);margin-bottom:1.75rem}
+.pc-divider{height:1px;background:var(--border-light);margin:0 0 1.65rem}
 .pricing-card.featured .pc-divider{background:rgba(255,255,255,.15)}
-.pc-features{list-style:none;display:flex;flex-direction:column;gap:.85rem;flex:1;margin-bottom:2rem}
-.pc-features li{display:flex;align-items:flex-start;gap:.7rem;font-size:.875rem;color:var(--text-mid);line-height:1.5}
+.pc-features{list-style:none;display:flex;flex-direction:column;gap:1rem;flex:1;margin-bottom:1.75rem;padding:0}
+.pc-features li{display:flex;align-items:flex-start;gap:.75rem;font-size:.875rem;color:var(--text-mid);line-height:1.55}
 .pricing-card.featured .pc-features li{color:rgba(255,255,255,.8)}
-.pc-features li::before{content:'';width:16px;height:16px;flex-shrink:0;margin-top:.1rem;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7' fill='%232D6A4F' fill-opacity='.12'/%3E%3Cpath d='M5 8l2 2 4-4' stroke='%232D6A4F' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");background-size:contain}
+.pc-features li::before{content:'';width:16px;height:16px;flex-shrink:0;margin-top:.2rem;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7' fill='%232D6A4F' fill-opacity='.12'/%3E%3Cpath d='M5 8l2 2 4-4' stroke='%232D6A4F' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");background-size:contain}
 .pricing-card.featured .pc-features li::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7' fill='%23ffffff' fill-opacity='.2'/%3E%3Cpath d='M5 8l2 2 4-4' stroke='%23ffffff' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E")}
-.btn-plan{display:block;text-align:center;font-family:'Space Grotesk',sans-serif;font-size:.85rem;font-weight:600;padding:.85rem;border-radius:8px;border:1.5px solid var(--primary);color:var(--primary);background:transparent;cursor:pointer;transition:background .2s,color .2s}
+.btn-plan{display:block;text-align:center;font-family:'Space Grotesk',sans-serif;font-size:.85rem;font-weight:600;padding:1rem 1.25rem;border-radius:8px;border:1.5px solid var(--primary);color:var(--primary);background:transparent;cursor:pointer;transition:background .2s,color .2s;margin-top:auto}
 .btn-plan:hover{background:var(--primary);color:#fff}
 .pricing-card.featured .btn-plan{background:#fff;color:var(--primary);border-color:#fff}
 .pricing-card.featured .btn-plan:hover{background:var(--bg-alt);border-color:var(--bg-alt)}
@@ -503,7 +523,13 @@ footer{background:linear-gradient(160deg,#1C1208 0%,#2E1B0E 40%,#3D2A1A 70%,#1C1
   .bento{grid-template-columns:1fr 1fr}
   .process-split{grid-template-columns:1fr;gap:3rem}
   .expertise-grid{grid-template-columns:1fr 1fr;gap:1.1rem}
-  .pricing-grid{grid-template-columns:1fr;max-width:440px;margin:0 auto}
+  .pricing-grid{grid-template-columns:1fr;max-width:440px;margin:0 auto;gap:1.2rem}
+  .pricing-section-head{margin-bottom:2.5rem}
+  .pricing-billing-wrap{margin:.5rem auto 2.35rem}
+  .pricing-card-content{padding:1.9rem 1.6rem 2rem}
+  .pricing-card.featured .pricing-card-content{padding:1.45rem 1.7rem 2rem}
+  .pricing-card:not(.featured) .pc-badge-slot:empty{min-height:2.95rem}
+  .pc-badge{min-height:2.95rem;font-size:.78rem;padding:.62rem .85rem}
   .cta-grid{grid-template-columns:1fr;gap:3rem}
   .faq-grid{grid-template-columns:1fr;gap:2.75rem}
   .footer-top{grid-template-columns:1fr 1fr;gap:2.5rem}
@@ -522,11 +548,21 @@ footer{background:linear-gradient(160deg,#1C1208 0%,#2E1B0E 40%,#3D2A1A 70%,#1C1
   .platform-marquee-track{animation:none;flex-wrap:wrap;justify-content:center;gap:2rem}
   .footer-top{grid-template-columns:1fr}
   .hero-h1{font-size:2.6rem}
+  .pricing-section-head{margin-bottom:2.2rem}
+  .pricing-billing-wrap{margin:.5rem auto 2rem;gap:.75rem}
 }
 @media(max-width:480px){
   .container{padding:0 1.25rem}
-  .pricing-grid{max-width:100%}
+  .pricing-grid{max-width:100%;gap:1.1rem}
+  .pricing-card-content{padding:1.75rem 1.35rem 1.9rem}
+  .pricing-card.featured .pricing-card-content{padding:1.3rem 1.35rem 1.9rem}
+  .pricing-card:not(.featured) .pc-badge-slot:empty{min-height:2.85rem}
+  .pc-badge{min-height:2.85rem;font-size:.74rem;padding:.58rem .75rem}
   .expertise-grid{grid-template-columns:1fr}
+  .pricing-billing-tabs{max-width:100%;justify-content:center}
+  .pricing-billing-tab{padding:.5rem 1rem;font-size:.75rem}
+  .pricing-section-head{margin-bottom:1.85rem;padding:0}
+  .pricing-billing-wrap{padding:0;margin:.45rem auto 1.85rem}
 }
 </style>
 </head>
@@ -971,65 +1007,82 @@ footer{background:linear-gradient(160deg,#1C1208 0%,#2E1B0E 40%,#3D2A1A 70%,#1C1
 <!-- PRICING -->
 <section id="pricing" class="pricing-section">
   <div class="container">
-    <div class="section-heading reveal" style="text-align:center;max-width:600px;margin:0 auto 3.5rem">
+    <div class="section-heading pricing-section-head reveal">
       <span class="label label-green">Investment Tiers</span>
       <h2>More Clients &amp; Growth<br><em>Start Here</em></h2>
       <p>Pick the cadence that fits your business — Facebook, Instagram, and Twitter — with content, strategy, and paid campaigns as you scale.</p>
     </div>
-    <div class="pricing-grid">
+    <div class="pricing-billing-wrap">
+      <div class="pricing-billing-tabs" role="tablist" aria-label="Billing period">
+        <button type="button" class="pricing-billing-tab" role="tab" id="pricing-tab-monthly" aria-selected="true" aria-controls="pricing-grid" data-billing="monthly">Monthly</button>
+        <button type="button" class="pricing-billing-tab" role="tab" id="pricing-tab-yearly" aria-selected="false" aria-controls="pricing-grid" data-billing="yearly">Yearly<span class="pricing-billing-pill" aria-hidden="true">15% off</span></button>
+      </div>
+      <p class="pricing-billing-note" id="pricing-billing-note">Prices shown are per month.</p>
+    </div>
+    <div class="pricing-grid" id="pricing-grid" role="tabpanel" aria-labelledby="pricing-tab-monthly">
       <!-- Starter -->
       <div class="pricing-card reveal reveal-d1">
-        <div class="pc-name">Starter</div>
-        <div class="pc-price"><sup>$</sup>299</div>
-        <div class="pc-period">per month · billed monthly</div>
-        <div class="pc-divider"></div>
-        <ul class="pc-features">
-          <li>3 platforms — Facebook, Instagram, Twitter</li>
-          <li>2 posts / week</li>
-          <li>Custom content creation</li>
-          <li>Social media strategy</li>
-          <li>Email support</li>
-        </ul>
-        <a href="#cta" class="btn-plan">Get Started</a>
+        <div class="pc-badge-slot" aria-hidden="true"></div>
+        <div class="pricing-card-content">
+          <div class="pc-name">Starter</div>
+          <div class="pc-price" data-monthly="299" data-yearly="254"><sup>$</sup><span class="pc-price-amt">299</span></div>
+          <div class="pc-period"><span class="pc-period-line">per month</span></div>
+          <div class="pc-divider"></div>
+          <ul class="pc-features">
+            <li>3 platforms — Facebook, Instagram, Twitter</li>
+            <li>2 posts / week</li>
+            <li>Custom content creation</li>
+            <li>Social media strategy</li>
+            <li>Email support</li>
+          </ul>
+          <a href="#cta" class="btn-plan">Get Started</a>
+        </div>
       </div>
 
       <!-- Growth (featured) -->
       <div class="pricing-card featured reveal reveal-d2">
-        <div class="pc-badge">Most Popular</div>
-        <div class="pc-name">Growth</div>
-        <div class="pc-price"><sup>$</sup>349</div>
-        <div class="pc-period">per month · billed monthly</div>
-        <div class="pc-divider"></div>
-        <ul class="pc-features">
-          <li>3 platforms — Facebook, Instagram, Twitter</li>
-          <li>3 posts / week</li>
-          <li>1 video / month</li>
-          <li>Social media management</li>
-          <li>Custom content creation</li>
-          <li>Social account setup</li>
-          <li>Ad campaign management (Business)</li>
-        </ul>
-        <a href="#cta" class="btn-plan">Get Started</a>
+        <div class="pc-badge-slot">
+          <div class="pc-badge">Most Popular</div>
+        </div>
+        <div class="pricing-card-content">
+          <div class="pc-name">Growth</div>
+          <div class="pc-price" data-monthly="349" data-yearly="297"><sup>$</sup><span class="pc-price-amt">349</span></div>
+          <div class="pc-period"><span class="pc-period-line">per month</span></div>
+          <div class="pc-divider"></div>
+          <ul class="pc-features">
+            <li>3 platforms — Facebook, Instagram, Twitter</li>
+            <li>3 posts / week</li>
+            <li>1 video / month</li>
+            <li>Social media management</li>
+            <li>Custom content creation</li>
+            <li>Social account setup</li>
+            <li>Ad campaign management (Business)</li>
+          </ul>
+          <a href="#cta" class="btn-plan">Get Started</a>
+        </div>
       </div>
 
       <!-- Pro -->
       <div class="pricing-card reveal reveal-d3">
-        <div class="pc-name">Pro</div>
-        <div class="pc-price"><sup>$</sup>599</div>
-        <div class="pc-period">per month · billed monthly</div>
-        <div class="pc-divider"></div>
-        <ul class="pc-features">
-          <li>3 platforms — Facebook, Instagram, Twitter</li>
-          <li>5 posts / week</li>
-          <li>2 videos / month (live video included)</li>
-          <li>Social media management</li>
-          <li>Custom content creation</li>
-          <li>Social account setup</li>
-          <li>Social media strategy</li>
-          <li>Ad campaign management (Business)</li>
-          <li>Monthly performance report</li>
-        </ul>
-        <a href="#cta" class="btn-plan">Get Started</a>
+        <div class="pc-badge-slot" aria-hidden="true"></div>
+        <div class="pricing-card-content">
+          <div class="pc-name">Pro</div>
+          <div class="pc-price" data-monthly="599" data-yearly="509"><sup>$</sup><span class="pc-price-amt">599</span></div>
+          <div class="pc-period"><span class="pc-period-line">per month</span></div>
+          <div class="pc-divider"></div>
+          <ul class="pc-features">
+            <li>3 platforms — Facebook, Instagram, Twitter</li>
+            <li>5 posts / week</li>
+            <li>2 videos / month (live video included)</li>
+            <li>Social media management</li>
+            <li>Custom content creation</li>
+            <li>Social account setup</li>
+            <li>Social media strategy</li>
+            <li>Ad campaign management (Business)</li>
+            <li>Monthly performance report</li>
+          </ul>
+          <a href="#cta" class="btn-plan">Get Started</a>
+        </div>
       </div>
     </div>
   </div>
@@ -1281,6 +1334,40 @@ function toggleFaq(item) {
     ans.style.maxHeight = ans.scrollHeight + 'px';
   }
 }
+
+/* ── Pricing billing toggle (monthly / yearly, 15% off annual) ── */
+(function initPricingBilling() {
+  const tabs = document.querySelectorAll('.pricing-billing-tab[data-billing]');
+  const note = document.getElementById('pricing-billing-note');
+  const panel = document.getElementById('pricing-grid');
+  if (!tabs.length || !panel) return;
+
+  function apply(billing) {
+    const yearly = billing === 'yearly';
+    panel.querySelectorAll('.pc-price[data-monthly]').forEach((pc) => {
+      const amt = pc.querySelector('.pc-price-amt');
+      if (!amt) return;
+      amt.textContent = yearly ? pc.dataset.yearly : pc.dataset.monthly;
+    });
+    panel.querySelectorAll('.pc-period-line').forEach((line) => {
+      line.textContent = yearly ? 'per month, billed annually' : 'per month';
+    });
+    tabs.forEach((t) => {
+      const on = t.dataset.billing === billing;
+      t.setAttribute('aria-selected', on);
+      if (on) panel.setAttribute('aria-labelledby', t.id);
+    });
+    if (note) {
+      note.innerHTML = yearly
+        ? 'Yearly plans include <strong>15% off</strong> versus paying month-to-month.'
+        : 'Prices shown are per month.';
+    }
+  }
+
+  tabs.forEach((t) => {
+    t.addEventListener('click', () => apply(t.dataset.billing));
+  });
+})();
 </script>
 </body>
 </html>
