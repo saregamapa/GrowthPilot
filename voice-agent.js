@@ -282,48 +282,48 @@
 
   async function connect() {
     const base = apiBase();
-    if (!base && typeof window.location !== ‘undefined’) {
+    if (!base && typeof window.location !== 'undefined') {
       const host = window.location.hostname;
-      if (host && host !== ‘localhost’ && host !== ‘127.0.0.1’) {
+      if (host && host !== 'localhost' && host !== '127.0.0.1') {
         setState(
-          ‘error’,
-          ‘Voice token URL is missing. Set window.BROKERBOOST_REALTIME_API in index.html, redeploy, then hard-refresh.’
+          'error',
+          'Voice token URL is missing. Set window.BROKERBOOST_REALTIME_API in index.html, redeploy, then hard-refresh.'
         );
         return;
       }
     }
 
-    setState(‘connecting’, ‘Waking voice service…’);
+    setState('connecting', 'Waking voice service…');
 
-    // ── Step 0: health-check ping to wake Render’s free-tier service ──────
+    // ── Step 0: health-check ping to wake Render's free-tier service ──────
     // Render free services sleep after 15 min. The /health GET is fast and
     // sidesteps CORS (no Origin header on same-origin GET), warming the dyno
     // before the credentialled POST that follows.
     const healthUrl = `${apiBase()}/health`;
     try {
-      await fetch(healthUrl, { method: ‘GET’, cache: ‘no-store’, mode: ‘cors’ });
+      await fetch(healthUrl, { method: 'GET', cache: 'no-store', mode: 'cors' });
     } catch (_) {
       // Non-fatal: service might still respond to the POST. Continue.
     }
 
-    setState(‘connecting’, ‘Connecting…’);
+    setState('connecting', 'Connecting…');
 
     // ── Step 1: fetch ephemeral token from our Node server ────────────────
     const tokenEndpoint = sessionUrl();
     let tokenRes;
     try {
       tokenRes = await fetch(tokenEndpoint, {
-        method: ‘POST’,
-        headers: { ‘Content-Type’: ‘application/json’ },
-        body: ‘{}’,
-        mode: ‘cors’,
-        cache: ‘no-store’,
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: '{}',
+        mode: 'cors',
+        cache: 'no-store',
       });
     } catch (err) {
-      console.error(‘Voice token fetch failed:’, tokenEndpoint, err);
+      console.error('Voice token fetch failed:', tokenEndpoint, err);
       setState(
-        ‘error’,
-        ‘Cannot reach the voice API. Check that ALLOWED_ORIGINS on the Render token service includes this site\’s exact origin, and that OPENAI_API_KEY is set.’
+        'error',
+        'Cannot reach the voice API. Check that ALLOWED_ORIGINS on the Render token service includes this site\'s exact origin, and that OPENAI_API_KEY is set.'
       );
       return;
     }
@@ -331,9 +331,9 @@
     if (!tokenRes.ok) {
       const hint =
         tokenRes.status === 502 || tokenRes.status === 503
-          ? ‘ — check OPENAI_API_KEY on the Render token server’
-          : ‘’;
-      setState(‘error’, `Voice session failed (HTTP ${tokenRes.status})${hint}.`);
+          ? ' — check OPENAI_API_KEY on the Render token server'
+          : '';
+      setState('error', `Voice session failed (HTTP ${tokenRes.status})${hint}.`);
       return;
     }
 
@@ -341,13 +341,13 @@
     try {
       tokenJson = await tokenRes.json();
     } catch {
-      setState(‘error’, ‘Invalid token response from voice server.’);
+      setState('error', 'Invalid token response from voice server.');
       return;
     }
 
     const ephemeralKey = tokenJson.value;
     if (!ephemeralKey) {
-      setState(‘error’, ‘No voice credential returned by token server.’);
+      setState('error', 'No voice credential returned by token server.');
       return;
     }
 
@@ -355,15 +355,15 @@
     try {
       localStream = await navigator.mediaDevices.getUserMedia({ audio: true });
     } catch {
-      setState(‘error’, ‘Microphone access was denied or unavailable.’);
+      setState('error', 'Microphone access was denied or unavailable.');
       return;
     }
 
     // ── Step 3: set up WebRTC peer connection ─────────────────────────────
     pc = new RTCPeerConnection();
-    remoteAudio = document.createElement(‘audio’);
+    remoteAudio = document.createElement('audio');
     remoteAudio.autoplay = true;
-    remoteAudio.setAttribute(‘playsinline’, ‘true’);
+    remoteAudio.setAttribute('playsinline', 'true');
     document.body.appendChild(remoteAudio);
 
     pc.ontrack = (e) => {
@@ -372,7 +372,7 @@
 
     pc.addTrack(localStream.getAudioTracks()[0]);
 
-    const channel = pc.createDataChannel(‘oai-events’);
+    const channel = pc.createDataChannel('oai-events');
     attachDataChannel(channel);
 
     // ── Step 4: SDP offer → OpenAI Realtime (correct endpoint) ───────────
@@ -383,30 +383,30 @@
     let sdpRes;
     try {
       sdpRes = await fetch(REALTIME_SDP_URL, {
-        method: ‘POST’,
+        method: 'POST',
         body: offer.sdp,
         headers: {
           Authorization: `Bearer ${ephemeralKey}`,
-          ‘Content-Type’: ‘application/sdp’,
+          'Content-Type': 'application/sdp',
         },
       });
     } catch {
       disconnect();
-      setState(‘error’, ‘Could not connect to OpenAI Realtime.’);
+      setState('error', 'Could not connect to OpenAI Realtime.');
       return;
     }
 
     if (!sdpRes.ok) {
-      const t = await sdpRes.text().catch(() => ‘’);
-      console.warn(‘OpenAI Realtime SDP failed’, sdpRes.status, t.slice(0, 200));
+      const t = await sdpRes.text().catch(() => '');
+      console.warn('OpenAI Realtime SDP failed', sdpRes.status, t.slice(0, 200));
       disconnect();
-      setState(‘error’, `Voice connection failed (OpenAI ${sdpRes.status}).`);
+      setState('error', `Voice connection failed (OpenAI ${sdpRes.status}).`);
       return;
     }
 
     const answerSdp = await sdpRes.text();
-    await pc.setRemoteDescription({ type: ‘answer’, sdp: answerSdp });
-    setState(‘live’);
+    await pc.setRemoteDescription({ type: 'answer', sdp: answerSdp });
+    setState('live');
   }
 
   ui.btn.addEventListener('click', () => {
