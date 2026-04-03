@@ -1,7 +1,5 @@
 # Render Static Site — https://render.com/docs/static-sites
 # Publish path is repo root (index.html lives here). Do not put "true" in publish directory.
-#
-# Voice assistant: ElevenLabs convai widget in index.html (no backend required on Render).
 services:
   - type: web
     name: growthpilot
