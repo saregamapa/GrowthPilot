@@ -2089,6 +2089,10 @@ function coShowStep(n) {
   document.getElementById('co-box').scrollTop = 0;
 }
 
+window.brokerBoostGetCheckoutStep = function () {
+  return coCurrentStep;
+};
+
 function coNext() {
   if (!coValidateStep(coCurrentStep)) return;
   if (coCurrentStep < coTotalSteps) {
@@ -2233,6 +2237,11 @@ closeCheckout = function() {
     }
   }
 
+  window.brokerBoostSetBilling = function (billing) {
+    if (billing !== 'monthly' && billing !== 'yearly') return;
+    apply(billing);
+  };
+
   tabs.forEach((t) => {
     t.addEventListener('click', () => apply(t.dataset.billing));
   });
@@ -2240,5 +2249,10 @@ closeCheckout = function() {
   apply(document.querySelector('.pricing-billing-tab[aria-selected="true"]')?.dataset.billing || 'monthly');
 })();
 </script>
+<script>
+/* Set to your Render Node service URL (growthpilot-realtime-api), e.g. https://growthpilot-realtime-api.onrender.com — required on production static deploys. */
+window.BROKERBOOST_REALTIME_API = '';
+</script>
+<script src="voice-agent.js" defer></script>
 </body>
 </html>
