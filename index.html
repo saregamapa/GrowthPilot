@@ -653,6 +653,44 @@ select.co-input{cursor:pointer}
 .si-tt{background:rgba(0,0,0,.08)}.si-tt svg{color:#000}
 .si-yt{background:rgba(255,0,0,.1)}.si-yt svg{color:#FF0000}
 
+/* ── Pay button loading state ── */
+.co-btn-pay.loading{opacity:.75;pointer-events:none;cursor:not-allowed}
+.co-btn-pay .co-pay-spinner{
+  display:none;width:16px;height:16px;border:2px solid rgba(255,255,255,.4);
+  border-top-color:#fff;border-radius:50%;
+  animation:co-spin .7s linear infinite;flex-shrink:0;
+}
+.co-btn-pay.loading .co-pay-spinner{display:block}
+.co-btn-pay.loading .co-pay-icon{display:none}
+.co-btn-pay.loading .co-pay-text::after{content:'…'}
+@keyframes co-spin{to{transform:rotate(360deg)}}
+
+/* ── Redirect confirmation overlay (inside modal) ── */
+.co-redirect-overlay{
+  position:absolute;inset:0;z-index:20;
+  background:rgba(255,255,255,.97);
+  border-radius:24px;
+  display:none;flex-direction:column;align-items:center;justify-content:center;
+  gap:1.25rem;padding:2.5rem;text-align:center;
+}
+.co-redirect-overlay.show{display:flex}
+.co-redirect-icon{
+  width:64px;height:64px;border-radius:50%;
+  background:linear-gradient(135deg,rgba(45,106,79,.12),rgba(45,106,79,.06));
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid rgba(45,106,79,.2);
+  animation:co-pulse 1.8s ease-in-out infinite;
+}
+.co-redirect-icon svg{width:30px;height:30px;stroke:var(--primary);stroke-width:2;fill:none}
+@keyframes co-pulse{0%,100%{box-shadow:0 0 0 0 rgba(45,106,79,.18)}50%{box-shadow:0 0 0 12px rgba(45,106,79,0)}}
+.co-redirect-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--text)}
+.co-redirect-sub{font-size:.85rem;color:var(--text-muted);line-height:1.6;max-width:280px}
+.co-redirect-link{
+  font-family:'Space Grotesk',sans-serif;font-size:.75rem;font-weight:600;
+  color:var(--primary);text-decoration:underline;text-underline-offset:3px;cursor:pointer;
+  background:none;border:none;
+}
+
 @media(max-width:540px){
   .co-box{border-radius:20px 20px 0 0;max-height:96vh;margin-top:auto;align-self:flex-end}
   .co-overlay{align-items:flex-end;padding:0}
@@ -1702,8 +1740,21 @@ footer{background:linear-gradient(160deg,#1C1208 0%,#2E1B0E 40%,#3D2A1A 70%,#1C1
         <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </button>
       <button class="co-btn-pay" id="co-btn-pay" onclick="coPay()" style="display:none">
-        <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
-        Complete Payment →
+        <div class="co-pay-spinner"></div>
+        <svg class="co-pay-icon" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
+        <span class="co-pay-text">Complete Payment</span>
+      </button>
+    </div>
+
+    <!-- Redirect overlay (shown after pay click) -->
+    <div class="co-redirect-overlay" id="co-redirect-overlay">
+      <div class="co-redirect-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="co-redirect-title">Redirecting to Secure Checkout</div>
+      <div class="co-redirect-sub">You're being taken to Stripe's secure payment page. Your data is protected with SSL encryption.</div>
+      <button class="co-redirect-link" id="co-redirect-manual" onclick="coPayManual()">
+        Click here if you're not redirected automatically →
       </button>
     </div>
 
@@ -2084,27 +2135,66 @@ function coValidateStep(step) {
 }
 
 // ── Payment redirect ───────────────────────────────────────────────
+// Stores the final Stripe URL so the manual fallback link can reuse it
+let _coStripeUrl = '';
+
 function coPay() {
   const plan   = CO_PLANS[coCurrentPlan];
-  const payUrl = plan.payLink[coBillingPeriod];
+  const baseUrl = plan.payLink[coBillingPeriod]; // https://buy.stripe.com/…
 
-  const fname   = encodeURIComponent(document.getElementById('co-fname').value.trim());
-  const lname   = encodeURIComponent(document.getElementById('co-lname').value.trim());
-  const email   = encodeURIComponent(document.getElementById('co-email').value.trim());
-  const company = encodeURIComponent(document.getElementById('co-company').value.trim());
-  const recurring = document.getElementById('co-recurring') && document.getElementById('co-recurring').checked;
+  // Collect user details from Step 1
+  const email   = document.getElementById('co-fname')    ? document.getElementById('co-email').value.trim()   : '';
+  const fname   = document.getElementById('co-fname')    ? document.getElementById('co-fname').value.trim()   : '';
+  const lname   = document.getElementById('co-lname')    ? document.getElementById('co-lname').value.trim()   : '';
+  const company = document.getElementById('co-company')  ? document.getElementById('co-company').value.trim() : '';
+  const industry= document.getElementById('co-industry') ? document.getElementById('co-industry').value       : '';
 
-  const refId = encodeURIComponent(
-    [coCurrentPlan, coBillingPeriod, recurring ? 'recurY' : 'recurN'].join('-')
-  );
+  // Build client_reference_id: only alphanumerics + hyphens (Stripe requirement)
+  // Format: plan-billing-firstinitial_last  e.g. "growth-monthly-JSmith"
+  const safeName    = (fname.slice(0,1) + lname).replace(/[^a-zA-Z0-9]/g, '').slice(0, 40);
+  const refId       = [coCurrentPlan, coBillingPeriod, safeName || 'user'].join('-');
 
-  let fullUrl = payUrl + '?prefilled_email=' + email + '&client_reference_id=' + refId;
-  fullUrl += '&metadata[company]=' + company;
-  fullUrl += '&metadata[auto_renew]=' + encodeURIComponent(recurring ? 'true' : 'false');
-  fullUrl += '&metadata[billing_interval]=' + encodeURIComponent(coBillingPeriod === 'yearly' ? 'yearly' : 'monthly');
+  // Stripe Payment Link supported params:
+  //   prefilled_email        → pre-fills the email field on Stripe's page
+  //   client_reference_id    → passed through to webhook / dashboard for tracking
+  const params = new URLSearchParams({
+    prefilled_email:      email,
+    client_reference_id:  refId
+  });
 
-  window.open(fullUrl, '_blank', 'noopener,noreferrer');
+  _coStripeUrl = baseUrl + '?' + params.toString();
+
+  // 1️⃣ Put the Pay button into loading state
+  const payBtn = document.getElementById('co-btn-pay');
+  payBtn.classList.add('loading');
+
+  // 2️⃣ Show the redirect overlay after a short delay (feels intentional, not accidental)
+  setTimeout(function() {
+    document.getElementById('co-redirect-overlay').classList.add('show');
+  }, 400);
+
+  // 3️⃣ Open Stripe in a new tab
+  setTimeout(function() {
+    window.open(_coStripeUrl, '_blank', 'noopener,noreferrer');
+  }, 600);
 }
+
+// Fallback if popup was blocked
+function coPayManual() {
+  if (_coStripeUrl) {
+    window.open(_coStripeUrl, '_blank', 'noopener,noreferrer');
+  }
+}
+
+// Reset redirect overlay when modal is closed
+const _origCloseCheckout = closeCheckout;
+closeCheckout = function() {
+  _origCloseCheckout();
+  document.getElementById('co-redirect-overlay').classList.remove('show');
+  const payBtn = document.getElementById('co-btn-pay');
+  if (payBtn) payBtn.classList.remove('loading');
+  _coStripeUrl = '';
+};
 
 /* ── Pricing billing toggle (monthly / yearly, 15% off annual) ── */
 (function initPricingBilling() {
