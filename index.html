@@ -437,6 +437,221 @@ button{cursor:pointer;border:none;outline:none;font-family:inherit}
 .pricing-card.featured .btn-plan:hover{background:var(--bg-alt);border-color:var(--bg-alt)}
 
 /* ══════════════════════════════
+   CHECKOUT MODAL
+══════════════════════════════ */
+.co-overlay{
+  position:fixed;inset:0;z-index:9000;
+  display:flex;align-items:center;justify-content:center;
+  padding:1rem;
+  background:rgba(28,18,8,.55);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  opacity:0;pointer-events:none;
+  transition:opacity .35s var(--ease);
+}
+.co-overlay.open{opacity:1;pointer-events:all}
+.co-box{
+  width:100%;max-width:540px;max-height:92vh;overflow-y:auto;
+  background:#fff;border-radius:24px;
+  box-shadow:0 32px 80px rgba(28,18,8,.18),0 8px 24px rgba(45,106,79,.12);
+  transform:translateY(24px) scale(.97);
+  transition:transform .4s var(--ease);
+  position:relative;scrollbar-width:thin;scrollbar-color:var(--border-light) transparent;
+}
+.co-overlay.open .co-box{transform:none}
+.co-box::-webkit-scrollbar{width:4px}
+.co-box::-webkit-scrollbar-thumb{background:var(--border-light);border-radius:4px}
+
+/* header */
+.co-header{
+  padding:1.6rem 1.75rem 1.25rem;
+  border-bottom:1px solid var(--border-light);
+  display:flex;align-items:flex-start;gap:1rem;
+  position:sticky;top:0;background:#fff;z-index:10;
+  border-radius:24px 24px 0 0;
+}
+.co-header-text{flex:1;min-width:0}
+.co-header-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--text);line-height:1.2}
+.co-header-sub{font-size:.8rem;color:var(--text-muted);margin-top:.25rem}
+.co-close{
+  width:34px;height:34px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:50%;background:var(--bg-alt);border:none;cursor:pointer;
+  transition:background .2s;
+}
+.co-close:hover{background:var(--border-light)}
+.co-close svg{width:14px;height:14px;stroke:var(--text-mid);stroke-width:2;fill:none}
+
+/* plan badge */
+.co-plan-badge{
+  margin:1.15rem 1.75rem .25rem;
+  padding:.65rem 1rem;
+  background:linear-gradient(135deg,rgba(45,106,79,.07) 0%,rgba(160,103,44,.07) 100%);
+  border:1.5px solid var(--border-light);
+  border-radius:12px;
+  display:flex;align-items:center;justify-content:space-between;gap:.75rem;
+}
+.co-plan-name{font-family:'Space Grotesk',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--primary)}
+.co-plan-price{font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:700;color:var(--text);line-height:1}
+.co-plan-price span{font-family:'Space Grotesk',sans-serif;font-size:.72rem;font-weight:500;color:var(--text-muted);vertical-align:middle;margin-left:.2rem}
+.co-plan-badge.featured-badge{background:linear-gradient(135deg,rgba(45,106,79,.12) 0%,rgba(160,103,44,.1) 100%);border-color:var(--primary-light)}
+
+/* progress */
+.co-progress{
+  display:flex;align-items:center;justify-content:center;
+  gap:0;padding:.9rem 1.75rem .45rem;
+}
+.co-step-dot{
+  display:flex;flex-direction:column;align-items:center;gap:.3rem;flex:1;
+  position:relative;
+}
+.co-step-dot::after{
+  content:'';position:absolute;top:12px;left:calc(50% + 14px);right:calc(-50% + 14px);
+  height:2px;background:var(--border-light);transition:background .3s;
+}
+.co-step-dot:last-child::after{display:none}
+.co-step-dot.done::after{background:var(--primary-light)}
+.co-step-circle{
+  width:24px;height:24px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Space Grotesk',sans-serif;font-size:.7rem;font-weight:700;
+  border:2px solid var(--border-light);
+  background:#fff;color:var(--text-muted);
+  transition:background .3s,border-color .3s,color .3s;
+  position:relative;z-index:1;
+}
+.co-step-dot.active .co-step-circle{background:var(--primary);border-color:var(--primary);color:#fff}
+.co-step-dot.done .co-step-circle{background:var(--primary-light);border-color:var(--primary-light);color:#fff;font-size:0}
+.co-step-dot.done .co-step-circle::after{content:'✓';font-size:.65rem}
+.co-step-label{font-family:'Space Grotesk',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.04em;color:var(--text-muted);text-align:center;white-space:nowrap}
+.co-step-dot.active .co-step-label{color:var(--primary)}
+.co-step-dot.done .co-step-label{color:var(--primary-light)}
+
+/* body / steps */
+.co-body{padding:1.25rem 1.75rem 0}
+.co-step{display:none;flex-direction:column;gap:1rem}
+.co-step.active{display:flex}
+.co-step-title{font-family:'Space Grotesk',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--primary);margin-bottom:-.25rem}
+
+/* form fields */
+.co-row{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+.co-group{display:flex;flex-direction:column;gap:.35rem}
+.co-group.full{grid-column:1/-1}
+.co-label{font-family:'Space Grotesk',sans-serif;font-size:.73rem;font-weight:600;color:var(--text-mid)}
+.co-label span{color:var(--accent);margin-left:.1rem}
+.co-input{
+  width:100%;padding:.7rem .9rem;
+  border:1.5px solid var(--border-light);border-radius:9px;
+  font-family:'Inter',sans-serif;font-size:.875rem;color:var(--text);
+  background:#FDFAF6;transition:border-color .2s,box-shadow .2s;outline:none;
+}
+.co-input:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(45,106,79,.1);background:#fff}
+.co-input.error{border-color:#e53e3e;box-shadow:0 0 0 3px rgba(229,62,62,.08)}
+.co-input::placeholder{color:var(--text-muted);font-size:.82rem}
+select.co-input{cursor:pointer}
+
+/* social rows */
+.co-social-row{
+  display:flex;align-items:center;gap:.6rem;
+  padding:.6rem .85rem;
+  border:1.5px solid var(--border-light);border-radius:9px;
+  background:#FDFAF6;transition:border-color .2s,box-shadow .2s;
+}
+.co-social-row:focus-within{border-color:var(--primary);box-shadow:0 0 0 3px rgba(45,106,79,.1);background:#fff}
+.co-social-icon{width:28px;height:28px;flex-shrink:0;border-radius:6px;display:flex;align-items:center;justify-content:center}
+.co-social-icon svg{width:16px;height:16px}
+.co-social-label{font-family:'Space Grotesk',sans-serif;font-size:.75rem;font-weight:600;color:var(--text-mid);width:68px;flex-shrink:0}
+.co-social-input{flex:1;border:none;background:transparent;font-family:'Inter',sans-serif;font-size:.82rem;color:var(--text);outline:none;min-width:0}
+.co-social-input::placeholder{color:var(--text-muted);font-size:.79rem}
+.co-social-note{font-size:.72rem;color:var(--text-muted);margin-top:-.3rem}
+.co-social-optional{font-family:'Space Grotesk',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.08em;color:var(--text-muted);text-transform:uppercase;padding:.35rem .65rem;border-radius:100px;background:var(--bg-alt);margin-bottom:.1rem;display:inline-block}
+
+/* order summary */
+.co-summary-card{
+  background:linear-gradient(135deg,#f8fdf9 0%,#fdfaf6 100%);
+  border:1.5px solid var(--border-light);border-radius:14px;padding:1.35rem 1.3rem;
+}
+.co-summary-plan-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:.85rem}
+.co-summary-plan-name{font-family:'Space Grotesk',sans-serif;font-size:.9rem;font-weight:700;color:var(--text)}
+.co-summary-plan-chip{font-family:'Space Grotesk',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.25rem .6rem;border-radius:100px;background:rgba(45,106,79,.12);color:var(--primary)}
+.co-summary-divider{height:1px;background:var(--border-light);margin:.85rem 0}
+.co-summary-line{display:flex;align-items:center;justify-content:space-between;font-size:.83rem;margin-bottom:.55rem}
+.co-summary-line:last-child{margin-bottom:0}
+.co-summary-key{color:var(--text-muted)}
+.co-summary-val{font-weight:600;color:var(--text)}
+.co-summary-total{font-size:1rem;font-weight:700;color:var(--primary)}
+.co-summary-features{margin-top:.85rem;display:flex;flex-direction:column;gap:.5rem}
+.co-summary-feature{display:flex;align-items:center;gap:.55rem;font-size:.8rem;color:var(--text-mid)}
+.co-summary-feature::before{content:'✓';width:16px;height:16px;border-radius:50%;background:rgba(45,106,79,.12);color:var(--primary);font-size:.65rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.co-payment-note{
+  display:flex;align-items:flex-start;gap:.6rem;padding:.8rem 1rem;
+  background:rgba(160,103,44,.07);border:1px solid rgba(160,103,44,.18);
+  border-radius:9px;font-size:.78rem;color:var(--text-mid);line-height:1.5;
+}
+.co-payment-note svg{flex-shrink:0;margin-top:.1rem;width:15px;height:15px;stroke:var(--accent);stroke-width:2;fill:none}
+.co-secure-row{display:flex;align-items:center;justify-content:center;gap:.65rem;font-size:.72rem;color:var(--text-muted);padding:.65rem 0}
+.co-secure-row svg{width:13px;height:13px;fill:var(--text-muted)}
+
+/* footer nav */
+.co-footer{
+  padding:1.2rem 1.75rem 1.5rem;
+  display:flex;align-items:center;justify-content:space-between;gap:.85rem;
+  border-top:1px solid var(--border-light);margin-top:1.5rem;
+  position:sticky;bottom:0;background:#fff;
+  border-radius:0 0 24px 24px;
+}
+.co-btn-back{
+  font-family:'Space Grotesk',sans-serif;font-size:.8rem;font-weight:600;
+  color:var(--text-muted);background:none;border:1.5px solid var(--border-light);
+  padding:.65rem 1.25rem;border-radius:8px;cursor:pointer;
+  transition:color .2s,border-color .2s;
+}
+.co-btn-back:hover{color:var(--text-mid);border-color:var(--border)}
+.co-btn-back[hidden]{display:none}
+.co-btn-next{
+  flex:1;font-family:'Space Grotesk',sans-serif;font-size:.875rem;font-weight:700;
+  background:var(--primary);color:#fff;
+  padding:.75rem 1.5rem;border-radius:9px;border:none;cursor:pointer;
+  box-shadow:0 4px 14px rgba(45,106,79,.28);
+  transition:background .2s,transform .15s,box-shadow .2s;
+  display:flex;align-items:center;justify-content:center;gap:.5rem;
+}
+.co-btn-next:hover{background:var(--primary-hover);transform:translateY(-1px);box-shadow:0 6px 20px rgba(45,106,79,.34)}
+.co-btn-next:active{transform:translateY(0)}
+.co-btn-next svg{width:16px;height:16px;stroke:#fff;stroke-width:2.2;fill:none}
+.co-btn-pay{
+  flex:1;font-family:'Space Grotesk',sans-serif;font-size:.875rem;font-weight:700;
+  background:linear-gradient(135deg,#2D6A4F 0%,#1B4332 100%);color:#fff;
+  padding:.75rem 1.5rem;border-radius:9px;border:none;cursor:pointer;
+  box-shadow:0 4px 16px rgba(45,106,79,.35);
+  transition:opacity .2s,transform .15s,box-shadow .2s;
+  display:flex;align-items:center;justify-content:center;gap:.5rem;
+}
+.co-btn-pay:hover{opacity:.93;transform:translateY(-1px);box-shadow:0 8px 24px rgba(45,106,79,.4)}
+.co-btn-pay svg{width:16px;height:16px;stroke:#fff;stroke-width:2.2;fill:none}
+.co-err-msg{font-size:.74rem;color:#e53e3e;margin-top:.1rem;display:none}
+.co-err-msg.show{display:block}
+
+/* social icon colors */
+.si-fb{background:rgba(24,119,242,.12)}.si-fb svg{color:#1877F2}
+.si-ig{background:rgba(225,48,108,.12)}.si-ig svg{color:#E1306C}
+.si-tw{background:rgba(28,28,28,.1)}.si-tw svg{color:#1C1C1C}
+.si-li{background:rgba(10,102,194,.12)}.si-li svg{color:#0A66C2}
+.si-tt{background:rgba(0,0,0,.08)}.si-tt svg{color:#000}
+.si-yt{background:rgba(255,0,0,.1)}.si-yt svg{color:#FF0000}
+
+@media(max-width:540px){
+  .co-box{border-radius:20px 20px 0 0;max-height:96vh;margin-top:auto;align-self:flex-end}
+  .co-overlay{align-items:flex-end;padding:0}
+  .co-row{grid-template-columns:1fr}
+  .co-header{padding:1.25rem 1.35rem 1rem}
+  .co-plan-badge{margin:1rem 1.35rem .2rem}
+  .co-body{padding:1.1rem 1.35rem 0}
+  .co-footer{padding:1rem 1.35rem 1.25rem}
+  .co-progress{padding:.8rem 1.35rem .35rem}
+  .co-step-label{font-size:.55rem}
+}
+
+/* ══════════════════════════════
    CTA FORM
 ══════════════════════════════ */
 .cta-section{background:linear-gradient(135deg,#1C1208 0%,#2E1B0E 40%,#3D2A1A 70%,#1C1208 100%);padding:5rem 0;position:relative;overflow:hidden}
@@ -1035,7 +1250,7 @@ footer{background:linear-gradient(160deg,#1C1208 0%,#2E1B0E 40%,#3D2A1A 70%,#1C1
             <li>Social media strategy</li>
             <li>Email support</li>
           </ul>
-          <a href="#cta" class="btn-plan">Get Started</a>
+          <button type="button" class="btn-plan" onclick="openCheckout('starter')">Get Started</button>
         </div>
       </div>
 
@@ -1058,7 +1273,7 @@ footer{background:linear-gradient(160deg,#1C1208 0%,#2E1B0E 40%,#3D2A1A 70%,#1C1
             <li>Social account setup</li>
             <li>Ad campaign management (Business)</li>
           </ul>
-          <a href="#cta" class="btn-plan">Get Started</a>
+          <button type="button" class="btn-plan" onclick="openCheckout('growth')">Get Started</button>
         </div>
       </div>
 
@@ -1081,7 +1296,7 @@ footer{background:linear-gradient(160deg,#1C1208 0%,#2E1B0E 40%,#3D2A1A 70%,#1C1
             <li>Ad campaign management (Business)</li>
             <li>Monthly performance report</li>
           </ul>
-          <a href="#cta" class="btn-plan">Get Started</a>
+          <button type="button" class="btn-plan" onclick="openCheckout('pro')">Get Started</button>
         </div>
       </div>
     </div>
@@ -1239,6 +1454,234 @@ footer{background:linear-gradient(160deg,#1C1208 0%,#2E1B0E 40%,#3D2A1A 70%,#1C1
   </div>
 </section>
 
+<!-- ══════════════════════════════════════════════════════
+     CHECKOUT MODAL
+══════════════════════════════════════════════════════ -->
+<div id="co-overlay" class="co-overlay" role="dialog" aria-modal="true" aria-labelledby="co-modal-title">
+  <div class="co-box" id="co-box">
+
+    <!-- Sticky header -->
+    <div class="co-header">
+      <div class="co-header-text">
+        <div class="co-header-title" id="co-modal-title">Start Your Plan</div>
+        <div class="co-header-sub" id="co-header-sub">Complete your details to get started</div>
+      </div>
+      <button class="co-close" onclick="closeCheckout()" aria-label="Close">
+        <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <!-- Plan badge -->
+    <div class="co-plan-badge" id="co-plan-badge">
+      <div>
+        <div class="co-plan-name" id="co-badge-plan-name">Starter Plan</div>
+        <div style="font-size:.72rem;color:var(--text-muted);margin-top:.15rem" id="co-badge-billing">Monthly billing</div>
+      </div>
+      <div class="co-plan-price"><sup style="font-size:.85rem;font-family:'Space Grotesk',sans-serif">$</sup><span id="co-badge-price">299</span><span id="co-badge-period">/mo</span></div>
+    </div>
+
+    <!-- Step progress -->
+    <div class="co-progress">
+      <div class="co-step-dot active" id="dot-1">
+        <div class="co-step-circle">1</div>
+        <div class="co-step-label">Your Info</div>
+      </div>
+      <div class="co-step-dot" id="dot-2">
+        <div class="co-step-circle">2</div>
+        <div class="co-step-label">Social Media</div>
+      </div>
+      <div class="co-step-dot" id="dot-3">
+        <div class="co-step-circle">3</div>
+        <div class="co-step-label">Payment</div>
+      </div>
+    </div>
+
+    <!-- ── STEP 1 : Personal Details ── -->
+    <div class="co-body">
+      <div class="co-step active" id="co-step-1">
+        <div class="co-step-title">Personal Details</div>
+
+        <div class="co-row">
+          <div class="co-group">
+            <label class="co-label" for="co-fname">First Name <span>*</span></label>
+            <input id="co-fname" type="text" class="co-input" placeholder="Jane" autocomplete="given-name"/>
+            <span class="co-err-msg" id="err-fname">Please enter your first name.</span>
+          </div>
+          <div class="co-group">
+            <label class="co-label" for="co-lname">Last Name <span>*</span></label>
+            <input id="co-lname" type="text" class="co-input" placeholder="Smith" autocomplete="family-name"/>
+            <span class="co-err-msg" id="err-lname">Please enter your last name.</span>
+          </div>
+        </div>
+
+        <div class="co-row">
+          <div class="co-group">
+            <label class="co-label" for="co-email">Email Address <span>*</span></label>
+            <input id="co-email" type="email" class="co-input" placeholder="jane@example.com" autocomplete="email"/>
+            <span class="co-err-msg" id="err-email">Please enter a valid email.</span>
+          </div>
+          <div class="co-group">
+            <label class="co-label" for="co-phone">Phone Number <span>*</span></label>
+            <input id="co-phone" type="tel" class="co-input" placeholder="+1 (555) 000-0000" autocomplete="tel"/>
+            <span class="co-err-msg" id="err-phone">Please enter your phone number.</span>
+          </div>
+        </div>
+
+        <div class="co-group full">
+          <label class="co-label" for="co-company">Business / Company Name <span>*</span></label>
+          <input id="co-company" type="text" class="co-input" placeholder="Jane Smith Realty" autocomplete="organization"/>
+          <span class="co-err-msg" id="err-company">Please enter your business name.</span>
+        </div>
+
+        <div class="co-row">
+          <div class="co-group">
+            <label class="co-label" for="co-industry">Your Industry <span>*</span></label>
+            <select id="co-industry" class="co-input">
+              <option value="">Select your industry…</option>
+              <option>Real Estate</option>
+              <option>Mortgage / Lending</option>
+              <option>Legal</option>
+              <option>Healthcare / Medical</option>
+              <option>Coaching / Consulting</option>
+              <option>Finance / Accounting</option>
+              <option>Insurance</option>
+              <option>Hospitality</option>
+              <option>Entertainment</option>
+              <option>Local Business</option>
+              <option>Other</option>
+            </select>
+            <span class="co-err-msg" id="err-industry">Please select your industry.</span>
+          </div>
+          <div class="co-group">
+            <label class="co-label" for="co-website">Website URL</label>
+            <input id="co-website" type="url" class="co-input" placeholder="https://yoursite.com" autocomplete="url"/>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── STEP 2 : Social Media Accounts ── -->
+      <div class="co-step" id="co-step-2">
+        <div class="co-step-title">Your Social Media Accounts</div>
+        <p style="font-size:.8rem;color:var(--text-muted);margin-top:-.25rem;line-height:1.6">Share your existing profiles so we can audit your presence and get started immediately. All fields are optional — enter what you have.</p>
+
+        <!-- Required platforms -->
+        <div style="display:flex;flex-direction:column;gap:.65rem">
+          <!-- Facebook -->
+          <div class="co-social-row">
+            <div class="co-social-icon si-fb">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+            </div>
+            <div class="co-social-label">Facebook</div>
+            <input type="url" class="co-social-input" id="co-fb" placeholder="facebook.com/yourpage" autocomplete="off"/>
+          </div>
+          <!-- Instagram -->
+          <div class="co-social-row">
+            <div class="co-social-icon si-ig">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            </div>
+            <div class="co-social-label">Instagram</div>
+            <input type="url" class="co-social-input" id="co-ig" placeholder="instagram.com/yourhandle" autocomplete="off"/>
+          </div>
+          <!-- Twitter / X -->
+          <div class="co-social-row">
+            <div class="co-social-icon si-tw">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </div>
+            <div class="co-social-label">X / Twitter</div>
+            <input type="url" class="co-social-input" id="co-tw" placeholder="x.com/yourhandle" autocomplete="off"/>
+          </div>
+          <!-- LinkedIn -->
+          <div class="co-social-row">
+            <div class="co-social-icon si-li">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            </div>
+            <div class="co-social-label">LinkedIn</div>
+            <input type="url" class="co-social-input" id="co-li" placeholder="linkedin.com/in/yourprofile" autocomplete="off"/>
+          </div>
+        </div>
+
+        <!-- Optional platforms label -->
+        <div style="margin-top:.25rem">
+          <span class="co-social-optional">Optional Platforms</span>
+          <div style="display:flex;flex-direction:column;gap:.65rem;margin-top:.5rem">
+            <!-- TikTok -->
+            <div class="co-social-row">
+              <div class="co-social-icon si-tt">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.3 6.3 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.74a4.85 4.85 0 01-1.01-.05z"/></svg>
+              </div>
+              <div class="co-social-label">TikTok</div>
+              <input type="url" class="co-social-input" id="co-tt" placeholder="tiktok.com/@yourhandle" autocomplete="off"/>
+            </div>
+            <!-- YouTube -->
+            <div class="co-social-row">
+              <div class="co-social-icon si-yt">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#fff"/></svg>
+              </div>
+              <div class="co-social-label">YouTube</div>
+              <input type="url" class="co-social-input" id="co-yt" placeholder="youtube.com/@yourchannel" autocomplete="off"/>
+            </div>
+          </div>
+        </div>
+        <p class="co-social-note">Don't have some of these yet? No problem — our team will help you set them up as part of your onboarding.</p>
+      </div>
+
+      <!-- ── STEP 3 : Order Summary & Payment ── -->
+      <div class="co-step" id="co-step-3">
+        <div class="co-step-title">Review & Complete Payment</div>
+
+        <div class="co-summary-card">
+          <div class="co-summary-plan-row">
+            <div class="co-summary-plan-name" id="sum-plan-name">Starter Plan</div>
+            <div class="co-summary-plan-chip" id="sum-billing-chip">Monthly</div>
+          </div>
+
+          <div class="co-summary-features" id="sum-features"></div>
+
+          <div class="co-summary-divider"></div>
+
+          <div class="co-summary-line">
+            <span class="co-summary-key">Plan price</span>
+            <span class="co-summary-val" id="sum-price">$299/mo</span>
+          </div>
+          <div class="co-summary-line">
+            <span class="co-summary-key">Billing cycle</span>
+            <span class="co-summary-val" id="sum-cycle">Monthly</span>
+          </div>
+          <div class="co-summary-divider"></div>
+          <div class="co-summary-line">
+            <span class="co-summary-key" style="font-weight:700;color:var(--text)">Due today</span>
+            <span class="co-summary-val co-summary-total" id="sum-due">$299</span>
+          </div>
+        </div>
+
+        <div class="co-payment-note">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <div>You'll be redirected to our secure payment page powered by Stripe. Your card details are never stored on our servers.</div>
+        </div>
+
+        <div class="co-secure-row">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+          SSL encrypted &nbsp;·&nbsp; Powered by Stripe &nbsp;·&nbsp; Cancel anytime
+        </div>
+      </div>
+    </div><!-- /co-body -->
+
+    <!-- Sticky footer nav -->
+    <div class="co-footer">
+      <button class="co-btn-back" id="co-btn-back" onclick="coBack()" hidden>← Back</button>
+      <button class="co-btn-next" id="co-btn-next" onclick="coNext()">
+        Continue
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+      <button class="co-btn-pay" id="co-btn-pay" onclick="coPay()" style="display:none">
+        <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
+        Complete Payment →
+      </button>
+    </div>
+
+  </div><!-- /co-box -->
+</div><!-- /co-overlay -->
+
 <!-- FOOTER -->
 <footer>
   <div class="container">
@@ -1333,6 +1776,260 @@ function toggleFaq(item) {
     item.classList.add('open');
     ans.style.maxHeight = ans.scrollHeight + 'px';
   }
+}
+
+/* ══════════════════════════════════════════════════════
+   CHECKOUT MODAL — JS
+══════════════════════════════════════════════════════ */
+
+// ── Plan data ─────────────────────────────────────────────────────
+const CO_PLANS = {
+  starter: {
+    name: 'Starter Plan',
+    monthly: { price: 299, period: '/mo', label: 'Monthly', due: '$299' },
+    yearly:  { price: 254, period: '/mo', label: 'Yearly (15% off)', due: '$3,048/yr' },
+    features: [
+      '3 platforms — Facebook, Instagram, Twitter',
+      '2 posts per week',
+      'Custom content creation',
+      'Social media strategy',
+      'Email support'
+    ],
+    // 👉 Replace with your real Stripe payment links
+    payLink: {
+      monthly: 'https://buy.stripe.com/starter-monthly',
+      yearly:  'https://buy.stripe.com/starter-yearly'
+    }
+  },
+  growth: {
+    name: 'Growth Plan',
+    monthly: { price: 349, period: '/mo', label: 'Monthly', due: '$349' },
+    yearly:  { price: 297, period: '/mo', label: 'Yearly (15% off)', due: '$3,564/yr' },
+    features: [
+      '3 platforms — Facebook, Instagram, Twitter',
+      '3 posts per week + 1 video / month',
+      'Social media management & content creation',
+      'Social account setup',
+      'Ad campaign management (Business)'
+    ],
+    payLink: {
+      monthly: 'https://buy.stripe.com/growth-monthly',
+      yearly:  'https://buy.stripe.com/growth-yearly'
+    }
+  },
+  pro: {
+    name: 'Pro Plan',
+    monthly: { price: 599, period: '/mo', label: 'Monthly', due: '$599' },
+    yearly:  { price: 509, period: '/mo', label: 'Yearly (15% off)', due: '$6,108/yr' },
+    features: [
+      '3 platforms — Facebook, Instagram, Twitter',
+      '5 posts per week + 2 videos / month',
+      'Full social media management & strategy',
+      'Social account setup & ad campaigns',
+      'Monthly performance report'
+    ],
+    payLink: {
+      monthly: 'https://buy.stripe.com/pro-monthly',
+      yearly:  'https://buy.stripe.com/pro-yearly'
+    }
+  }
+};
+
+// ── State ─────────────────────────────────────────────────────────
+let coCurrentPlan   = 'starter';
+let coCurrentStep   = 1;
+let coTotalSteps    = 3;
+let coBillingPeriod = 'monthly'; // mirrors main page toggle
+
+// ── Open / Close ──────────────────────────────────────────────────
+function openCheckout(planKey) {
+  coCurrentPlan = planKey || 'starter';
+  // Detect current billing period from main pricing toggle
+  const activeTab = document.querySelector('.pricing-billing-tab[aria-selected="true"]');
+  coBillingPeriod = activeTab ? (activeTab.dataset.billing || 'monthly') : 'monthly';
+
+  coCurrentStep = 1;
+  coRenderBadge();
+  coRenderSummary();
+  coShowStep(1);
+
+  const overlay = document.getElementById('co-overlay');
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  // Focus first input after transition
+  setTimeout(() => {
+    const first = document.getElementById('co-fname');
+    if (first) first.focus();
+  }, 380);
+}
+
+function closeCheckout() {
+  const overlay = document.getElementById('co-overlay');
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+  // Clear validation errors
+  document.querySelectorAll('.co-input.error').forEach(el => el.classList.remove('error'));
+  document.querySelectorAll('.co-err-msg.show').forEach(el => el.classList.remove('show'));
+}
+
+// Close on overlay click (outside box)
+document.getElementById('co-overlay').addEventListener('click', function(e) {
+  if (e.target === this) closeCheckout();
+});
+
+// Close on Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' && document.getElementById('co-overlay').classList.contains('open')) {
+    closeCheckout();
+  }
+});
+
+// ── Render helpers ────────────────────────────────────────────────
+function coRenderBadge() {
+  const plan    = CO_PLANS[coCurrentPlan];
+  const billing = plan[coBillingPeriod];
+  const badge   = document.getElementById('co-plan-badge');
+
+  document.getElementById('co-badge-plan-name').textContent = plan.name;
+  document.getElementById('co-badge-price').textContent     = billing.price;
+  document.getElementById('co-badge-period').textContent    = billing.period;
+  document.getElementById('co-badge-billing').textContent   = billing.label + ' billing';
+
+  badge.classList.toggle('featured-badge', coCurrentPlan === 'growth');
+}
+
+function coRenderSummary() {
+  const plan    = CO_PLANS[coCurrentPlan];
+  const billing = plan[coBillingPeriod];
+
+  document.getElementById('sum-plan-name').textContent    = plan.name;
+  document.getElementById('sum-billing-chip').textContent = coBillingPeriod === 'yearly' ? 'Yearly' : 'Monthly';
+  document.getElementById('sum-price').textContent        = '$' + billing.price + billing.period;
+  document.getElementById('sum-cycle').textContent        = billing.label;
+  document.getElementById('sum-due').textContent          = billing.due;
+
+  // Feature list
+  const feat = document.getElementById('sum-features');
+  feat.innerHTML = '';
+  plan.features.forEach(f => {
+    const d = document.createElement('div');
+    d.className = 'co-summary-feature';
+    d.textContent = f;
+    feat.appendChild(d);
+  });
+}
+
+// ── Step navigation ────────────────────────────────────────────────
+function coShowStep(n) {
+  coCurrentStep = n;
+
+  // Steps
+  for (let i = 1; i <= coTotalSteps; i++) {
+    const step = document.getElementById('co-step-' + i);
+    if (step) step.classList.toggle('active', i === n);
+  }
+
+  // Progress dots
+  for (let i = 1; i <= coTotalSteps; i++) {
+    const dot = document.getElementById('dot-' + i);
+    if (!dot) continue;
+    dot.classList.remove('active', 'done');
+    if (i < n)  dot.classList.add('done');
+    if (i === n) dot.classList.add('active');
+  }
+
+  // Back button
+  const back = document.getElementById('co-btn-back');
+  back.hidden = (n === 1);
+
+  // Next vs Pay button
+  const next = document.getElementById('co-btn-next');
+  const pay  = document.getElementById('co-btn-pay');
+  if (n < coTotalSteps) {
+    next.style.display = '';
+    pay.style.display  = 'none';
+    next.textContent   = n === 2 ? 'Review Order →' : 'Continue →';
+  } else {
+    next.style.display = 'none';
+    pay.style.display  = '';
+  }
+
+  // Header sub-text
+  const subTexts = {
+    1: 'Step 1 of 3 — Tell us about yourself',
+    2: 'Step 2 of 3 — Your social media profiles',
+    3: 'Step 3 of 3 — Confirm & complete payment'
+  };
+  document.getElementById('co-header-sub').textContent = subTexts[n] || '';
+
+  // Scroll modal to top
+  document.getElementById('co-box').scrollTop = 0;
+}
+
+function coNext() {
+  if (!coValidateStep(coCurrentStep)) return;
+  if (coCurrentStep < coTotalSteps) {
+    coShowStep(coCurrentStep + 1);
+  }
+}
+
+function coBack() {
+  if (coCurrentStep > 1) {
+    coShowStep(coCurrentStep - 1);
+  }
+}
+
+// ── Validation ────────────────────────────────────────────────────
+function coValidateStep(step) {
+  if (step === 1) {
+    const rules = [
+      { id: 'co-fname',    err: 'err-fname',    test: v => v.trim().length >= 1 },
+      { id: 'co-lname',    err: 'err-lname',    test: v => v.trim().length >= 1 },
+      { id: 'co-email',    err: 'err-email',    test: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) },
+      { id: 'co-phone',    err: 'err-phone',    test: v => v.trim().length >= 7 },
+      { id: 'co-company',  err: 'err-company',  test: v => v.trim().length >= 1 },
+      { id: 'co-industry', err: 'err-industry', test: v => v !== '' }
+    ];
+    let ok = true;
+    rules.forEach(r => {
+      const el   = document.getElementById(r.id);
+      const errEl = document.getElementById(r.err);
+      const valid = r.test(el.value);
+      el.classList.toggle('error', !valid);
+      if (errEl) errEl.classList.toggle('show', !valid);
+      if (!valid) ok = false;
+    });
+    if (!ok) {
+      // Scroll to first error
+      const firstErr = document.querySelector('#co-step-1 .co-input.error');
+      if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    return ok;
+  }
+  // Step 2 — social media is fully optional, no validation needed
+  if (step === 2) return true;
+  return true;
+}
+
+// ── Payment redirect ───────────────────────────────────────────────
+function coPay() {
+  const plan     = CO_PLANS[coCurrentPlan];
+  const payUrl   = plan.payLink[coBillingPeriod];
+
+  // Build query params to pre-fill Stripe checkout (optional)
+  const fname   = encodeURIComponent(document.getElementById('co-fname').value.trim());
+  const lname   = encodeURIComponent(document.getElementById('co-lname').value.trim());
+  const email   = encodeURIComponent(document.getElementById('co-email').value.trim());
+  const company = encodeURIComponent(document.getElementById('co-company').value.trim());
+
+  // Append prefill params if your payment link supports them
+  const fullUrl = payUrl
+    + '?prefilled_email=' + email
+    + '&client_reference_id=' + fname + '_' + lname
+    + '&metadata[company]=' + company;
+
+  window.open(fullUrl, '_blank', 'noopener,noreferrer');
 }
 
 /* ── Pricing billing toggle (monthly / yearly, 15% off annual) ── */
