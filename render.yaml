@@ -1,9 +1,7 @@
 # Render Static Site — https://render.com/docs/static-sites
 # Publish path is repo root (index.html lives here). Do not put "true" in publish directory.
 #
-# Realtime voice token API (Node): set env OPENAI_API_KEY and ALLOWED_ORIGINS to your static site
-# origins (comma-separated), e.g. https://growthpilot-ekqk.onrender.com,https://www.brokerboost.ai
-# Then set BROKERBOOST_REALTIME_API in index.html to the Node service URL.
+# Voice assistant: ElevenLabs convai widget in index.html (no backend required on Render).
 services:
   - type: web
     name: growthpilot
@@ -13,13 +11,3 @@ services:
     autoDeploy: true
     buildCommand: "true"
     staticPublishPath: .
-
-  - type: web
-    name: growthpilot-realtime-api
-    runtime: node
-    plan: free
-    branch: main
-    rootDir: server
-    autoDeploy: true
-    buildCommand: npm ci
-    startCommand: node index.js

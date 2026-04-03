@@ -5,10 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>BrokerBoost — Social Media Marketing for Professionals</title>
 <meta name="description" content="BrokerBoost helps professionals dominate social media, build authority, and attract high-value clients through expert marketing systems built for results."/>
-<script>
-/* Must match your Node service URL in the Render Dashboard (Blueprint default: growthpilot-realtime-api). */
-window.BROKERBOOST_REALTIME_API = 'https://growthpilot-realtime-api.onrender.com';
-</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;0,700;0,800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet"/>
@@ -2093,10 +2089,6 @@ function coShowStep(n) {
   document.getElementById('co-box').scrollTop = 0;
 }
 
-window.brokerBoostGetCheckoutStep = function () {
-  return coCurrentStep;
-};
-
 function coNext() {
   if (!coValidateStep(coCurrentStep)) return;
   if (coCurrentStep < coTotalSteps) {
@@ -2241,11 +2233,6 @@ closeCheckout = function() {
     }
   }
 
-  window.brokerBoostSetBilling = function (billing) {
-    if (billing !== 'monthly' && billing !== 'yearly') return;
-    apply(billing);
-  };
-
   tabs.forEach((t) => {
     t.addEventListener('click', () => apply(t.dataset.billing));
   });
@@ -2253,6 +2240,16 @@ closeCheckout = function() {
   apply(document.querySelector('.pricing-billing-tab[aria-selected="true"]')?.dataset.billing || 'monthly');
 })();
 </script>
-<script src="voice-agent.js" defer></script>
+<!-- ElevenLabs conversational agent: https://elevenlabs.io/docs/conversational-ai/customization/widget — allowlist your domain in the agent Security tab -->
+<elevenlabs-convai
+  agent-id="agent_0901knav89tkeh3sr6tmq4631ahh"
+  branch-id="agtbrch_0401knav8bpbe47s97qevfs00da3"
+  dismissible="true"
+  action-text="Voice assistant"
+  avatar-orb-color-1="#2D6A4F"
+  avatar-orb-color-2="#A0672C"
+  markdown-link-allowed-hosts="calendly.com,buy.stripe.com,stripe.com,brokerboost.ai,www.brokerboost.ai"
+></elevenlabs-convai>
+<script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
 </body>
 </html>
