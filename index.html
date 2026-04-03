@@ -68,8 +68,6 @@ button{cursor:pointer;border:none;outline:none;font-family:inherit}
 .nav-links a{font-family:'Space Grotesk',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:.04em;color:var(--text-mid);transition:color .2s}
 .nav-links a:hover{color:var(--primary)}
 .nav-right{display:flex;align-items:center;gap:1rem}
-.btn-nav-ghost{font-family:'Space Grotesk',sans-serif;font-size:.8rem;font-weight:500;color:var(--primary);border:1.5px solid var(--primary);padding:.55rem 1.25rem;border-radius:6px;background:transparent;transition:background .2s,color .2s}
-.btn-nav-ghost:hover{background:var(--primary);color:#fff}
 .btn-nav-cta{font-family:'Space Grotesk',sans-serif;font-size:.8rem;font-weight:600;background:var(--primary);color:#fff;padding:.6rem 1.4rem;border-radius:6px;box-shadow:0 2px 8px rgba(45,106,79,.25);transition:background .2s,transform .2s,box-shadow .2s}
 .btn-nav-cta:hover{background:var(--primary-hover);transform:translateY(-1px);box-shadow:0 4px 14px rgba(45,106,79,.3)}
 
@@ -508,7 +506,6 @@ footer{background:linear-gradient(160deg,#1C1208 0%,#2E1B0E 40%,#3D2A1A 70%,#1C1
   .faq-grid{grid-template-columns:1fr;gap:2.75rem}
   .footer-top{grid-template-columns:1fr 1fr;gap:2.5rem}
   .nav-links{display:none}
-  .btn-nav-ghost{display:none}
 }
 @media(max-width:768px){
   .bento{grid-template-columns:1fr}
@@ -544,12 +541,10 @@ footer{background:linear-gradient(160deg,#1C1208 0%,#2E1B0E 40%,#3D2A1A 70%,#1C1
         <li><a href="#services">Services</a></li>
         <li><a href="#process">How It Works</a></li>
         <li><a href="#pricing">Pricing</a></li>
-        <li><a href="#testimonials">Results</a></li>
         <li><a href="#faq">FAQ</a></li>
       </ul>
       <div class="nav-right">
-        <button class="btn-nav-ghost" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Sign In</button>
-        <button class="btn-nav-cta" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Strategy Call</button>
+        <button class="btn-nav-cta" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Book Strategy Session</button>
       </div>
     </div>
   </div>
