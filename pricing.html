@@ -135,24 +135,30 @@
   </div>
 
   <!-- HERO BAND -->
-  <section class="page-hero">
+  <section class="page-hero" aria-labelledby="pricing-hero-heading">
     <div class="container">
-      <div style="max-width:640px">
-        <div class="hero-badge" style="animation:fadeUp .6s var(--ease) .1s both">
+      <div class="page-hero-inner">
+        <div class="hero-badge reveal">
           <span class="hero-badge-dot"></span>
           <span>Investment</span>
         </div>
-        <h1 class="hero-h1" style="animation:fadeUp .8s var(--ease) .25s both">
+        <h1 id="pricing-hero-heading" class="hero-h1 reveal reveal-d1">
           Transparent Pricing, <em>Real Results</em>
         </h1>
-        <p class="hero-sub" style="animation:fadeUp .8s var(--ease) .4s both;max-width:560px">
+        <p class="hero-sub reveal reveal-d2">
           No setup fees, no long-term contracts, no surprises. Pick the plan that fits your growth goals — and cancel any month, for any reason.
         </p>
-        <div class="hero-stat-strip" style="animation:fadeUp .8s var(--ease) .55s both">
-          <span class="hero-stat-item">No setup fees</span>
-          <span class="hero-stat-item">Month-to-month</span>
-          <span class="hero-stat-item">Cancel anytime</span>
-          <span class="hero-stat-item">Results in 90 days</span>
+        <div class="page-hero-actions reveal reveal-d3">
+          <a href="https://calendly.com/growthp175/free-social-media-growth-strategy-call" target="_blank" rel="noopener" class="btn-primary">
+            Book Your Strategy Session
+            <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+          <a href="services.html" class="btn-secondary">
+            <span class="play-circle">
+              <svg width="10" height="12" viewBox="0 0 10 12" fill="var(--primary)"><path d="M0 0l10 6-10 6V0z"/></svg>
+            </span>
+            View Services
+          </a>
         </div>
       </div>
     </div>
@@ -570,6 +576,60 @@
           </span>
           View FAQ
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOK YOUR STRATEGY CTA -->
+  <section id="pricing-cta" class="cta-section" aria-labelledby="pricing-cta-heading">
+    <div class="container">
+      <div class="cta-grid">
+        <div class="cta-left reveal">
+          <span class="label label-green">Let's Talk</span>
+          <h2 id="pricing-cta-heading">Not Sure Which Plan Is Right? <em>Let's Figure It Out Together.</em></h2>
+          <p>Book a complimentary strategy session and we'll recommend the exact plan that fits your goals and budget — with no obligation.</p>
+          <div class="cta-trust-items">
+            <div class="cta-trust-item">
+              <div class="cta-check"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 3"/></svg></div>
+              No obligation, 30-minute session
+            </div>
+            <div class="cta-trust-item">
+              <div class="cta-check"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 3"/></svg></div>
+              Senior strategist, not a sales call
+            </div>
+            <div class="cta-trust-item">
+              <div class="cta-check"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 3"/></svg></div>
+              Custom recommendation, not a template
+            </div>
+          </div>
+        </div>
+        <div class="cta-form-card reveal reveal-d2">
+          <div class="form-title">Book Your Free Strategy Session</div>
+          <p class="form-sub">30 minutes with a senior strategist. Walk away with a custom growth plan, no strings attached.</p>
+          <a
+            href="https://calendly.com/growthp175/free-social-media-growth-strategy-call"
+            target="_blank"
+            rel="noopener"
+            class="btn-submit"
+            style="display:block;text-align:center;text-decoration:none;padding:.9rem 2rem;font-family:'Space Grotesk',sans-serif;font-size:.9rem;font-weight:700">
+            Book My Strategy Session →
+          </a>
+          <p class="form-note" style="margin-top:1.25rem">You'll be taken to Calendly to pick a time that works for you. Completely free, no credit card required.</p>
+          <div style="margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--border-light);display:flex;flex-direction:column;gap:.65rem">
+            <div class="cta-trust-item" style="font-size:.8rem">
+              <div class="cta-check" style="background:rgba(45,106,79,.08)"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 3"/></svg></div>
+              <span style="color:rgba(255,255,255,.72)">Trusted by 10,000+ professionals worldwide</span>
+            </div>
+            <div class="cta-trust-item" style="font-size:.8rem">
+              <div class="cta-check" style="background:rgba(45,106,79,.08)"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 3"/></svg></div>
+              <span style="color:rgba(255,255,255,.72)">98% client satisfaction — results in 30–90 days</span>
+            </div>
+            <div class="cta-trust-item" style="font-size:.8rem">
+              <div class="cta-check" style="background:rgba(45,106,79,.08)"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 3"/></svg></div>
+              <span style="color:rgba(255,255,255,.72)">No long-term contracts, cancel anytime</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
