@@ -98,9 +98,33 @@
   .hero-stat-item{font-size:.78rem}
 }
 
-/* ── PRICING: HERO ACCENT ── */
-.page-hero::before{background:radial-gradient(ellipse at 55% 35%,rgba(122,140,58,.11) 0%,transparent 65%)}
-.page-hero::after{content:'';position:absolute;bottom:-5%;left:5%;width:45%;height:65%;background:radial-gradient(ellipse at 25% 75%,rgba(160,103,44,.09) 0%,transparent 55%);pointer-events:none}
+/* ── PRICING: DARK COLLAGE HERO ── */
+.page-hero{background:linear-gradient(160deg,#1A2E0A 0%,#0D1905 50%,#1A2E0A 100%);min-height:520px}
+.page-hero::before{display:none}
+.page-hero h1,.page-hero .hero-h1{color:#fff}
+.page-hero h1 em,.page-hero .hero-h1 em{color:#A3C87A}
+.page-hero-sub,.page-hero .hero-sub{color:rgba(255,255,255,.82)}
+.page-hero-badge,.page-hero .hero-badge{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.20)}
+.page-hero-badge span,.page-hero .hero-badge span{color:rgba(255,255,255,.85)}
+.page-hero-badge-dot,.page-hero .hero-badge-dot{background:#A3C87A}
+.page-hero .btn-primary{background:linear-gradient(135deg,#A3C87A,#2D6A4F);color:#fff}
+.page-hero .btn-secondary{background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.28);color:#fff}
+.page-hero .btn-secondary:hover{background:rgba(255,255,255,.20)}
+.page-hero>.container{position:relative;z-index:3}
+.ph-collage{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.ph-collage-inner{position:absolute;inset:-12% -8%;opacity:.28;display:flex;flex-direction:column;gap:12px;filter:saturate(.65) contrast(.85) brightness(.85)}
+.ph-row{display:flex;width:max-content;gap:12px;will-change:transform}
+.ph-row--a{animation:vsCollageL 100s linear infinite}
+.ph-row--b{animation:vsCollageR 120s linear infinite;margin-left:-20%}
+.ph-half{display:flex;gap:12px;flex-shrink:0}
+.ph-tile{flex:0 0 auto;width:clamp(150px,16vw,260px);height:clamp(95px,11vw,170px);border-radius:14px;overflow:hidden}
+.ph-tile img{width:100%;height:100%;object-fit:cover;display:block}
+.ph-overlay{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(to right,rgba(13,25,5,.92) 0%,rgba(13,25,5,.74) 42%,rgba(13,25,5,.40) 72%,rgba(13,25,5,.28) 100%),linear-gradient(to bottom,rgba(13,25,5,.50) 0%,transparent 20%,transparent 80%,rgba(13,25,5,.50) 100%)}
+.ph-card{position:absolute;z-index:2;pointer-events:none;border-radius:16px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.32),0 8px 24px rgba(0,0,0,.16)}
+.ph-card img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.88) brightness(1.04)}
+.ph-card-a{top:12%;right:9%;width:clamp(135px,14vw,205px);height:clamp(88px,9vw,136px);animation:hcFloat 7.5s ease-in-out infinite}
+.ph-card-b{top:55%;right:4%;width:clamp(108px,11vw,170px);height:clamp(70px,8vw,112px);animation:hcFloat 9.5s ease-in-out -1.8s infinite}
+@media(max-width:900px){.ph-collage,.ph-card{display:none}}
 </style>
 </head>
 <body>
@@ -140,6 +164,45 @@
 
   <!-- HERO BAND -->
   <section class="page-hero" aria-labelledby="pricing-hero-heading">
+    <div class="ph-collage" aria-hidden="true">
+      <div class="ph-collage-inner">
+        <div class="ph-row ph-row--a">
+          <div class="ph-half">
+            <div class="ph-tile"><img src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=500&q=65" alt="" loading="lazy"/></div>
+            <div class="ph-tile"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500&q=65" alt="" loading="lazy"/></div>
+            <div class="ph-tile"><img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=500&q=65" alt="" loading="lazy"/></div>
+            <div class="ph-tile"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&q=65" alt="" loading="lazy"/></div>
+          </div>
+          <div class="ph-half">
+            <div class="ph-tile"><img src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=500&q=65" alt="" loading="lazy"/></div>
+            <div class="ph-tile"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500&q=65" alt="" loading="lazy"/></div>
+            <div class="ph-tile"><img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=500&q=65" alt="" loading="lazy"/></div>
+            <div class="ph-tile"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&q=65" alt="" loading="lazy"/></div>
+          </div>
+        </div>
+        <div class="ph-row ph-row--b">
+          <div class="ph-half">
+            <div class="ph-tile"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=500&q=65" alt="" loading="lazy"/></div>
+            <div class="ph-tile"><img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=500&q=65" alt="" loading="lazy"/></div>
+            <div class="ph-tile"><img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=500&q=65" alt="" loading="lazy"/></div>
+            <div class="ph-tile"><img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=500&q=65" alt="" loading="lazy"/></div>
+          </div>
+          <div class="ph-half">
+            <div class="ph-tile"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=500&q=65" alt="" loading="lazy"/></div>
+            <div class="ph-tile"><img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=500&q=65" alt="" loading="lazy"/></div>
+            <div class="ph-tile"><img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=500&q=65" alt="" loading="lazy"/></div>
+            <div class="ph-tile"><img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=500&q=65" alt="" loading="lazy"/></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ph-overlay" aria-hidden="true"></div>
+    <div class="ph-card ph-card-a" aria-hidden="true">
+      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&q=70" alt="" loading="lazy"/>
+    </div>
+    <div class="ph-card ph-card-b" aria-hidden="true">
+      <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&q=70" alt="" loading="lazy"/>
+    </div>
     <div class="container">
       <div class="page-hero-inner">
         <div class="hero-badge reveal">
