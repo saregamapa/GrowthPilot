@@ -47,70 +47,57 @@
   .service-accordion-list{max-width:100%}
 }
 
-/* ── SERVICES HERO BACKGROUND ── */
+/* ── SERVICES HERO 3D ── */
 .page-hero {
   position: relative;
-  background: linear-gradient(135deg, #f0f7f4 0%, #e8f5ee 30%, #faf7f2 65%, #fdf6ec 100%);
+  background: linear-gradient(135deg, #FAF7F2 0%, #F5EEE4 45%, #FDF9F4 100%);
   overflow: hidden;
   padding: 5rem 0 4.5rem;
+  min-height: 440px;
 }
-.page-hero::before {
-  content: '';
+#hero-cvs {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(ellipse 70% 60% at 85% 20%, rgba(45,106,79,.10) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 40% at 10% 80%, rgba(160,103,44,.07) 0%, transparent 55%);
+  width: 100%;
+  height: 100%;
   pointer-events: none;
+  z-index: 0;
 }
-/* floating orb top-right */
-.page-hero::after {
-  content: '';
-  position: absolute;
-  top: -80px; right: -80px;
-  width: 420px; height: 420px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(45,106,79,.13) 0%, transparent 70%);
-  animation: heroOrb 8s ease-in-out infinite alternate;
-  pointer-events: none;
+.page-hero > .container,
+.page-hero > .page-hero-inner {
+  position: relative;
+  z-index: 2;
 }
-@keyframes heroOrb {
-  from { transform: translate(0,0) scale(1); }
-  to   { transform: translate(-30px, 20px) scale(1.08); }
+.page-hero .container {
+  position: relative;
+  z-index: 2;
 }
-/* second orb bottom-left */
-.page-hero-deco {
-  position: absolute;
-  bottom: -60px; left: -60px;
-  width: 300px; height: 300px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(160,103,44,.09) 0%, transparent 70%);
-  animation: heroOrb2 10s ease-in-out infinite alternate;
-  pointer-events: none;
+/* ── 3D BENTO CARD FLOAT ── */
+.bento {
+  perspective: 1200px;
 }
-@keyframes heroOrb2 {
-  from { transform: translate(0,0) scale(1); }
-  to   { transform: translate(20px,-20px) scale(1.06); }
-}
-/* grid dot overlay */
-.page-hero-grid {
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle, rgba(45,106,79,.15) 1px, transparent 1px);
-  background-size: 32px 32px;
-  opacity: .35;
-  pointer-events: none;
-}
-
-/* ── 3D BENTO CARD LIFT ── */
 .bento-card {
-  transition: transform .35s cubic-bezier(.22,.61,.36,1), box-shadow .35s;
+  animation: cardFloat3D 5s ease-in-out infinite;
   transform-style: preserve-3d;
   will-change: transform;
+  transition: box-shadow .3s;
+}
+.bento-card:nth-child(1) { animation-delay: 0s; }
+.bento-card:nth-child(2) { animation-delay: -0.9s; }
+.bento-card:nth-child(3) { animation-delay: -1.8s; }
+.bento-card:nth-child(4) { animation-delay: -2.7s; }
+.bento-card:nth-child(5) { animation-delay: -3.6s; }
+.bento-card:nth-child(6) { animation-delay: -4.5s; }
+@keyframes cardFloat3D {
+  0%,100% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); box-shadow: 0 8px 30px rgba(45,106,79,.10); }
+  25%     { transform: translateY(-7px) rotateX(2.5deg) rotateY(-1.5deg); box-shadow: 0 18px 50px rgba(45,106,79,.16); }
+  50%     { transform: translateY(-5px) rotateX(-1deg) rotateY(2deg); box-shadow: 0 14px 40px rgba(160,103,44,.13); }
+  75%     { transform: translateY(-8px) rotateX(1.5deg) rotateY(-2.5deg); box-shadow: 0 20px 55px rgba(45,106,79,.14); }
 }
 .bento-card:hover {
-  transform: translateY(-8px) rotateX(2deg) rotateY(-2deg) scale(1.015);
-  box-shadow: 0 24px 60px rgba(45,106,79,.14), 0 6px 20px rgba(0,0,0,.06);
+  animation-play-state: paused;
+  transform: translateY(-12px) rotateX(3deg) rotateY(-3deg) scale(1.025) !important;
+  box-shadow: 0 28px 65px rgba(45,106,79,.18), 0 6px 20px rgba(0,0,0,.06) !important;
 }
 </style>
 
@@ -163,8 +150,7 @@
        HERO BAND
   ══════════════════════════════════════════════════════ -->
   <section class="page-hero" aria-labelledby="services-hero-heading">
-    <div class="page-hero-grid" aria-hidden="true"></div>
-    <div class="page-hero-deco" aria-hidden="true"></div>
+    <canvas id="hero-cvs" aria-hidden="true"></canvas>
     <div class="container">
       <div class="page-hero-inner">
         <div class="hero-badge reveal">
@@ -335,10 +321,8 @@
               <li>Competitive positioning matrix — where you stand vs. the top names in your market</li>
               <li>Content pillar framework (3–5 pillars tailored to your goals and audience)</li>
               <li>Brand voice guide — tone, language, and messaging guardrails your whole team can use</li>
-              <li>90-day content roadmap — a prioritised calendar to launch with momentum</li>
+              <li>Content roadmap — a prioritised calendar to launch with momentum</li>
             </ul>
-            <div class="service-detail-label">Who it's for</div>
-            <p style="font-size:.875rem;color:var(--text-muted);line-height:1.75">Professionals starting fresh or rebranding who want a clear, strategic foundation before creating a single piece of content.</p>
             <div class="service-detail-label">Typical results</div>
             <div class="service-result-tags">
               <span class="service-result-tag">312% avg growth in profile visits</span>
@@ -369,8 +353,6 @@
               <li>Hashtag research and optimal timing strategy per post</li>
               <li>Approval workflow with 48-hour turnaround so you're always in control</li>
             </ul>
-            <div class="service-detail-label">Who it's for</div>
-            <p style="font-size:.875rem;color:var(--text-muted);line-height:1.75">Busy professionals who lack the time or design skills to produce consistent, high-quality content on their own.</p>
             <div class="service-detail-label">Typical results</div>
             <div class="service-result-tags">
               <span class="service-result-tag">340% increase in content output</span>
@@ -401,8 +383,6 @@
               <li>Monthly content calendar review with performance-based adjustments</li>
               <li>Continuous optimisation so your highest-performing content drives future strategy</li>
             </ul>
-            <div class="service-detail-label">Who it's for</div>
-            <p style="font-size:.875rem;color:var(--text-muted);line-height:1.75">Professionals managing multiple platforms who need to scale output without scaling their personal time investment.</p>
             <div class="service-detail-label">Typical results</div>
             <div class="service-result-tags">
               <span class="service-result-tag">10× faster content production</span>
@@ -433,8 +413,6 @@
               <li>CRM integration and tagging so every lead is tracked and followed up</li>
               <li>Weekly lead report with volume, source breakdown, and conversion data</li>
             </ul>
-            <div class="service-detail-label">Who it's for</div>
-            <p style="font-size:.875rem;color:var(--text-muted);line-height:1.75">Service professionals ready to convert their growing social audience into conversations and booked appointments.</p>
             <div class="service-detail-label">Typical results</div>
             <div class="service-result-tags">
               <span class="service-result-tag">312% average lead increase</span>
@@ -465,8 +443,6 @@
               <li>Retargeting pixel setup to re-engage warm audiences and cut cost per lead</li>
               <li>Monthly performance report with ROAS breakdown and next-month recommendations</li>
             </ul>
-            <div class="service-detail-label">Who it's for</div>
-            <p style="font-size:.875rem;color:var(--text-muted);line-height:1.75">Professionals ready to accelerate their growth with budget, who want every dollar tracked back to an appointment.</p>
             <div class="service-detail-label">Typical results</div>
             <div class="service-result-tags">
               <span class="service-result-tag">3.8× average return on ad spend</span>
@@ -497,8 +473,6 @@
               <li>Professional media kit — bio, headshots, stats, and talking points</li>
               <li>LinkedIn thought leadership posts to reinforce your expertise between features</li>
             </ul>
-            <div class="service-detail-label">Who it's for</div>
-            <p style="font-size:.875rem;color:var(--text-muted);line-height:1.75">Established professionals ready to move from "well-known locally" to "recognised industry name" with third-party credibility.</p>
             <div class="service-detail-label">Typical results</div>
             <div class="service-result-tags">
               <span class="service-result-tag">Average 220% reach increase</span>
@@ -982,6 +956,76 @@
       btn.setAttribute('aria-expanded', item.classList.contains('open') ? 'true' : 'false');
     }
   };
+})();
+</script>
+<script>
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  function boot(){
+    var c=document.getElementById('hero-cvs');
+    if(!c||!window.THREE)return;
+    var W=c.parentElement.offsetWidth,H=c.parentElement.offsetHeight||480;
+    var scene=new THREE.Scene();
+    var cam=new THREE.PerspectiveCamera(55,W/H,0.1,100);
+    cam.position.z=9;
+    var rdr=new THREE.WebGLRenderer({canvas:c,alpha:true,antialias:true});
+    rdr.setSize(W,H);rdr.setPixelRatio(Math.min(devicePixelRatio,2));
+    rdr.setClearColor(0,0);
+    scene.add(new THREE.AmbientLight(0xfaf7f2,0.85));
+    var dl=new THREE.DirectionalLight(0xffffff,1.1);dl.position.set(4,6,5);scene.add(dl);
+    var dl2=new THREE.DirectionalLight(0xf5eee4,0.4);dl2.position.set(-4,-3,3);scene.add(dl2);
+    var mG=new THREE.MeshPhongMaterial({color:0x2D6A4F,transparent:true,opacity:0.50,shininess:90});
+    var mA=new THREE.MeshPhongMaterial({color:0xA0672C,transparent:true,opacity:0.42,shininess:70});
+    var mC=new THREE.MeshPhongMaterial({color:0xE8DDD0,transparent:true,opacity:0.60,shininess:40});
+    var mWG=new THREE.MeshBasicMaterial({color:0x2D6A4F,wireframe:true,transparent:true,opacity:0.22});
+    var mWA=new THREE.MeshBasicMaterial({color:0xA0672C,wireframe:true,transparent:true,opacity:0.18});
+    var gB=new THREE.BoxGeometry(0.75,0.75,0.75);
+    var gS=new THREE.BoxGeometry(0.48,0.48,0.48);
+    var gT=new THREE.TorusGeometry(0.43,0.13,10,28);
+    var gI=new THREE.IcosahedronGeometry(0.44,0);
+    var cfgs=[
+      {g:gB,m:mG, p:[-5.1, 1.9,-3.0],r:[0.007,0.005,0.003],s:0.35,ph:0.0},
+      {g:gS,m:mA, p:[ 5.0, 2.6,-3.5],r:[0.005,0.008,0.004],s:0.42,ph:1.1},
+      {g:gT,m:mWG,p:[-4.4,-2.1,-2.5],r:[0.006,0.004,0.007],s:0.28,ph:2.2},
+      {g:gI,m:mC, p:[ 4.1,-2.7,-3.0],r:[0.004,0.006,0.005],s:0.38,ph:3.3},
+      {g:gB,m:mWA,p:[-1.9, 3.1,-4.5],r:[0.003,0.007,0.006],s:0.31,ph:0.7},
+      {g:gT,m:mA, p:[ 1.6,-3.1,-4.0],r:[0.006,0.003,0.005],s:0.45,ph:1.8},
+      {g:gI,m:mWG,p:[-6.4, 0.3,-2.0],r:[0.005,0.005,0.004],s:0.26,ph:2.9},
+      {g:gS,m:mG, p:[ 6.1, 0.6,-2.5],r:[0.008,0.004,0.006],s:0.40,ph:0.4},
+      {g:gI,m:mA, p:[ 0.6, 3.7,-5.0],r:[0.004,0.006,0.003],s:0.33,ph:1.5},
+      {g:gT,m:mG, p:[-3.1,-3.4,-3.0],r:[0.007,0.005,0.006],s:0.37,ph:2.6},
+    ];
+    var meshes=cfgs.map(function(cf){
+      var m=new THREE.Mesh(cf.g,cf.m);
+      m.position.set(cf.p[0],cf.p[1],cf.p[2]);
+      m.userData={base:cf.p[1],r:cf.r,s:cf.s,ph:cf.ph};
+      scene.add(m);return m;
+    });
+    var mx=0,my=0;
+    window.addEventListener('mousemove',function(e){
+      mx=(e.clientX/innerWidth-.5)*2;my=(e.clientY/innerHeight-.5)*2;
+    });
+    window.addEventListener('resize',function(){
+      var w=c.parentElement.offsetWidth,h=c.parentElement.offsetHeight||480;
+      cam.aspect=w/h;cam.updateProjectionMatrix();rdr.setSize(w,h);
+    });
+    var t=0;
+    (function loop(){
+      requestAnimationFrame(loop);t+=0.008;
+      meshes.forEach(function(m){
+        var d=m.userData;
+        m.position.y=d.base+Math.sin(t*d.s+d.ph)*0.45;
+        m.rotation.x+=d.r[0];m.rotation.y+=d.r[1];m.rotation.z+=d.r[2];
+      });
+      cam.position.x+=(mx*0.55-cam.position.x)*0.04;
+      cam.position.y+=(-my*0.35-cam.position.y)*0.04;
+      rdr.render(scene,cam);
+    })();
+  }
+  if(window.THREE){boot();}
+  else{var s=document.createElement('script');
+    s.src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+    s.onload=boot;document.head.appendChild(s);}
 })();
 </script>
 </body>
