@@ -75,15 +75,11 @@
 .tl-step-num{font-family:'Space Grotesk',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.5rem}
 .tl-title{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--text);margin-bottom:.75rem;line-height:1.2}
 .tl-desc{font-size:.9rem;color:var(--text-muted);line-height:1.8;margin-bottom:.75rem}
-.tl-checklist{list-style:none;display:flex;flex-direction:column;gap:.5rem;margin-bottom:1rem}
-.tl-checklist li{display:flex;align-items:flex-start;gap:.6rem;font-size:.85rem;color:var(--text-mid);line-height:1.55}
-.tl-checklist li::before{content:'';width:18px;height:18px;border-radius:50%;background:rgba(45,106,79,.12);flex-shrink:0;margin-top:.1rem;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M5 9l3 3 5-5' stroke='%232D6A4F' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");background-size:contain}
 .tl-deliverables{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.5rem}
 .tl-deliverable-tag{font-family:'Space Grotesk',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.06em;background:var(--bg-alt);border:1px solid var(--border-light);border-radius:6px;padding:.25rem .65rem;color:var(--text-mid)}
 .tl-visual-card{background:#fff;border:1.5px solid var(--border-light);border-radius:var(--radius-lg);padding:1.5rem;box-shadow:var(--shadow-md)}
 
-/* ── Odd step: checklist reversed for right-align ── */
-.tl-item:nth-child(odd) .tl-checklist li{flex-direction:row-reverse}
+/* ── Odd step: deliverables reversed for right-align ── */
 .tl-item:nth-child(odd) .tl-deliverables{justify-content:flex-end}
 
 /* ── Audit score card ── */
@@ -129,7 +125,6 @@
   .tl-item:nth-child(even) .tl-node{grid-column:1;grid-row:1;align-items:flex-start}
   .tl-item:nth-child(odd) .tl-visual,
   .tl-item:nth-child(even) .tl-visual{grid-column:2;grid-row:2;margin-top:1.5rem}
-  .tl-item:nth-child(odd) .tl-checklist li{flex-direction:row}
   .tl-item:nth-child(odd) .tl-deliverables{justify-content:flex-start}
   .wiw-grid{grid-template-columns:1fr}
   .page-hero-actions{flex-direction:column;align-items:flex-start}
@@ -138,46 +133,42 @@
   .tl-title{font-size:1.3rem}
 }
 
-/* ── HOW-IT-WORKS HERO 3D ── */
-.page-hero {
-  position: relative;
-  background: linear-gradient(135deg, #FAF7F2 0%, #F5EEE4 45%, #FDF9F4 100%);
-  overflow: hidden;
-  padding: 5rem 0 4.5rem;
-  min-height: 440px;
-}
-#hero-cvs {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-}
-.page-hero .container {
-  position: relative;
-  z-index: 2;
-}
+/* ── HOW-IT-WORKS: DARK NAVY HERO ── */
+.page-hero{position:relative;background:linear-gradient(135deg,#0A1628 0%,#142444 45%,#0F1E38 100%);overflow:hidden;padding:5rem 0 4.5rem;min-height:460px}
+.page-hero .hero-h1{color:#fff}
+.page-hero .hero-h1 em{color:#60C4FF}
+.page-hero .hero-sub{color:rgba(255,255,255,.80)}
+.page-hero .hero-badge{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.18)}
+.page-hero .hero-badge span{color:rgba(255,255,255,.82)}
+.page-hero .hero-badge-dot{background:#60C4FF}
+.page-hero .btn-primary{background:linear-gradient(135deg,#60C4FF,#2563EB);color:#0A1628}
+.page-hero .btn-secondary{background:rgba(255,255,255,.10);border:1.5px solid rgba(255,255,255,.25);color:#fff}
+.page-hero .btn-secondary:hover{background:rgba(255,255,255,.18)}
+.page-hero .play-circle{background:rgba(255,255,255,.15);border:none}
+.page-hero>.container{position:relative;z-index:2}
+/* Floating step cards */
+.hero-floats{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.hf-step{position:absolute;border-radius:16px;padding:.85rem 1.2rem;display:flex;flex-direction:column;gap:.3rem;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);box-shadow:0 8px 32px rgba(0,0,0,.30);animation:stepFloat 6.5s ease-in-out infinite}
+.hf-step-num{font-family:'Space Grotesk',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.65)}
+.hf-step-name{font-family:'Playfair Display',serif;font-size:.88rem;font-weight:700;color:#fff}
+.hf-step-week{font-family:'Space Grotesk',sans-serif;font-size:.60rem;color:rgba(255,255,255,.60)}
+.hf-s1{top:12%;right:4%;background:rgba(37,99,235,.60);animation-delay:0s;transform:rotate(-2deg)}
+.hf-s2{top:42%;right:2.5%;background:rgba(16,185,129,.55);animation-delay:-1.8s;transform:rotate(2deg)}
+.hf-s3{top:68%;right:6%;background:rgba(139,92,246,.55);animation-delay:-3.5s;transform:rotate(-1.5deg)}
+.hf-s4{top:25%;left:1.5%;background:rgba(245,158,11,.55);animation-delay:-5.0s;transform:rotate(2.5deg)}
+.hf-metric{top:58%;left:2%;background:rgba(15,20,40,.65);border:1px solid rgba(96,196,255,.25);animation-delay:-2.5s;transform:rotate(-1deg);animation-duration:7s}
+.hf-m-val{font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:800;color:#60C4FF}
+.hf-m-label{font-family:'Space Grotesk',sans-serif;font-size:.62rem;color:rgba(255,255,255,.70)}
+@keyframes stepFloat{0%,100%{transform:translateY(0) rotate(var(--ro,0deg))}50%{transform:translateY(-18px) rotate(var(--ro,0deg))}}
+@media(max-width:768px){.hero-floats{display:none}}
 /* ── 3D STEP CARD FLOAT ── */
-.exp-card, .step-card, .hiw-card {
-  animation: stepFloat 5.5s ease-in-out infinite;
-  transform-style: preserve-3d;
-  will-change: transform;
-}
-.exp-card:nth-child(1),.step-card:nth-child(1) { animation-delay: 0s; }
-.exp-card:nth-child(2),.step-card:nth-child(2) { animation-delay: -1.4s; }
-.exp-card:nth-child(3),.step-card:nth-child(3) { animation-delay: -2.8s; }
-.exp-card:nth-child(4),.step-card:nth-child(4) { animation-delay: -4.1s; }
-@keyframes stepFloat {
-  0%,100% { transform: translateY(0px) rotateX(0deg); box-shadow: 0 6px 24px rgba(160,103,44,.10); }
-  40%     { transform: translateY(-6px) rotateX(2deg); box-shadow: 0 16px 44px rgba(160,103,44,.16); }
-  70%     { transform: translateY(-4px) rotateX(-1deg); box-shadow: 0 12px 36px rgba(45,106,79,.13); }
-}
-.exp-card:hover,.step-card:hover,.hiw-card:hover {
-  animation-play-state: paused;
-  transform: translateY(-10px) rotateX(3deg) scale(1.02) !important;
-  box-shadow: 0 24px 56px rgba(160,103,44,.18) !important;
-}
+.exp-card,.step-card,.hiw-card{animation:stepCardFloat 5.5s ease-in-out infinite;transform-style:preserve-3d;will-change:transform}
+.exp-card:nth-child(1),.step-card:nth-child(1){animation-delay:0s}
+.exp-card:nth-child(2),.step-card:nth-child(2){animation-delay:-1.4s}
+.exp-card:nth-child(3),.step-card:nth-child(3){animation-delay:-2.8s}
+.exp-card:nth-child(4),.step-card:nth-child(4){animation-delay:-4.1s}
+@keyframes stepCardFloat{0%,100%{transform:translateY(0) rotateX(0);box-shadow:0 6px 24px rgba(160,103,44,.10)}40%{transform:translateY(-6px) rotateX(2deg);box-shadow:0 16px 44px rgba(160,103,44,.16)}70%{transform:translateY(-4px) rotateX(-1deg);box-shadow:0 12px 36px rgba(45,106,79,.13)}}
+.exp-card:hover,.step-card:hover,.hiw-card:hover{animation-play-state:paused;transform:translateY(-10px) rotateX(3deg) scale(1.02)!important;box-shadow:0 24px 56px rgba(160,103,44,.18)!important}
 </style>
 </head>
 <body>
@@ -215,7 +206,32 @@
 
   <!-- HERO BAND -->
   <section class="page-hero" aria-labelledby="hiw-hero-heading">
-    <canvas id="hero-cvs" aria-hidden="true"></canvas>
+    <div class="hero-floats" aria-hidden="true">
+  <div class="hf-step hf-s1">
+    <span class="hf-step-num">Step 01</span>
+    <span class="hf-step-name">Discovery & Audit</span>
+    <span class="hf-step-week">Week 1</span>
+  </div>
+  <div class="hf-step hf-s2">
+    <span class="hf-step-num">Step 02</span>
+    <span class="hf-step-name">Content Setup</span>
+    <span class="hf-step-week">Weeks 2–3</span>
+  </div>
+  <div class="hf-step hf-s3">
+    <span class="hf-step-num">Step 03</span>
+    <span class="hf-step-name">Automation</span>
+    <span class="hf-step-week">Week 4</span>
+  </div>
+  <div class="hf-step hf-s4">
+    <span class="hf-step-num">Step 04</span>
+    <span class="hf-step-name">Growth & Leads</span>
+    <span class="hf-step-week">Month 2–3</span>
+  </div>
+  <div class="hf-step hf-metric">
+    <span class="hf-m-val">+312%</span>
+    <span class="hf-m-label">Avg Lead Growth</span>
+  </div>
+</div>
     <div class="container">
       <div class="page-hero-inner">
         <div class="hero-badge reveal">
@@ -262,15 +278,6 @@
             <div class="tl-step-num">Step 01</div>
             <h3 class="tl-title">Discovery &amp; Audit</h3>
             <p class="tl-desc">Before a single piece of content is created, we learn everything about you, your market, and your competitors. This is the strategic foundation that makes everything else work.</p>
-            <p class="tl-desc">Our strategists conduct a full audit of your current social presence — what's working, what's hurting you, and where your biggest untapped opportunities are.</p>
-            <p class="tl-desc">We run your competitors through our proprietary analysis framework to find the exact positioning gaps you can own in your market.</p>
-            <ul class="tl-checklist">
-              <li>Full audit of existing social profiles and content history</li>
-              <li>Competitor analysis across your top 5–10 market rivals</li>
-              <li>Ideal client profile (ICP) deep-dive workshop</li>
-              <li>Content pillar identification and messaging architecture</li>
-              <li>90-day roadmap with week-by-week milestones</li>
-            </ul>
             <div class="tl-deliverables">
               <span class="tl-deliverable-tag">Brand Audit Report</span>
               <span class="tl-deliverable-tag">Competitor Matrix</span>
@@ -380,15 +387,6 @@
             <div class="tl-step-num">Step 02</div>
             <h3 class="tl-title">Content Production &amp; Setup</h3>
             <p class="tl-desc">With your strategy locked in, our creative team gets to work. Writers, designers, and videographers collaborate to build your first 30 days of content — all aligned with your brand voice.</p>
-            <p class="tl-desc">Every piece of content goes through our brand alignment check before entering your approval queue. You'll see exactly what's going out and when.</p>
-            <p class="tl-desc">We also optimize every profile — bio, highlights, links, and visual identity — so the moment someone lands on your page, they know exactly who you are and why they should care.</p>
-            <ul class="tl-checklist">
-              <li>Visual identity alignment across all platforms</li>
-              <li>First 30-day content batch fully produced</li>
-              <li>Profile optimization on each active platform</li>
-              <li>Publishing calendar populated and approved</li>
-              <li>Client approval workflow established</li>
-            </ul>
             <div class="tl-deliverables">
               <span class="tl-deliverable-tag">30-Day Content Library</span>
               <span class="tl-deliverable-tag">Branded Templates</span>
@@ -405,15 +403,6 @@
             <div class="tl-step-num">Step 03</div>
             <h3 class="tl-title">Automation &amp; Systems</h3>
             <p class="tl-desc">The most overlooked part of social media success isn't the content — it's what happens after someone sees it. We build the infrastructure that turns attention into appointments.</p>
-            <p class="tl-desc">Lead capture forms, email follow-up sequences, DM response templates, and analytics dashboards are installed and tested before we hit publish on day one.</p>
-            <p class="tl-desc">Your ad accounts are configured, pixels are fired, and retargeting audiences are seeded so you can start capturing leads from your organic traffic immediately.</p>
-            <ul class="tl-checklist">
-              <li>Lead capture landing page installed</li>
-              <li>5-email nurture sequence written and loaded</li>
-              <li>DM response template library created</li>
-              <li>Analytics dashboard live and tracking</li>
-              <li>Ad account structure configured and pixel verified</li>
-            </ul>
             <div class="tl-deliverables">
               <span class="tl-deliverable-tag">Lead Funnel</span>
               <span class="tl-deliverable-tag">CRM Integration</span>
@@ -518,15 +507,6 @@
             <div class="tl-step-num">Step 04</div>
             <h3 class="tl-title">Growth, Optimization &amp; Reporting</h3>
             <p class="tl-desc">Once the system is live, we enter an ongoing cycle of publishing, measuring, and optimizing. Every week we review performance data and adjust content strategy accordingly.</p>
-            <p class="tl-desc">Every month you receive a detailed performance report covering follower growth, engagement, reach, lead volume, and paid campaign ROAS. No fluff — just the numbers that matter.</p>
-            <p class="tl-desc">Strategy calls every 30 days ensure we stay aligned with your business goals and any shifts in your market. Your dedicated strategist is always one message away.</p>
-            <ul class="tl-checklist">
-              <li>Weekly content cycles with performance-based optimization</li>
-              <li>Monthly performance reviews with detailed reporting</li>
-              <li>Paid campaign management and budget optimization</li>
-              <li>Content iteration based on top-performing data</li>
-              <li>30-day strategy calls with your dedicated strategist</li>
-            </ul>
             <div class="tl-deliverables">
               <span class="tl-deliverable-tag">Monthly Reports</span>
               <span class="tl-deliverable-tag">Quarterly Strategy Reviews</span>
@@ -562,59 +542,6 @@
       </div>
     </div>
   </div>
-
-  <!-- SECTION 3: WHAT MAKES IT WORK -->
-  <section class="wiw-section">
-    <div class="container">
-      <div class="section-heading reveal" style="text-align:center;max-width:640px;margin:0 auto">
-        <span class="label label-accent">The Difference</span>
-        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,3.75vw,3.5rem);font-weight:700;line-height:1.1;letter-spacing:-.02em;color:var(--text);margin-top:.4rem">What Makes It <em style="font-style:italic;color:var(--primary)">Work</em></h2>
-        <p style="font-size:1rem;color:var(--text-muted);max-width:520px;line-height:1.8;margin:1rem auto 0">Three things most agencies get wrong. We get them right — every time, for every client.</p>
-      </div>
-      <div class="wiw-grid">
-
-        <div class="exp-card reveal reveal-d1">
-          <div class="exp-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:26px;height:26px;color:var(--primary)">
-              <circle cx="12" cy="8" r="4"/>
-              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
-              <path d="M16 11l1.5 1.5L20 10"/>
-            </svg>
-          </div>
-          <h3>Dedicated Strategist</h3>
-          <p>You're not passed to a junior account manager. Your dedicated senior strategist knows your business, your market, and your goals from day one.</p>
-        </div>
-
-        <div class="exp-card reveal reveal-d2">
-          <div class="exp-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:26px;height:26px;color:var(--primary)">
-              <circle cx="12" cy="12" r="10"/>
-              <circle cx="12" cy="12" r="4"/>
-              <line x1="12" y1="2" x2="12" y2="8"/>
-              <line x1="12" y1="16" x2="12" y2="22"/>
-              <line x1="2" y1="12" x2="8" y2="12"/>
-              <line x1="16" y1="12" x2="22" y2="12"/>
-            </svg>
-          </div>
-          <h3>Industry Specialization</h3>
-          <p>We don't do generic. Our team specializes in regulated, high-trust industries where the wrong content can damage credibility as fast as the right content builds it.</p>
-        </div>
-
-        <div class="exp-card reveal reveal-d3">
-          <div class="exp-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:26px;height:26px;color:var(--primary)">
-              <rect x="3" y="11" width="18" height="11" rx="2"/>
-              <path d="M7 11V7a5 5 0 0110 0v4"/>
-              <circle cx="12" cy="16" r="1" fill="currentColor" stroke="none"/>
-            </svg>
-          </div>
-          <h3>No Long-Term Contracts</h3>
-          <p>Month-to-month because we earn your business with results, not contracts. Most clients stay for 12+ months — not because they have to, but because the ROI makes it obvious.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
 
   <!-- SECTION 4: CTA BAND -->
   <section id="hiw-cta" class="cta-section">
@@ -997,77 +924,6 @@
   </div><!-- /co-box -->
 </div><!-- /co-overlay -->
 
-<script>
-(function(){
-  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
-  function boot(){
-    var c=document.getElementById('hero-cvs');
-    if(!c||!window.THREE)return;
-    var W=c.parentElement.offsetWidth,H=c.parentElement.offsetHeight||480;
-    var scene=new THREE.Scene();
-    var cam=new THREE.PerspectiveCamera(55,W/H,0.1,100);
-    cam.position.z=9;
-    var rdr=new THREE.WebGLRenderer({canvas:c,alpha:true,antialias:true});
-    rdr.setSize(W,H);rdr.setPixelRatio(Math.min(devicePixelRatio,2));
-    rdr.setClearColor(0,0);
-    scene.add(new THREE.AmbientLight(0xfaf7f2,0.85));
-    var dl=new THREE.DirectionalLight(0xffffff,1.0);dl.position.set(3,5,5);scene.add(dl);
-    var dl2=new THREE.DirectionalLight(0xf5eee4,0.5);dl2.position.set(-3,-4,2);scene.add(dl2);
-    var mG=new THREE.MeshPhongMaterial({color:0x2D6A4F,transparent:true,opacity:0.48,shininess:80});
-    var mA=new THREE.MeshPhongMaterial({color:0xA0672C,transparent:true,opacity:0.40,shininess:70});
-    var mC=new THREE.MeshPhongMaterial({color:0xE8D8C8,transparent:true,opacity:0.55,shininess:40});
-    var mWG=new THREE.MeshBasicMaterial({color:0x2D6A4F,wireframe:true,transparent:true,opacity:0.22});
-    var mWA=new THREE.MeshBasicMaterial({color:0xA0672C,wireframe:true,transparent:true,opacity:0.18});
-    /* Torus rings (process/connection) + spheres */
-    var gTL=new THREE.TorusGeometry(0.55,0.14,10,32);
-    var gTS=new THREE.TorusGeometry(0.35,0.10,8,24);
-    var gSp=new THREE.SphereGeometry(0.38,14,14);
-    var gSs=new THREE.SphereGeometry(0.25,12,12);
-    var cfgs=[
-      {g:gTL,m:mG, p:[-5.0, 2.0,-3.0],r:[0.006,0.008,0.002],s:0.32,ph:0.0},
-      {g:gSp,m:mA, p:[ 4.8, 2.8,-3.5],r:[0.004,0.006,0.005],s:0.40,ph:1.2},
-      {g:gTS,m:mWG,p:[-4.2,-2.2,-2.5],r:[0.007,0.003,0.006],s:0.27,ph:2.4},
-      {g:gSs,m:mC, p:[ 4.0,-2.5,-3.0],r:[0.003,0.007,0.004],s:0.36,ph:3.6},
-      {g:gTL,m:mWA,p:[-2.0, 3.3,-4.5],r:[0.005,0.004,0.007],s:0.30,ph:0.8},
-      {g:gSp,m:mG, p:[ 1.8,-3.2,-4.0],r:[0.006,0.005,0.003],s:0.44,ph:1.9},
-      {g:gTS,m:mA, p:[-6.3, 0.4,-2.0],r:[0.004,0.006,0.005],s:0.25,ph:2.8},
-      {g:gSs,m:mWG,p:[ 6.0, 0.7,-2.5],r:[0.007,0.003,0.006],s:0.38,ph:0.5},
-      {g:gTL,m:mA, p:[ 0.7, 3.8,-5.0],r:[0.003,0.007,0.004],s:0.31,ph:1.6},
-      {g:gSp,m:mWA,p:[-3.2,-3.5,-3.0],r:[0.006,0.004,0.007],s:0.35,ph:2.7},
-    ];
-    var meshes=cfgs.map(function(cf){
-      var m=new THREE.Mesh(cf.g,cf.m);
-      m.position.set(cf.p[0],cf.p[1],cf.p[2]);
-      m.userData={base:cf.p[1],r:cf.r,s:cf.s,ph:cf.ph};
-      scene.add(m);return m;
-    });
-    var mx=0,my=0;
-    window.addEventListener('mousemove',function(e){
-      mx=(e.clientX/innerWidth-.5)*2;my=(e.clientY/innerHeight-.5)*2;
-    });
-    window.addEventListener('resize',function(){
-      var w=c.parentElement.offsetWidth,h=c.parentElement.offsetHeight||480;
-      cam.aspect=w/h;cam.updateProjectionMatrix();rdr.setSize(w,h);
-    });
-    var t=0;
-    (function loop(){
-      requestAnimationFrame(loop);t+=0.008;
-      meshes.forEach(function(m){
-        var d=m.userData;
-        m.position.y=d.base+Math.sin(t*d.s+d.ph)*0.45;
-        m.rotation.x+=d.r[0];m.rotation.y+=d.r[1];m.rotation.z+=d.r[2];
-      });
-      cam.position.x+=(mx*0.55-cam.position.x)*0.04;
-      cam.position.y+=(-my*0.35-cam.position.y)*0.04;
-      rdr.render(scene,cam);
-    })();
-  }
-  if(window.THREE){boot();}
-  else{var s=document.createElement('script');
-    s.src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
-    s.onload=boot;document.head.appendChild(s);}
-})();
-</script>
 <script src="scripts.js"></script>
 <script>
   // Re-run reveal observer on this page's elements

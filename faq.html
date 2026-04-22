@@ -293,35 +293,35 @@
   .page-hero h1{font-size:2.2rem}
 }
 
-/* ── FAQ HERO 3D ── */
-.page-hero {
-  position: relative;
-  background: linear-gradient(135deg, #FAF7F2 0%, #F5EEE4 45%, #FDF9F4 100%);
-  overflow: hidden;
-  padding: 5rem 0 4.5rem;
-  min-height: 440px;
-}
-#hero-cvs {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-}
-.page-hero .container {
-  position: relative;
-  z-index: 2;
-}
+/* ── FAQ: DARK PURPLE HERO ── */
+.page-hero{position:relative;background:linear-gradient(135deg,#1A0A30 0%,#2D1A52 45%,#1E0D3A 100%);overflow:hidden;padding:5rem 0 4.5rem;min-height:460px}
+.page-hero .hero-h1{color:#fff}
+.page-hero .hero-h1 em{color:#C084FC}
+.page-hero .hero-sub{color:rgba(255,255,255,.80)}
+.page-hero .hero-badge{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.18)}
+.page-hero .hero-badge span{color:rgba(255,255,255,.82)}
+.page-hero .hero-badge-dot{background:#C084FC}
+.page-hero .btn-primary{background:linear-gradient(135deg,#C084FC,#7C3AED);color:#fff}
+.page-hero .btn-secondary{background:rgba(255,255,255,.10);border:1.5px solid rgba(255,255,255,.25);color:#fff}
+.page-hero .btn-secondary:hover{background:rgba(255,255,255,.18)}
+.page-hero .play-circle{background:rgba(255,255,255,.15);border:none}
+.page-hero>.container{position:relative;z-index:2}
+/* Floating chat bubbles */
+.hero-floats{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.hf-bubble{position:absolute;border-radius:18px;padding:.85rem 1.1rem;display:flex;flex-direction:column;gap:.3rem;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);box-shadow:0 8px 32px rgba(0,0,0,.28);animation:bubFloat 6s ease-in-out infinite}
+.hf-bubble::after{content:'';position:absolute;bottom:-8px;left:18px;width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-top:8px solid currentColor;filter:drop-shadow(0 2px 4px rgba(0,0,0,.2))}
+.hf-b-q{font-family:'Space Grotesk',sans-serif;font-size:.72rem;font-weight:600;color:#fff;max-width:160px;line-height:1.4}
+.hf-b-icon{font-size:1.2rem;margin-bottom:.1rem}
+.hf-b1{top:10%;right:4%;background:rgba(124,58,237,.62);color:rgba(124,58,237,.62);animation-delay:0s;transform:rotate(-2deg)}
+.hf-b2{top:42%;right:2%;background:rgba(192,132,252,.45);color:rgba(192,132,252,.45);animation-delay:-2.2s;transform:rotate(2deg)}
+.hf-b3{top:70%;right:7%;background:rgba(109,40,217,.55);color:rgba(109,40,217,.55);animation-delay:-4.0s;transform:rotate(-1.5deg)}
+.hf-b4{top:15%;left:1.5%;background:rgba(45,106,79,.55);color:rgba(45,106,79,.55);animation-delay:-1.2s;transform:rotate(3deg)}
+.hf-b5{top:52%;left:2%;background:rgba(124,58,237,.50);color:rgba(124,58,237,.50);animation-delay:-3.3s;transform:rotate(-1deg)}
+@keyframes bubFloat{0%,100%{transform:translateY(0) rotate(var(--ro,0deg))}50%{transform:translateY(-16px) rotate(var(--ro,0deg))}}
+@media(max-width:768px){.hero-floats{display:none}}
 /* ── 3D FAQ ITEM LIFT ── */
-.faq-item {
-  transition: transform .3s cubic-bezier(.22,.61,.36,1), box-shadow .3s;
-  will-change: transform;
-}
-.faq-item:hover {
-  transform: translateX(5px) translateY(-3px);
-  box-shadow: 0 14px 44px rgba(45,106,79,.12), 0 3px 12px rgba(0,0,0,.05);
-}
+.faq-item{transition:transform .3s cubic-bezier(.22,.61,.36,1),box-shadow .3s;will-change:transform}
+.faq-item:hover{transform:translateX(5px) translateY(-3px);box-shadow:0 14px 44px rgba(124,58,237,.14),0 3px 12px rgba(0,0,0,.05)}
 </style>
 </head>
 <body>
@@ -359,7 +359,28 @@
 
   <!-- HERO BAND -->
   <section class="page-hero" aria-labelledby="faq-hero-heading">
-<canvas id="hero-cvs" aria-hidden="true"></canvas>
+<div class="hero-floats" aria-hidden="true">
+  <div class="hf-bubble hf-b1">
+    <span class="hf-b-icon">💬</span>
+    <span class="hf-b-q">How quickly will I see results?</span>
+  </div>
+  <div class="hf-bubble hf-b2">
+    <span class="hf-b-icon">🚀</span>
+    <span class="hf-b-q">Which platforms do you manage?</span>
+  </div>
+  <div class="hf-bubble hf-b3">
+    <span class="hf-b-icon">💡</span>
+    <span class="hf-b-q">Do you create the content?</span>
+  </div>
+  <div class="hf-bubble hf-b4">
+    <span class="hf-b-icon">✅</span>
+    <span class="hf-b-q">30-day money back guarantee</span>
+  </div>
+  <div class="hf-bubble hf-b5">
+    <span class="hf-b-icon">⭐</span>
+    <span class="hf-b-q">4.9 avg rating · 10K+ clients</span>
+  </div>
+</div>
     <div class="container">
       <div class="page-hero-inner">
         <div class="hero-badge reveal">
@@ -1041,77 +1062,6 @@
   </div>
 </footer>
 
-<script>
-(function(){
-  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
-  function boot(){
-    var c=document.getElementById('hero-cvs');
-    if(!c||!window.THREE)return;
-    var W=c.parentElement.offsetWidth,H=c.parentElement.offsetHeight||480;
-    var scene=new THREE.Scene();
-    var cam=new THREE.PerspectiveCamera(55,W/H,0.1,100);
-    cam.position.z=9;
-    var rdr=new THREE.WebGLRenderer({canvas:c,alpha:true,antialias:true});
-    rdr.setSize(W,H);rdr.setPixelRatio(Math.min(devicePixelRatio,2));
-    rdr.setClearColor(0,0);
-    scene.add(new THREE.AmbientLight(0xfaf7f2,0.85));
-    var dl=new THREE.DirectionalLight(0xffffff,1.0);dl.position.set(3,5,5);scene.add(dl);
-    var dl2=new THREE.DirectionalLight(0xF0F4FF,0.5);dl2.position.set(-3,-4,2);scene.add(dl2);
-    /* Spheres + torus knots for knowledge/discovery */
-    var mG =new THREE.MeshPhongMaterial({color:0x2D6A4F,transparent:true,opacity:0.48,shininess:80});
-    var mA =new THREE.MeshPhongMaterial({color:0xA0672C,transparent:true,opacity:0.40,shininess:70});
-    var mC =new THREE.MeshPhongMaterial({color:0xDDE8F0,transparent:true,opacity:0.55,shininess:50});
-    var mWG=new THREE.MeshBasicMaterial({color:0x2D6A4F,wireframe:true,transparent:true,opacity:0.22});
-    var mWA=new THREE.MeshBasicMaterial({color:0xA0672C,wireframe:true,transparent:true,opacity:0.18});
-    var gSpL=new THREE.SphereGeometry(0.48,16,16);
-    var gSpS=new THREE.SphereGeometry(0.30,12,12);
-    var gTK =new THREE.TorusKnotGeometry(0.30,0.10,64,8,2,3);
-    var gTKS=new THREE.TorusKnotGeometry(0.22,0.07,48,6,2,3);
-    var cfgs=[
-      {g:gSpL,m:mG, p:[-5.0, 2.1,-3.0],r:[0.005,0.006,0.003],s:0.32,ph:0.0},
-      {g:gTK, m:mA, p:[ 4.7, 2.6,-3.5],r:[0.006,0.007,0.004],s:0.39,ph:1.2},
-      {g:gSpS,m:mWG,p:[-4.2,-2.1,-2.5],r:[0.007,0.004,0.006],s:0.27,ph:2.4},
-      {g:gTKS,m:mC, p:[ 3.9,-2.7,-3.0],r:[0.004,0.007,0.005],s:0.36,ph:3.6},
-      {g:gSpL,m:mWA,p:[-2.0, 3.2,-4.5],r:[0.003,0.005,0.007],s:0.30,ph:0.8},
-      {g:gTK, m:mG, p:[ 1.7,-3.2,-4.0],r:[0.006,0.004,0.003],s:0.43,ph:1.9},
-      {g:gSpS,m:mA, p:[-6.2, 0.4,-2.0],r:[0.004,0.006,0.005],s:0.25,ph:2.8},
-      {g:gTKS,m:mWG,p:[ 5.9, 0.7,-2.5],r:[0.007,0.003,0.006],s:0.37,ph:0.5},
-      {g:gSpL,m:mA, p:[ 0.7, 3.7,-5.0],r:[0.003,0.007,0.004],s:0.31,ph:1.6},
-      {g:gTK, m:mWA,p:[-3.2,-3.5,-3.0],r:[0.006,0.005,0.007],s:0.34,ph:2.7},
-    ];
-    var meshes=cfgs.map(function(cf){
-      var m=new THREE.Mesh(cf.g,cf.m);
-      m.position.set(cf.p[0],cf.p[1],cf.p[2]);
-      m.userData={base:cf.p[1],r:cf.r,s:cf.s,ph:cf.ph};
-      scene.add(m);return m;
-    });
-    var mx=0,my=0;
-    window.addEventListener('mousemove',function(e){
-      mx=(e.clientX/innerWidth-.5)*2;my=(e.clientY/innerHeight-.5)*2;
-    });
-    window.addEventListener('resize',function(){
-      var w=c.parentElement.offsetWidth,h=c.parentElement.offsetHeight||480;
-      cam.aspect=w/h;cam.updateProjectionMatrix();rdr.setSize(w,h);
-    });
-    var t=0;
-    (function loop(){
-      requestAnimationFrame(loop);t+=0.008;
-      meshes.forEach(function(m){
-        var d=m.userData;
-        m.position.y=d.base+Math.sin(t*d.s+d.ph)*0.45;
-        m.rotation.x+=d.r[0];m.rotation.y+=d.r[1];m.rotation.z+=d.r[2];
-      });
-      cam.position.x+=(mx*0.55-cam.position.x)*0.04;
-      cam.position.y+=(-my*0.35-cam.position.y)*0.04;
-      rdr.render(scene,cam);
-    })();
-  }
-  if(window.THREE){boot();}
-  else{var s=document.createElement('script');
-    s.src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
-    s.onload=boot;document.head.appendChild(s);}
-})();
-</script>
 <script src="scripts.js"></script>
 <script>
 // FAQ category filter

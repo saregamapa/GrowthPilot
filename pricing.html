@@ -98,51 +98,40 @@
   .hero-stat-item{font-size:.78rem}
 }
 
-/* ── PRICING HERO 3D ── */
-.page-hero {
-  position: relative;
-  background: linear-gradient(135deg, #FAF7F2 0%, #F5EEE4 45%, #FDF9F4 100%);
-  overflow: hidden;
-  padding: 5rem 0 4.5rem;
-  min-height: 440px;
-}
-#hero-cvs {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-}
-.page-hero .container {
-  position: relative;
-  z-index: 2;
-}
+/* ── PRICING: DARK AMBER HERO ── */
+.page-hero{position:relative;background:linear-gradient(135deg,#1C0800 0%,#3D1F00 45%,#2A1200 100%);overflow:hidden;padding:5rem 0 4.5rem;min-height:460px}
+.page-hero .hero-h1{color:#fff}
+.page-hero .hero-h1 em{color:#FFB347}
+.page-hero .hero-sub{color:rgba(255,255,255,.80)}
+.page-hero .hero-badge{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.18)}
+.page-hero .hero-badge span{color:rgba(255,255,255,.82)}
+.page-hero .hero-badge-dot{background:#FFB347}
+.page-hero .btn-primary{background:linear-gradient(135deg,#FFB347,#A0672C);color:#1C0800}
+.page-hero .btn-secondary{background:rgba(255,255,255,.10);border:1.5px solid rgba(255,255,255,.25);color:#fff}
+.page-hero .btn-secondary:hover{background:rgba(255,255,255,.18)}
+.page-hero .play-circle{background:rgba(255,255,255,.15);border:none}
+.page-hero>.container{position:relative;z-index:2}
+/* Floating metric cards */
+.hero-floats{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.hf-metric{position:absolute;border-radius:16px;padding:.85rem 1.2rem;display:flex;flex-direction:column;gap:.28rem;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);box-shadow:0 8px 32px rgba(0,0,0,.30);animation:metFloat 6s ease-in-out infinite}
+.hf-m-val{font-family:'Space Grotesk',sans-serif;font-size:1.4rem;font-weight:800;color:#FFB347}
+.hf-m-label{font-family:'Space Grotesk',sans-serif;font-size:.62rem;font-weight:500;color:rgba(255,255,255,.72)}
+.hf-m-badge{display:inline-flex;align-items:center;gap:.3rem;font-family:'Space Grotesk',sans-serif;font-size:.60rem;font-weight:600;color:#6EE7A0}
+.hf-m1{top:10%;right:5%;background:rgba(28,8,0,.72);border-color:rgba(255,179,71,.25);animation-delay:0s;transform:rotate(-2deg)}
+.hf-m2{top:42%;right:2.5%;background:rgba(28,8,0,.72);border-color:rgba(110,231,160,.20);animation-delay:-2.0s;transform:rotate(2deg)}
+.hf-m3{top:70%;right:7%;background:rgba(28,8,0,.72);border-color:rgba(255,179,71,.20);animation-delay:-4.0s;transform:rotate(-1.5deg)}
+.hf-m4{top:18%;left:1.5%;background:rgba(28,8,0,.72);border-color:rgba(110,231,160,.22);animation-delay:-1.2s;transform:rotate(3deg)}
+.hf-m5{top:52%;left:2%;background:rgba(28,8,0,.72);border-color:rgba(255,179,71,.22);animation-delay:-3.2s;transform:rotate(-1deg)}
+@keyframes metFloat{0%,100%{transform:translateY(0) rotate(var(--ro,0deg))}50%{transform:translateY(-18px) rotate(var(--ro,0deg))}}
+@media(max-width:768px){.hero-floats{display:none}}
 /* ── 3D PRICING CARD FLOAT ── */
-.pricing-card {
-  animation: priceFloat 5s ease-in-out infinite;
-  transform-style: preserve-3d;
-  will-change: transform;
-}
-.pricing-card:nth-child(1) { animation-delay: 0s; }
-.pricing-card:nth-child(2) { animation-delay: -1.7s; }
-.pricing-card:nth-child(3) { animation-delay: -3.4s; }
-@keyframes priceFloat {
-  0%,100% { transform: translateY(0px) rotateX(0deg); box-shadow: 0 8px 32px rgba(45,106,79,.10); }
-  35%     { transform: translateY(-8px) rotateX(2.5deg); box-shadow: 0 20px 55px rgba(160,103,44,.16); }
-  65%     { transform: translateY(-5px) rotateX(-1.5deg); box-shadow: 0 14px 42px rgba(45,106,79,.14); }
-}
-.pricing-card.featured { animation-delay: -1.7s; }
-.pricing-card.featured:nth-child(2) { animation-delay: -1.7s; }
-.pricing-card:hover {
-  animation-play-state: paused;
-  transform: translateY(-14px) rotateX(3deg) scale(1.025) !important;
-  box-shadow: 0 32px 72px rgba(45,106,79,.20) !important;
-}
-.pricing-card.featured:hover {
-  transform: translateY(-16px) rotateX(3deg) scale(1.03) !important;
-  box-shadow: 0 38px 80px rgba(45,106,79,.24) !important;
-}
+.pricing-card{animation:priceFloat 5s ease-in-out infinite;transform-style:preserve-3d;will-change:transform}
+.pricing-card:nth-child(1){animation-delay:0s}
+.pricing-card:nth-child(2){animation-delay:-1.7s}
+.pricing-card:nth-child(3){animation-delay:-3.4s}
+@keyframes priceFloat{0%,100%{transform:translateY(0) rotateX(0);box-shadow:0 8px 32px rgba(45,106,79,.10)}35%{transform:translateY(-8px) rotateX(2.5deg);box-shadow:0 20px 55px rgba(160,103,44,.16)}65%{transform:translateY(-5px) rotateX(-1.5deg);box-shadow:0 14px 42px rgba(45,106,79,.14)}}
+.pricing-card:hover{animation-play-state:paused;transform:translateY(-14px) rotateX(3deg) scale(1.025)!important;box-shadow:0 32px 72px rgba(45,106,79,.20)!important}
+.pricing-card.featured:hover{transform:translateY(-16px) rotateX(3deg) scale(1.03)!important;box-shadow:0 38px 80px rgba(45,106,79,.24)!important}
 </style>
 </head>
 <body>
@@ -182,7 +171,33 @@
 
   <!-- HERO BAND -->
   <section class="page-hero" aria-labelledby="pricing-hero-heading">
-    <canvas id="hero-cvs" aria-hidden="true"></canvas>
+    <div class="hero-floats" aria-hidden="true">
+  <div class="hf-metric hf-m1">
+    <span class="hf-m-val">+247%</span>
+    <span class="hf-m-label">Avg Follower Growth</span>
+    <span class="hf-m-badge">↑ vs. prev quarter</span>
+  </div>
+  <div class="hf-metric hf-m2">
+    <span class="hf-m-val">4.2×</span>
+    <span class="hf-m-label">Return on Ad Spend</span>
+    <span class="hf-m-badge">★ Top performer</span>
+  </div>
+  <div class="hf-metric hf-m3">
+    <span class="hf-m-val">$0</span>
+    <span class="hf-m-label">Setup Fee</span>
+    <span class="hf-m-badge">✓ Cancel anytime</span>
+  </div>
+  <div class="hf-metric hf-m4">
+    <span class="hf-m-val">98%</span>
+    <span class="hf-m-label">Client Satisfaction</span>
+    <span class="hf-m-badge">★★★★★ 4.9 rating</span>
+  </div>
+  <div class="hf-metric hf-m5">
+    <span class="hf-m-val">30 Days</span>
+    <span class="hf-m-label">Performance Guarantee</span>
+    <span class="hf-m-badge">✓ Or money back</span>
+  </div>
+</div>
     <div class="container">
       <div class="page-hero-inner">
         <div class="hero-badge reveal">
@@ -1021,78 +1036,6 @@
 
 /* Pricing billing toggle applies automatically via scripts.js initPricingBilling() IIFE */
 
-</script>
-<script>
-(function(){
-  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
-  function boot(){
-    var c=document.getElementById('hero-cvs');
-    if(!c||!window.THREE)return;
-    var W=c.parentElement.offsetWidth,H=c.parentElement.offsetHeight||480;
-    var scene=new THREE.Scene();
-    var cam=new THREE.PerspectiveCamera(55,W/H,0.1,100);
-    cam.position.z=9;
-    var rdr=new THREE.WebGLRenderer({canvas:c,alpha:true,antialias:true});
-    rdr.setSize(W,H);rdr.setPixelRatio(Math.min(devicePixelRatio,2));
-    rdr.setClearColor(0,0);
-    scene.add(new THREE.AmbientLight(0xfaf7f2,0.85));
-    var dl=new THREE.DirectionalLight(0xffffff,1.0);dl.position.set(4,6,4);scene.add(dl);
-    var dl2=new THREE.DirectionalLight(0xF5EEE4,0.5);dl2.position.set(-4,-3,3);scene.add(dl2);
-    /* Amber/gold gems for pricing */
-    var mA1=new THREE.MeshPhongMaterial({color:0xA0672C,transparent:true,opacity:0.52,shininess:120});
-    var mA2=new THREE.MeshPhongMaterial({color:0xC4956A,transparent:true,opacity:0.42,shininess:100});
-    var mG =new THREE.MeshPhongMaterial({color:0x2D6A4F,transparent:true,opacity:0.44,shininess:80});
-    var mWA=new THREE.MeshBasicMaterial({color:0xA0672C,wireframe:true,transparent:true,opacity:0.20});
-    var mWG=new THREE.MeshBasicMaterial({color:0x2D6A4F,wireframe:true,transparent:true,opacity:0.20});
-    /* Gem/value shapes: icosahedrons + octahedrons */
-    var gIco =new THREE.IcosahedronGeometry(0.50,0);
-    var gIcoS=new THREE.IcosahedronGeometry(0.32,0);
-    var gOct =new THREE.OctahedronGeometry(0.48);
-    var gOctS=new THREE.OctahedronGeometry(0.30);
-    var cfgs=[
-      {g:gIco, m:mA1,p:[-5.0, 2.0,-3.0],r:[0.006,0.007,0.003],s:0.33,ph:0.0},
-      {g:gOct, m:mA2,p:[ 4.8, 2.7,-3.5],r:[0.005,0.006,0.004],s:0.41,ph:1.1},
-      {g:gIcoS,m:mWA,p:[-4.3,-2.0,-2.5],r:[0.007,0.004,0.006],s:0.28,ph:2.2},
-      {g:gOctS,m:mG, p:[ 4.0,-2.8,-3.0],r:[0.004,0.007,0.005],s:0.37,ph:3.4},
-      {g:gIco, m:mWG,p:[-2.0, 3.2,-4.5],r:[0.003,0.006,0.007],s:0.30,ph:0.7},
-      {g:gOct, m:mA1,p:[ 1.7,-3.1,-4.0],r:[0.006,0.003,0.005],s:0.45,ph:1.8},
-      {g:gIcoS,m:mG, p:[-6.3, 0.4,-2.0],r:[0.005,0.005,0.004],s:0.26,ph:2.9},
-      {g:gOctS,m:mWA,p:[ 6.0, 0.6,-2.5],r:[0.008,0.004,0.006],s:0.40,ph:0.4},
-      {g:gIco, m:mA2,p:[ 0.6, 3.8,-5.0],r:[0.004,0.006,0.003],s:0.32,ph:1.5},
-      {g:gOct, m:mWG,p:[-3.1,-3.4,-3.0],r:[0.007,0.005,0.006],s:0.36,ph:2.6},
-    ];
-    var meshes=cfgs.map(function(cf){
-      var m=new THREE.Mesh(cf.g,cf.m);
-      m.position.set(cf.p[0],cf.p[1],cf.p[2]);
-      m.userData={base:cf.p[1],r:cf.r,s:cf.s,ph:cf.ph};
-      scene.add(m);return m;
-    });
-    var mx=0,my=0;
-    window.addEventListener('mousemove',function(e){
-      mx=(e.clientX/innerWidth-.5)*2;my=(e.clientY/innerHeight-.5)*2;
-    });
-    window.addEventListener('resize',function(){
-      var w=c.parentElement.offsetWidth,h=c.parentElement.offsetHeight||480;
-      cam.aspect=w/h;cam.updateProjectionMatrix();rdr.setSize(w,h);
-    });
-    var t=0;
-    (function loop(){
-      requestAnimationFrame(loop);t+=0.008;
-      meshes.forEach(function(m){
-        var d=m.userData;
-        m.position.y=d.base+Math.sin(t*d.s+d.ph)*0.45;
-        m.rotation.x+=d.r[0];m.rotation.y+=d.r[1];m.rotation.z+=d.r[2];
-      });
-      cam.position.x+=(mx*0.55-cam.position.x)*0.04;
-      cam.position.y+=(-my*0.35-cam.position.y)*0.04;
-      rdr.render(scene,cam);
-    })();
-  }
-  if(window.THREE){boot();}
-  else{var s=document.createElement('script');
-    s.src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
-    s.onload=boot;document.head.appendChild(s);}
-})();
 </script>
 </body>
 </html>
