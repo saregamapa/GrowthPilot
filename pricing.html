@@ -78,14 +78,14 @@
 .pricing-faq-section .faq-grid{display:grid;grid-template-columns:1fr 1.55fr;gap:2.5rem 3.5rem;align-items:start}
 @media(max-width:1024px){.pricing-faq-section .faq-grid{grid-template-columns:1fr;gap:2rem}}
 
-/* ── Guarantee band ── */
-.guarantee-band{background:linear-gradient(135deg,#FAF7F2 0%,#F2EBE0 100%);padding:5rem 0;border-top:1px solid var(--border-light);text-align:center}
-.guarantee-icon{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,rgba(45,106,79,.12),rgba(45,106,79,.06));border:2px solid rgba(45,106,79,.2);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem}
-.guarantee-icon svg{width:34px;height:34px;stroke:var(--primary);stroke-width:1.8;fill:none}
-.guarantee-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;color:var(--text);margin-bottom:1rem}
-.guarantee-title em{font-style:italic;color:var(--primary)}
-.guarantee-body{font-size:1rem;color:var(--text-muted);max-width:580px;margin:0 auto 2rem;line-height:1.8}
-.guarantee-actions{display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap}
+/* ── 3D Pricing Card Float ── */
+.pricing-grid{perspective:1400px}
+.pricing-card{animation:pricingCard3D 6s ease-in-out infinite;transform-style:preserve-3d;will-change:transform}
+.pricing-card:nth-child(1){animation-delay:0s}
+.pricing-card:nth-child(2){animation-delay:-2s}
+.pricing-card:nth-child(3){animation-delay:-4s}
+@keyframes pricingCard3D{0%,100%{transform:translateY(0) rotateX(0) rotateY(0);box-shadow:0 8px 30px rgba(45,106,79,.10)}30%{transform:translateY(-7px) rotateX(2deg) rotateY(-1.5deg);box-shadow:0 20px 52px rgba(45,106,79,.16)}60%{transform:translateY(-5px) rotateX(-1deg) rotateY(2deg);box-shadow:0 15px 42px rgba(160,103,44,.12)}80%{transform:translateY(-8px) rotateX(1.5deg) rotateY(-2deg);box-shadow:0 22px 56px rgba(45,106,79,.14)}}
+.pricing-card:hover{animation-play-state:paused;transform:translateY(-14px) rotateX(3.5deg) scale(1.03)!important;box-shadow:0 32px 72px rgba(45,106,79,.20),0 8px 24px rgba(0,0,0,.07)!important}
 
 /* ── Responsive ── */
 @media(max-width:768px){
@@ -600,7 +600,7 @@
               Do you offer refunds?
               <div class="faq-icon"><svg viewBox="0 0 10 10"><path d="M5 2v6M2 5h6"/></svg></div>
             </div>
-            <div class="faq-a">We offer a 30-day performance commitment — see the guarantee section below. Beyond that, we work month-to-month, so you're never locked in. We don't offer partial-month refunds for cancellations mid-cycle, but we will always complete any paid month of service in full.</div>
+            <div class="faq-a">We work month-to-month, so you're never locked in. We don't offer partial-month refunds for cancellations mid-cycle, but we will always complete any paid month of service in full.</div>
           </div>
 
           <div class="faq-item">
@@ -620,29 +620,6 @@
           </div>
 
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- GUARANTEE BAND -->
-  <section class="guarantee-band reveal">
-    <div class="container">
-      <div class="guarantee-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      </div>
-      <h2 class="guarantee-title">30-Day Performance <em>Commitment</em></h2>
-      <p class="guarantee-body">In your first 30 days, we commit to delivering a measurable improvement in at least one of your key metrics — follower growth, engagement rate, or profile reach. If we don't hit that benchmark by day 30, we'll give you a second month of service at no charge and continue working until we do.</p>
-      <div class="guarantee-actions">
-        <button class="btn-primary" onclick="window.open('https://calendly.com/growthp175/free-social-media-growth-strategy-call','_blank')">
-          Book Your Strategy Session
-          <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-        </button>
-        <a href="faq.html" class="btn-secondary">
-          <span class="play-circle" style="width:36px;height:36px">
-            <svg width="12" height="12" viewBox="0 0 10 10" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M5 2v6M2 5h6"/></svg>
-          </span>
-          View FAQ
-        </a>
       </div>
     </div>
   </section>

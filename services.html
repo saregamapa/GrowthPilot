@@ -74,6 +74,17 @@
 .ph-card-a{top:15%;right:8%;width:clamp(135px,14vw,205px);height:clamp(88px,9vw,136px);animation:hcFloat 7s ease-in-out infinite}
 .ph-card-b{top:58%;right:3%;width:clamp(108px,11vw,170px);height:clamp(70px,8vw,112px);animation:hcFloat 9s ease-in-out -2.5s infinite}
 @media(max-width:900px){.ph-collage,.ph-card{display:none}}
+/* ── 3D BENTO CARD FLOAT ── */
+.bento{perspective:1400px}
+.bento-card{animation:bentoCard3D 6s ease-in-out infinite;transform-style:preserve-3d;will-change:transform}
+.bento-card:nth-child(1){animation-delay:0s}
+.bento-card:nth-child(2){animation-delay:-1s}
+.bento-card:nth-child(3){animation-delay:-2s}
+.bento-card:nth-child(4){animation-delay:-3s}
+.bento-card:nth-child(5){animation-delay:-4s}
+.bento-card:nth-child(6){animation-delay:-5s}
+@keyframes bentoCard3D{0%,100%{transform:translateY(0) rotateX(0) rotateY(0);box-shadow:0 6px 24px rgba(45,106,79,.09)}30%{transform:translateY(-6px) rotateX(2deg) rotateY(-1.5deg);box-shadow:0 18px 50px rgba(45,106,79,.15)}60%{transform:translateY(-4px) rotateX(-1deg) rotateY(2deg);box-shadow:0 13px 40px rgba(160,103,44,.11)}80%{transform:translateY(-7px) rotateX(1.5deg) rotateY(-2deg);box-shadow:0 20px 54px rgba(45,106,79,.13)}}
+.bento-card:hover{animation-play-state:paused;transform:translateY(-12px) rotateX(3.5deg) rotateY(-2deg) scale(1.025)!important;box-shadow:0 30px 68px rgba(45,106,79,.19),0 6px 20px rgba(0,0,0,.06)!important}
 </style>
 
 <script type="application/ld+json">
