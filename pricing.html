@@ -97,6 +97,73 @@
   .hero-stat-strip{gap:.75rem}
   .hero-stat-item{font-size:.78rem}
 }
+
+/* ── PRICING HERO BACKGROUND ── */
+.page-hero {
+  position: relative;
+  background: linear-gradient(135deg, #f4f0fa 0%, #ede8f7 30%, #f7f4fb 60%, #faf7f2 100%);
+  overflow: hidden;
+  padding: 5rem 0 4.5rem;
+}
+.page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 85% 10%, rgba(120,80,180,.10) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 45% at 10% 80%, rgba(45,106,79,.08) 0%, transparent 55%);
+  pointer-events: none;
+}
+.page-hero::after {
+  content: '';
+  position: absolute;
+  top: -70px; right: -70px;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(120,80,180,.11) 0%, transparent 70%);
+  animation: pricingOrb 10s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+@keyframes pricingOrb {
+  from { transform: translate(0,0) scale(1); }
+  to   { transform: translate(-28px,16px) scale(1.09); }
+}
+.page-hero-deco {
+  position: absolute;
+  bottom: -55px; left: -55px;
+  width: 290px; height: 290px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(45,106,79,.09) 0%, transparent 70%);
+  animation: pricingOrb2 12s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+@keyframes pricingOrb2 {
+  from { transform: translate(0,0) scale(1); }
+  to   { transform: translate(22px,-18px) scale(1.06); }
+}
+.page-hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(120,80,180,.18) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: .30;
+  pointer-events: none;
+}
+
+/* ── 3D PRICING CARD LIFT ── */
+.pricing-card {
+  transition: transform .35s cubic-bezier(.22,.61,.36,1), box-shadow .35s;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.pricing-card:hover {
+  transform: translateY(-10px) rotateX(2deg) scale(1.02);
+  box-shadow: 0 30px 70px rgba(120,80,180,.14), 0 8px 24px rgba(0,0,0,.07);
+}
+.pricing-card.featured:hover {
+  transform: translateY(-12px) rotateX(2deg) scale(1.03);
+  box-shadow: 0 36px 80px rgba(45,106,79,.18), 0 10px 28px rgba(0,0,0,.08);
+}
 </style>
 </head>
 <body>
@@ -136,6 +203,8 @@
 
   <!-- HERO BAND -->
   <section class="page-hero" aria-labelledby="pricing-hero-heading">
+    <div class="page-hero-grid" aria-hidden="true"></div>
+    <div class="page-hero-deco" aria-hidden="true"></div>
     <div class="container">
       <div class="page-hero-inner">
         <div class="hero-badge reveal">
@@ -581,58 +650,80 @@
   </section>
 
   <!-- BOOK YOUR STRATEGY CTA -->
-  <section id="pricing-cta" class="cta-section" aria-labelledby="pricing-cta-heading">
-    <div class="container">
-      <div class="cta-grid">
-        <div class="cta-left reveal">
-          <span class="label label-green">Let's Talk</span>
-          <h2 id="pricing-cta-heading">Not Sure Which Plan Is Right? <em>Let's Figure It Out Together.</em></h2>
-          <p>Book a complimentary strategy session and we'll recommend the exact plan that fits your goals and budget — with no obligation.</p>
-          <div class="cta-trust-items">
-            <div class="cta-trust-item">
-              <div class="cta-check"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 3"/></svg></div>
-              No obligation, 30-minute session
-            </div>
-            <div class="cta-trust-item">
-              <div class="cta-check"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 3"/></svg></div>
-              Senior strategist, not a sales call
-            </div>
-            <div class="cta-trust-item">
-              <div class="cta-check"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 3"/></svg></div>
-              Custom recommendation, not a template
-            </div>
+  <section id="pricing-cta" class="cta-section">
+  <div class="container">
+    <div class="cta-grid">
+      <div class="cta-left reveal">
+        <span class="label label-green">Strategy Session</span>
+        <h2>Ready to Become the <em>Go-To Expert</em> in Your Industry?</h2>
+        <p>Book a complimentary 30-minute strategy session. We'll review your current presence, identify your biggest growth opportunities, and map out a personalised plan — no obligation.</p>
+        <div class="cta-trust-items">
+          <div class="cta-trust-item">
+            <div class="cta-check"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 3"/></svg></div>
+            Walk in curious — leave with your clearest next move
           </div>
-        </div>
-        <div class="cta-form-card reveal reveal-d2">
-          <div class="form-title">Book Your Free Strategy Session</div>
-          <p class="form-sub">30 minutes with a senior strategist. Walk away with a custom growth plan, no strings attached.</p>
-          <a
-            href="https://calendly.com/growthp175/free-social-media-growth-strategy-call"
-            target="_blank"
-            rel="noopener"
-            class="btn-submit"
-            style="display:block;text-align:center;text-decoration:none;padding:.9rem 2rem;font-family:'Space Grotesk',sans-serif;font-size:.9rem;font-weight:700">
-            Book My Strategy Session →
-          </a>
-          <p class="form-note" style="margin-top:1.25rem">You'll be taken to Calendly to pick a time that works for you. Completely free, no credit card required.</p>
-          <div style="margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--border-light);display:flex;flex-direction:column;gap:.65rem">
-            <div class="cta-trust-item" style="font-size:.8rem">
-              <div class="cta-check" style="background:rgba(45,106,79,.08)"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 3"/></svg></div>
-              <span style="color:rgba(255,255,255,.72)">Trusted by 10,000+ professionals worldwide</span>
-            </div>
-            <div class="cta-trust-item" style="font-size:.8rem">
-              <div class="cta-check" style="background:rgba(45,106,79,.08)"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 3"/></svg></div>
-              <span style="color:rgba(255,255,255,.72)">98% client satisfaction — results in 30–90 days</span>
-            </div>
-            <div class="cta-trust-item" style="font-size:.8rem">
-              <div class="cta-check" style="background:rgba(45,106,79,.08)"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 3"/></svg></div>
-              <span style="color:rgba(255,255,255,.72)">No long-term contracts, cancel anytime</span>
-            </div>
+          <div class="cta-trust-item">
+            <div class="cta-check"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 3"/></svg></div>
+            Monthly performance snapshots so you always see what's working
+          </div>
+          <div class="cta-trust-item">
+            <div class="cta-check"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 3"/></svg></div>
+            Dedicated strategist assigned from day one
+          </div>
+          <div class="cta-trust-item">
+            <div class="cta-check"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 3"/></svg></div>
+            Trusted by 10,000+ professionals worldwide
           </div>
         </div>
       </div>
+      <div class="cta-form-card reveal reveal-d2">
+        <div class="form-title">Book Your Strategy Session</div>
+        <p class="form-sub">Tell us a little about yourself, then pick a time that works for you.</p>
+        <form onsubmit="window.open('https://calendly.com/growthp175/free-social-media-growth-strategy-call','_blank');return false">
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input type="text" class="form-input" placeholder="Jane Smith"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" class="form-input" placeholder="jane@example.com"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone Number</label>
+            <input type="tel" class="form-input" placeholder="+1 (555) 000-0000"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Your Industry</label>
+            <select class="form-input">
+              <option value="">Select your industry…</option>
+              <option>Real Estate</option>
+              <option>Mortgage / Lending</option>
+              <option>Legal</option>
+              <option>Healthcare / Medical</option>
+              <option>Coaching / Consulting</option>
+              <option>Finance / Accounting</option>
+              <option>Local Business</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Primary Goal</label>
+            <select class="form-input">
+              <option value="">What matters most to you?</option>
+              <option>More leads &amp; booked appointments</option>
+              <option>Build a stronger personal brand</option>
+              <option>Grow social media following</option>
+              <option>Increase revenue from content</option>
+              <option>All of the above</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-submit">Book My Strategy Session →</button>
+          <p class="form-note">By submitting, you agree to our <a href="#">Privacy Policy</a>. We never share your data.</p>
+        </form>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
 
 </main>
 
