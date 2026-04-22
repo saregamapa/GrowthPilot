@@ -98,40 +98,9 @@
   .hero-stat-item{font-size:.78rem}
 }
 
-/* ── PRICING: DARK AMBER HERO ── */
-.page-hero{position:relative;background:linear-gradient(135deg,#1C0800 0%,#3D1F00 45%,#2A1200 100%);overflow:hidden;padding:5rem 0 4.5rem;min-height:460px}
-.page-hero .hero-h1{color:#fff}
-.page-hero .hero-h1 em{color:#FFB347}
-.page-hero .hero-sub{color:rgba(255,255,255,.80)}
-.page-hero .hero-badge{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.18)}
-.page-hero .hero-badge span{color:rgba(255,255,255,.82)}
-.page-hero .hero-badge-dot{background:#FFB347}
-.page-hero .btn-primary{background:linear-gradient(135deg,#FFB347,#A0672C);color:#1C0800}
-.page-hero .btn-secondary{background:rgba(255,255,255,.10);border:1.5px solid rgba(255,255,255,.25);color:#fff}
-.page-hero .btn-secondary:hover{background:rgba(255,255,255,.18)}
-.page-hero .play-circle{background:rgba(255,255,255,.15);border:none}
-.page-hero>.container{position:relative;z-index:2}
-/* Floating metric cards */
-.hero-floats{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
-.hf-metric{position:absolute;border-radius:16px;padding:.85rem 1.2rem;display:flex;flex-direction:column;gap:.28rem;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);box-shadow:0 8px 32px rgba(0,0,0,.30);animation:metFloat 6s ease-in-out infinite}
-.hf-m-val{font-family:'Space Grotesk',sans-serif;font-size:1.4rem;font-weight:800;color:#FFB347}
-.hf-m-label{font-family:'Space Grotesk',sans-serif;font-size:.62rem;font-weight:500;color:rgba(255,255,255,.72)}
-.hf-m-badge{display:inline-flex;align-items:center;gap:.3rem;font-family:'Space Grotesk',sans-serif;font-size:.60rem;font-weight:600;color:#6EE7A0}
-.hf-m1{top:10%;right:5%;background:rgba(28,8,0,.72);border-color:rgba(255,179,71,.25);animation-delay:0s;transform:rotate(-2deg)}
-.hf-m2{top:42%;right:2.5%;background:rgba(28,8,0,.72);border-color:rgba(110,231,160,.20);animation-delay:-2.0s;transform:rotate(2deg)}
-.hf-m3{top:70%;right:7%;background:rgba(28,8,0,.72);border-color:rgba(255,179,71,.20);animation-delay:-4.0s;transform:rotate(-1.5deg)}
-.hf-m4{top:18%;left:1.5%;background:rgba(28,8,0,.72);border-color:rgba(110,231,160,.22);animation-delay:-1.2s;transform:rotate(3deg)}
-.hf-m5{top:52%;left:2%;background:rgba(28,8,0,.72);border-color:rgba(255,179,71,.22);animation-delay:-3.2s;transform:rotate(-1deg)}
-@keyframes metFloat{0%,100%{transform:translateY(0) rotate(var(--ro,0deg))}50%{transform:translateY(-18px) rotate(var(--ro,0deg))}}
-@media(max-width:768px){.hero-floats{display:none}}
-/* ── 3D PRICING CARD FLOAT ── */
-.pricing-card{animation:priceFloat 5s ease-in-out infinite;transform-style:preserve-3d;will-change:transform}
-.pricing-card:nth-child(1){animation-delay:0s}
-.pricing-card:nth-child(2){animation-delay:-1.7s}
-.pricing-card:nth-child(3){animation-delay:-3.4s}
-@keyframes priceFloat{0%,100%{transform:translateY(0) rotateX(0);box-shadow:0 8px 32px rgba(45,106,79,.10)}35%{transform:translateY(-8px) rotateX(2.5deg);box-shadow:0 20px 55px rgba(160,103,44,.16)}65%{transform:translateY(-5px) rotateX(-1.5deg);box-shadow:0 14px 42px rgba(45,106,79,.14)}}
-.pricing-card:hover{animation-play-state:paused;transform:translateY(-14px) rotateX(3deg) scale(1.025)!important;box-shadow:0 32px 72px rgba(45,106,79,.20)!important}
-.pricing-card.featured:hover{transform:translateY(-16px) rotateX(3deg) scale(1.03)!important;box-shadow:0 38px 80px rgba(45,106,79,.24)!important}
+/* ── PRICING: HERO ACCENT ── */
+.page-hero::before{background:radial-gradient(ellipse at 55% 35%,rgba(122,140,58,.11) 0%,transparent 65%)}
+.page-hero::after{content:'';position:absolute;bottom:-5%;left:5%;width:45%;height:65%;background:radial-gradient(ellipse at 25% 75%,rgba(160,103,44,.09) 0%,transparent 55%);pointer-events:none}
 </style>
 </head>
 <body>
@@ -171,33 +140,6 @@
 
   <!-- HERO BAND -->
   <section class="page-hero" aria-labelledby="pricing-hero-heading">
-    <div class="hero-floats" aria-hidden="true">
-  <div class="hf-metric hf-m1">
-    <span class="hf-m-val">+247%</span>
-    <span class="hf-m-label">Avg Follower Growth</span>
-    <span class="hf-m-badge">↑ vs. prev quarter</span>
-  </div>
-  <div class="hf-metric hf-m2">
-    <span class="hf-m-val">4.2×</span>
-    <span class="hf-m-label">Return on Ad Spend</span>
-    <span class="hf-m-badge">★ Top performer</span>
-  </div>
-  <div class="hf-metric hf-m3">
-    <span class="hf-m-val">$0</span>
-    <span class="hf-m-label">Setup Fee</span>
-    <span class="hf-m-badge">✓ Cancel anytime</span>
-  </div>
-  <div class="hf-metric hf-m4">
-    <span class="hf-m-val">98%</span>
-    <span class="hf-m-label">Client Satisfaction</span>
-    <span class="hf-m-badge">★★★★★ 4.9 rating</span>
-  </div>
-  <div class="hf-metric hf-m5">
-    <span class="hf-m-val">30 Days</span>
-    <span class="hf-m-label">Performance Guarantee</span>
-    <span class="hf-m-badge">✓ Or money back</span>
-  </div>
-</div>
     <div class="container">
       <div class="page-hero-inner">
         <div class="hero-badge reveal">

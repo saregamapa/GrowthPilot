@@ -133,42 +133,9 @@
   .tl-title{font-size:1.3rem}
 }
 
-/* ── HOW-IT-WORKS: DARK CRIMSON HERO ── */
-.page-hero{position:relative;background:linear-gradient(135deg,#2D0010 0%,#5C0022 45%,#400018 100%);overflow:hidden;padding:5rem 0 4.5rem;min-height:460px}
-.page-hero .hero-h1{color:#fff}
-.page-hero .hero-h1 em{color:#FF6B9D}
-.page-hero .hero-sub{color:rgba(255,255,255,.80)}
-.page-hero .hero-badge{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.18)}
-.page-hero .hero-badge span{color:rgba(255,255,255,.82)}
-.page-hero .hero-badge-dot{background:#FF6B9D}
-.page-hero .btn-primary{background:linear-gradient(135deg,#FF6B9D,#E63070);color:#fff}
-.page-hero .btn-secondary{background:rgba(255,255,255,.10);border:1.5px solid rgba(255,255,255,.25);color:#fff}
-.page-hero .btn-secondary:hover{background:rgba(255,255,255,.18)}
-.page-hero .play-circle{background:rgba(255,255,255,.15);border:none}
-.page-hero>.container{position:relative;z-index:2}
-/* Floating step cards */
-.hero-floats{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
-.hf-step{position:absolute;border-radius:16px;padding:.85rem 1.2rem;display:flex;flex-direction:column;gap:.3rem;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);box-shadow:0 8px 32px rgba(0,0,0,.30);animation:stepFloat 6.5s ease-in-out infinite}
-.hf-step-num{font-family:'Space Grotesk',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.65)}
-.hf-step-name{font-family:'Playfair Display',serif;font-size:.88rem;font-weight:700;color:#fff}
-.hf-step-week{font-family:'Space Grotesk',sans-serif;font-size:.60rem;color:rgba(255,255,255,.60)}
-.hf-s1{top:12%;right:4%;background:rgba(37,99,235,.60);animation-delay:0s;transform:rotate(-2deg)}
-.hf-s2{top:42%;right:2.5%;background:rgba(16,185,129,.55);animation-delay:-1.8s;transform:rotate(2deg)}
-.hf-s3{top:68%;right:6%;background:rgba(139,92,246,.55);animation-delay:-3.5s;transform:rotate(-1.5deg)}
-.hf-s4{top:25%;left:1.5%;background:rgba(245,158,11,.55);animation-delay:-5.0s;transform:rotate(2.5deg)}
-.hf-metric{top:58%;left:2%;background:rgba(15,20,40,.65);border:1px solid rgba(96,196,255,.25);animation-delay:-2.5s;transform:rotate(-1deg);animation-duration:7s}
-.hf-m-val{font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:800;color:#FF6B9D}
-.hf-m-label{font-family:'Space Grotesk',sans-serif;font-size:.62rem;color:rgba(255,255,255,.70)}
-@keyframes stepFloat{0%,100%{transform:translateY(0) rotate(var(--ro,0deg))}50%{transform:translateY(-18px) rotate(var(--ro,0deg))}}
-@media(max-width:768px){.hero-floats{display:none}}
-/* ── 3D STEP CARD FLOAT ── */
-.exp-card,.step-card,.hiw-card{animation:stepCardFloat 5.5s ease-in-out infinite;transform-style:preserve-3d;will-change:transform}
-.exp-card:nth-child(1),.step-card:nth-child(1){animation-delay:0s}
-.exp-card:nth-child(2),.step-card:nth-child(2){animation-delay:-1.4s}
-.exp-card:nth-child(3),.step-card:nth-child(3){animation-delay:-2.8s}
-.exp-card:nth-child(4),.step-card:nth-child(4){animation-delay:-4.1s}
-@keyframes stepCardFloat{0%,100%{transform:translateY(0) rotateX(0);box-shadow:0 6px 24px rgba(160,103,44,.10)}40%{transform:translateY(-6px) rotateX(2deg);box-shadow:0 16px 44px rgba(160,103,44,.16)}70%{transform:translateY(-4px) rotateX(-1deg);box-shadow:0 12px 36px rgba(45,106,79,.13)}}
-.exp-card:hover,.step-card:hover,.hiw-card:hover{animation-play-state:paused;transform:translateY(-10px) rotateX(3deg) scale(1.02)!important;box-shadow:0 24px 56px rgba(160,103,44,.18)!important}
+/* ── HOW IT WORKS: HERO ACCENT ── */
+.page-hero::before{background:radial-gradient(ellipse at 75% 45%,rgba(160,103,44,.13) 0%,transparent 65%)}
+.page-hero::after{content:'';position:absolute;bottom:-10%;left:-5%;width:50%;height:70%;background:radial-gradient(ellipse at 30% 70%,rgba(45,106,79,.07) 0%,transparent 55%);pointer-events:none}
 </style>
 </head>
 <body>
@@ -206,32 +173,6 @@
 
   <!-- HERO BAND -->
   <section class="page-hero" aria-labelledby="hiw-hero-heading">
-    <div class="hero-floats" aria-hidden="true">
-  <div class="hf-step hf-s1">
-    <span class="hf-step-num">Step 01</span>
-    <span class="hf-step-name">Discovery & Audit</span>
-    <span class="hf-step-week">Week 1</span>
-  </div>
-  <div class="hf-step hf-s2">
-    <span class="hf-step-num">Step 02</span>
-    <span class="hf-step-name">Content Setup</span>
-    <span class="hf-step-week">Weeks 2–3</span>
-  </div>
-  <div class="hf-step hf-s3">
-    <span class="hf-step-num">Step 03</span>
-    <span class="hf-step-name">Automation</span>
-    <span class="hf-step-week">Week 4</span>
-  </div>
-  <div class="hf-step hf-s4">
-    <span class="hf-step-num">Step 04</span>
-    <span class="hf-step-name">Growth & Leads</span>
-    <span class="hf-step-week">Month 2–3</span>
-  </div>
-  <div class="hf-step hf-metric">
-    <span class="hf-m-val">+312%</span>
-    <span class="hf-m-label">Avg Lead Growth</span>
-  </div>
-</div>
     <div class="container">
       <div class="page-hero-inner">
         <div class="hero-badge reveal">

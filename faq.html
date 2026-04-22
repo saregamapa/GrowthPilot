@@ -293,32 +293,9 @@
   .page-hero h1{font-size:2.2rem}
 }
 
-/* ── FAQ: DARK TEAL HERO ── */
-.page-hero{position:relative;background:linear-gradient(135deg,#003535 0%,#005C5C 45%,#004545 100%);overflow:hidden;padding:5rem 0 4.5rem;min-height:460px}
-.page-hero .hero-h1{color:#fff}
-.page-hero .hero-h1 em{color:#00E5CC}
-.page-hero .hero-sub{color:rgba(255,255,255,.80)}
-.page-hero .hero-badge{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.18)}
-.page-hero .hero-badge span{color:rgba(255,255,255,.82)}
-.page-hero .hero-badge-dot{background:#00E5CC}
-.page-hero .btn-primary{background:linear-gradient(135deg,#00E5CC,#00A896);color:#003535}
-.page-hero .btn-secondary{background:rgba(255,255,255,.10);border:1.5px solid rgba(255,255,255,.25);color:#fff}
-.page-hero .btn-secondary:hover{background:rgba(255,255,255,.18)}
-.page-hero .play-circle{background:rgba(255,255,255,.15);border:none}
-.page-hero>.container{position:relative;z-index:2}
-/* Floating chat bubbles */
-.hero-floats{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
-.hf-bubble{position:absolute;border-radius:18px;padding:.85rem 1.1rem;display:flex;flex-direction:column;gap:.3rem;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);box-shadow:0 8px 32px rgba(0,0,0,.28);animation:bubFloat 6s ease-in-out infinite}
-.hf-bubble::after{content:'';position:absolute;bottom:-8px;left:18px;width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-top:8px solid currentColor;filter:drop-shadow(0 2px 4px rgba(0,0,0,.2))}
-.hf-b-q{font-family:'Space Grotesk',sans-serif;font-size:.72rem;font-weight:600;color:#fff;max-width:160px;line-height:1.4}
-.hf-b-icon{font-size:1.2rem;margin-bottom:.1rem}
-.hf-b1{top:10%;right:4%;background:rgba(124,58,237,.62);color:rgba(124,58,237,.62);animation-delay:0s;transform:rotate(-2deg)}
-.hf-b2{top:42%;right:2%;background:rgba(192,132,252,.45);color:rgba(192,132,252,.45);animation-delay:-2.2s;transform:rotate(2deg)}
-.hf-b3{top:70%;right:7%;background:rgba(109,40,217,.55);color:rgba(109,40,217,.55);animation-delay:-4.0s;transform:rotate(-1.5deg)}
-.hf-b4{top:15%;left:1.5%;background:rgba(45,106,79,.55);color:rgba(45,106,79,.55);animation-delay:-1.2s;transform:rotate(3deg)}
-.hf-b5{top:52%;left:2%;background:rgba(124,58,237,.50);color:rgba(124,58,237,.50);animation-delay:-3.3s;transform:rotate(-1deg)}
-@keyframes bubFloat{0%,100%{transform:translateY(0) rotate(var(--ro,0deg))}50%{transform:translateY(-16px) rotate(var(--ro,0deg))}}
-@media(max-width:768px){.hero-floats{display:none}}
+/* ── FAQ: HERO ACCENT ── */
+.page-hero::before{background:radial-gradient(ellipse at 25% 65%,rgba(139,106,79,.10) 0%,transparent 65%)}
+.page-hero::after{content:'';position:absolute;top:-10%;right:-3%;width:55%;height:70%;background:radial-gradient(ellipse at 65% 25%,rgba(45,106,79,.07) 0%,transparent 55%);pointer-events:none}
 /* ── 3D FAQ ITEM LIFT ── */
 .faq-item{transition:transform .3s cubic-bezier(.22,.61,.36,1),box-shadow .3s;will-change:transform}
 .faq-item:hover{transform:translateX(5px) translateY(-3px);box-shadow:0 14px 44px rgba(124,58,237,.14),0 3px 12px rgba(0,0,0,.05)}
@@ -359,28 +336,6 @@
 
   <!-- HERO BAND -->
   <section class="page-hero" aria-labelledby="faq-hero-heading">
-<div class="hero-floats" aria-hidden="true">
-  <div class="hf-bubble hf-b1">
-    <span class="hf-b-icon">💬</span>
-    <span class="hf-b-q">How quickly will I see results?</span>
-  </div>
-  <div class="hf-bubble hf-b2">
-    <span class="hf-b-icon">🚀</span>
-    <span class="hf-b-q">Which platforms do you manage?</span>
-  </div>
-  <div class="hf-bubble hf-b3">
-    <span class="hf-b-icon">💡</span>
-    <span class="hf-b-q">Do you create the content?</span>
-  </div>
-  <div class="hf-bubble hf-b4">
-    <span class="hf-b-icon">✅</span>
-    <span class="hf-b-q">30-day money back guarantee</span>
-  </div>
-  <div class="hf-bubble hf-b5">
-    <span class="hf-b-icon">⭐</span>
-    <span class="hf-b-q">4.9 avg rating · 10K+ clients</span>
-  </div>
-</div>
     <div class="container">
       <div class="page-hero-inner">
         <div class="hero-badge reveal">

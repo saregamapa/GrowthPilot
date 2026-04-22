@@ -47,44 +47,9 @@
   .service-accordion-list{max-width:100%}
 }
 
-/* ── SERVICES: DARK EMERALD HERO ── */
-.page-hero{position:relative;background:linear-gradient(135deg,#0B3D20 0%,#1A5C33 45%,#0D4525 100%);overflow:hidden;padding:5rem 0 4.5rem;min-height:460px}
-.page-hero .hero-h1{color:#fff}
-.page-hero .hero-h1 em{color:#6EE7A0}
-.page-hero .hero-sub{color:rgba(255,255,255,.80)}
-.page-hero .hero-badge{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.18)}
-.page-hero .hero-badge span{color:rgba(255,255,255,.82)}
-.page-hero .hero-badge-dot{background:#6EE7A0}
-.page-hero .btn-primary{background:linear-gradient(135deg,#6EE7A0,#2D6A4F);color:#0B3D20}
-.page-hero .btn-secondary{background:rgba(255,255,255,.10);border:1.5px solid rgba(255,255,255,.25);color:#fff}
-.page-hero .btn-secondary:hover{background:rgba(255,255,255,.18)}
-.page-hero .play-circle{background:rgba(255,255,255,.15);border:none}
-.page-hero>.container{position:relative;z-index:2}
-/* Floating social cards */
-.hero-floats{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
-.hf-card{position:absolute;border-radius:14px;padding:.7rem 1rem;display:flex;flex-direction:column;gap:.28rem;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);box-shadow:0 8px 32px rgba(0,0,0,.28);animation:hfFloat 6s ease-in-out infinite}
-.hf-card svg{width:24px;height:24px;flex-shrink:0}
-.hf-name{font-family:'Space Grotesk',sans-serif;font-size:.72rem;font-weight:700;color:#fff}
-.hf-stat{font-family:'Space Grotesk',sans-serif;font-size:.60rem;color:rgba(255,255,255,.75)}
-.hf-ig{top:10%;right:5%;background:linear-gradient(135deg,rgba(225,48,108,.65),rgba(131,58,180,.65));animation-delay:0s;transform:rotate(-3deg)}
-.hf-li{top:44%;right:2.5%;background:rgba(10,102,194,.62);animation-delay:-2.1s;transform:rotate(2deg)}
-.hf-tt{top:70%;right:7%;background:rgba(20,20,20,.70);animation-delay:-4.0s;transform:rotate(-2deg)}
-.hf-yt{top:16%;left:1.5%;background:linear-gradient(135deg,rgba(200,0,0,.62),rgba(150,0,0,.62));animation-delay:-1.2s;transform:rotate(3deg)}
-.hf-fb{top:54%;left:2%;background:rgba(24,119,242,.58);animation-delay:-3.3s;transform:rotate(-1deg)}
-.hf-tw{top:78%;left:6%;background:rgba(10,10,10,.65);animation-delay:-5.0s;transform:rotate(2deg)}
-@keyframes hfFloat{0%,100%{transform:translateY(0) rotate(var(--ro,0deg))}50%{transform:translateY(-16px) rotate(var(--ro,0deg))}}
-@media(max-width:768px){.hero-floats{display:none}}
-/* ── 3D BENTO CARD FLOAT ── */
-.bento{perspective:1200px}
-.bento-card{animation:cardFloat3D 5s ease-in-out infinite;transform-style:preserve-3d;will-change:transform;transition:box-shadow .3s}
-.bento-card:nth-child(1){animation-delay:0s}
-.bento-card:nth-child(2){animation-delay:-.9s}
-.bento-card:nth-child(3){animation-delay:-1.8s}
-.bento-card:nth-child(4){animation-delay:-2.7s}
-.bento-card:nth-child(5){animation-delay:-3.6s}
-.bento-card:nth-child(6){animation-delay:-4.5s}
-@keyframes cardFloat3D{0%,100%{transform:translateY(0) rotateX(0) rotateY(0);box-shadow:0 8px 30px rgba(45,106,79,.10)}25%{transform:translateY(-7px) rotateX(2.5deg) rotateY(-1.5deg);box-shadow:0 18px 50px rgba(45,106,79,.16)}50%{transform:translateY(-5px) rotateX(-1deg) rotateY(2deg);box-shadow:0 14px 40px rgba(160,103,44,.13)}75%{transform:translateY(-8px) rotateX(1.5deg) rotateY(-2.5deg);box-shadow:0 20px 55px rgba(45,106,79,.14)}}
-.bento-card:hover{animation-play-state:paused;transform:translateY(-12px) rotateX(3deg) rotateY(-3deg) scale(1.025)!important;box-shadow:0 28px 65px rgba(45,106,79,.18),0 6px 20px rgba(0,0,0,.06)!important}
+/* ── SERVICES: HERO ACCENT ── */
+.page-hero::before{background:radial-gradient(ellipse at 18% 55%,rgba(45,106,79,.14) 0%,transparent 65%)}
+.page-hero::after{content:'';position:absolute;top:-5%;right:-8%;width:55%;height:75%;background:radial-gradient(ellipse at 70% 30%,rgba(160,103,44,.08) 0%,transparent 60%);pointer-events:none}
 </style>
 
 <script type="application/ld+json">
@@ -136,32 +101,6 @@
        HERO BAND
   ══════════════════════════════════════════════════════ -->
   <section class="page-hero" aria-labelledby="services-hero-heading">
-    <div class="hero-floats" aria-hidden="true">
-  <div class="hf-card hf-ig">
-    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.2" fill="#fff" stroke="none"/></svg>
-    <span class="hf-name">Instagram</span><span class="hf-stat">↑ 247% Growth</span>
-  </div>
-  <div class="hf-card hf-li">
-    <svg viewBox="0 0 24 24" fill="#fff"><rect x="2" y="9" width="4" height="12" rx="1"/><circle cx="4" cy="4" r="2"/><path d="M9 9h3.5v1.8S13.2 9 16 9c3 0 5 1.8 5 5.2V21h-4v-6.5c0-1.5-.8-2.5-2.2-2.5S12 12.8 12 14.5V21H9z"/></svg>
-    <span class="hf-name">LinkedIn</span><span class="hf-stat">3.2M Reach</span>
-  </div>
-  <div class="hf-card hf-tt">
-    <svg viewBox="0 0 24 24" fill="#fff"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.77 0 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 00-6.28 8.66A6.34 6.34 0 0015.6 15.34V8.95a8.19 8.19 0 004.79 1.53V7.04a4.85 4.85 0 01-4.8-.35z"/></svg>
-    <span class="hf-name">TikTok</span><span class="hf-stat">5.8M Views</span>
-  </div>
-  <div class="hf-card hf-yt">
-    <svg viewBox="0 0 24 24"><rect width="24" height="24" fill="none"/><path d="M22.5 6.5A2.8 2.8 0 0020.6 4.6C18.9 4 12 4 12 4S5.1 4 3.4 4.6A2.8 2.8 0 001.5 6.5 29 29 0 001 12a29 29 0 00.5 5.5 2.8 2.8 0 001.9 1.9C5.1 20 12 20 12 20s6.9 0 8.6-.6a2.8 2.8 0 001.9-1.9A29 29 0 0023 12a29 29 0 00-.5-5.5z" fill="#fff"/><polygon points="9.8,15.2 15.5,12 9.8,8.8" fill="#CC0000"/></svg>
-    <span class="hf-name">YouTube</span><span class="hf-stat">142K Subs</span>
-  </div>
-  <div class="hf-card hf-fb">
-    <svg viewBox="0 0 24 24" fill="#fff"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
-    <span class="hf-name">Facebook</span><span class="hf-stat">89K Fans</span>
-  </div>
-  <div class="hf-card hf-tw">
-    <svg viewBox="0 0 24 24" fill="#fff"><path d="M18.2 2.25h3.3l-7.2 8.26 8.5 11.24H16.2l-5.2-6.82-5.96 6.82H1.68l7.73-8.84L1.25 2.25H8.1l4.7 6.23zm-1.16 17.52h1.83L7.08 4.13H5.12z"/></svg>
-    <span class="hf-name">X / Twitter</span><span class="hf-stat">28K Following</span>
-  </div>
-</div>
     <div class="container">
       <div class="page-hero-inner">
         <div class="hero-badge reveal">
